@@ -33,7 +33,6 @@ export const experience: ExperienceRole[] = [
       "Centralizing alerting across 5–10 services — a single service alone emits 300–400 alerts — by reviewing each use case and rewriting the rules instead of forwarding raw noise.",
       "Built ~10 centralized Grafana dashboards that aggregate data from 15+ clusters into a single view for on-call and service owners.",
       "Leading the migration of logging and dashboards off paid enterprise tooling onto open-source Grafana, Prometheus and Loki, cutting licence dependency.",
-      "Own the on-call rotation and lead cross-team work on alerting and observability standards.",
       "Own end-to-end monitoring and observability for BharatPe applications: alert rules, dashboards, troubleshooting and incident investigation across two business verticals.",
     ],
     stack: [

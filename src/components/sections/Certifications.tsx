@@ -1,9 +1,4 @@
-import {
-  ArrowUpRight,
-  Award,
-  GraduationCap,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 
 import { certifications } from "@/config/certifications";
 import { education } from "@/config/education";
@@ -15,92 +10,74 @@ export function Certifications() {
   return (
     <Section id="certifications" divided>
       <SectionHeading
+        index="05"
         eyebrow="Credentials & proof"
         title="Certifications & education."
         description="The certificates are checkpoints. The real evidence is the systems I run, the incidents I close, and the open-source work on this page."
       />
 
-      {/* Certifications */}
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
+      <div className="mt-14 border-t border-border">
         {certifications.map((cert, i) => (
-          <Reveal key={cert.id} delay={0.06 * i}>
-            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface-2 sm:p-7">
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-
-              <div className="flex items-start justify-between gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-accent/25 bg-accent-soft text-accent">
-                  <Award className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <span className="rounded-full border border-border bg-bg-elevated px-2.5 py-1 font-mono text-[11px] text-fg-muted">
-                  {cert.year}
-                </span>
-              </div>
-
-              <h3 className="mt-5 text-lg font-semibold leading-snug text-fg">
+          <Reveal
+            key={cert.id}
+            delay={0.05 * i}
+            className="grid gap-6 border-b border-border py-9 md:grid-cols-12 md:gap-12"
+          >
+            <div className="md:col-span-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent-text">
+                {cert.shortName} · {cert.year}
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold leading-snug tracking-tight text-fg">
                 {cert.name}
               </h3>
-              <p className="mt-1 font-mono text-[11.5px] uppercase tracking-[0.14em] text-accent-text">
-                {cert.shortName} · {cert.issuer}
-              </p>
-              <p className="mt-3 flex-1 text-[0.8125rem] leading-relaxed text-fg-muted">
+              <p className="mt-2 text-[0.9375rem] text-fg-subtle">{cert.issuer}</p>
+            </div>
+
+            <div className="md:col-span-7">
+              <p className="text-[1.0625rem] leading-[1.7] text-fg-muted">
                 {cert.description}
               </p>
-
-              <ul className="mt-5 flex flex-wrap gap-1.5">
-                {cert.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="rounded-md border border-border bg-bg-elevated px-2 py-1 text-[11.5px] text-fg-muted"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                {cert.skills.join(" · ")}
+              </p>
               <a
                 href={cert.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-1.5 border-t border-border pt-5 text-[0.8125rem] font-medium text-accent-text transition-colors hover:text-accent"
+                className="group mt-5 inline-flex items-center gap-2 border-b border-border-strong pb-1 text-[0.9375rem] font-medium text-accent-text transition-colors hover:border-accent"
               >
-                <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
+                <ShieldCheck className="h-4 w-4" aria-hidden="true" />
                 {cert.hrefLabel}
-                <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
               </a>
-            </article>
+            </div>
           </Reveal>
         ))}
       </div>
 
-      {/* Education — context only, not the headline. */}
       <Reveal delay={0.1}>
-        <article
+        <div
           id="education"
-          className="mt-4 flex scroll-mt-24 flex-col gap-4 rounded-2xl border border-border bg-surface p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7"
+          className="mt-10 flex scroll-mt-24 flex-col gap-4 border-b border-border pb-10 sm:flex-row sm:items-end sm:justify-between"
         >
-          <div className="flex items-start gap-4">
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-border bg-bg-elevated text-accent">
-              <GraduationCap className="h-5 w-5" aria-hidden="true" />
-            </span>
-            <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg-subtle">
-                Education
-              </p>
-              <h3 className="mt-1.5 text-[1.0625rem] font-semibold leading-snug text-fg">
-                {education.degree} · {education.field}
-              </h3>
-              <p className="mt-1 text-[0.875rem] text-fg-muted">
-                {education.institution}
-              </p>
-            </div>
+          <div>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+              Education
+            </p>
+            <h3 className="mt-4 text-xl font-semibold leading-snug text-fg">
+              {education.degree} · {education.field}
+            </h3>
+            <p className="mt-2 text-[1rem] text-fg-muted">
+              {education.institution}
+            </p>
           </div>
-          <span className="font-mono text-[11.5px] text-fg-subtle sm:shrink-0">
+          <span className="font-mono text-[12px] text-fg-subtle sm:shrink-0">
             {education.period}
           </span>
-        </article>
+        </div>
       </Reveal>
     </Section>
   );

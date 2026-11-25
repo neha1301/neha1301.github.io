@@ -18,36 +18,32 @@ const nodeIcons: Record<string, SkillIconKey> = {
 
 export function ArchitectureFlow({ project }: { project: Project }) {
   const nodes = project.architecture;
-  const summary = nodes.map((node) => node.label).join(" → ");
 
   return (
-    <div className="rounded-2xl border border-border bg-bg-elevated p-5 sm:p-7">
-      <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
-          System architecture
-        </h3>
-        <span className="font-mono text-[11px] text-fg-subtle">
-          {summary}
-        </span>
-      </div>
+    <div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+        System architecture · {nodes.length} stages
+      </p>
 
-      <div className="flex flex-col lg:flex-row lg:items-stretch">
+      <div className="mt-6 flex flex-col lg:flex-row lg:items-stretch">
         {nodes.map((node, i) => (
           <div key={node.id} className="contents">
-            <Reveal delay={0.08 * i} className="flex-1">
-              <div className="group relative h-full rounded-xl border border-border bg-surface p-4 transition-all duration-300 hover:border-accent/40 hover:bg-surface-2">
-                <span className="absolute right-3 top-3 font-mono text-[10.5px] text-fg-subtle">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <TechIcon
-                  name={nodeIcons[node.id] ?? "kubernetes"}
-                  size="md"
-                  className="h-9 w-9 rounded-lg"
-                />
-                <p className="mt-3.5 text-[0.875rem] font-semibold leading-snug text-fg">
+            <Reveal delay={0.06 * i} className="flex-1">
+              <div className="h-full border-t border-border-strong pt-4">
+                <div className="flex items-start justify-between gap-3">
+                  <TechIcon
+                    name={nodeIcons[node.id] ?? "kubernetes"}
+                    size="md"
+                    className="h-9 w-9 rounded-lg"
+                  />
+                  <span className="font-mono text-[11px] text-fg-subtle">
+                    0{i + 1}
+                  </span>
+                </div>
+                <p className="mt-4 text-[0.9375rem] font-semibold leading-snug text-fg">
                   {node.label}
                 </p>
-                <p className="mt-1.5 text-[0.75rem] leading-relaxed text-fg-muted">
+                <p className="mt-2 text-[0.8125rem] leading-relaxed text-fg-muted">
                   {node.detail}
                 </p>
               </div>

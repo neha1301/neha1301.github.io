@@ -4,6 +4,8 @@ import { Reveal } from "./Reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
+  /** Two-digit section number, rendered before the eyebrow. */
+  index?: string;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -12,6 +14,7 @@ type SectionHeadingProps = {
 
 export function SectionHeading({
   eyebrow,
+  index,
   title,
   description,
   align = "left",
@@ -20,23 +23,37 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         align === "center" && "items-center text-center",
         className,
       )}
     >
       {eyebrow ? (
-        <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fg-muted">
-          {eyebrow}
-        </span>
+        <div
+          className={cn(
+            "flex w-full items-center gap-4",
+            align === "center" && "justify-center",
+          )}
+        >
+          <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-text">
+            {index ? `${index} / ` : ""}
+            {eyebrow}
+          </span>
+          <span
+            aria-hidden="true"
+            className={cn("h-px w-full bg-border", align === "center" && "max-w-16")}
+          />
+        </div>
       ) : null}
-      <h2 className="max-w-3xl text-3xl font-semibold leading-[1.12] tracking-tight text-fg sm:text-4xl md:text-[2.75rem]">
+
+      <h2 className="max-w-4xl text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.035em] text-fg sm:text-[3rem] md:text-[3.375rem]">
         {title}
       </h2>
+
       {description ? (
         <p
           className={cn(
-            "max-w-2xl text-base leading-relaxed text-fg-muted sm:text-[1.0625rem]",
+            "max-w-2xl text-[1.0625rem] leading-[1.7] text-fg-muted sm:text-[1.125rem]",
             align === "center" && "mx-auto",
           )}
         >

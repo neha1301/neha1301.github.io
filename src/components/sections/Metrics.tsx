@@ -44,7 +44,7 @@ export function Metrics() {
       aria-labelledby="impact-heading"
       className="border-y border-border bg-bg-elevated"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 py-9 sm:px-8 sm:py-11">
+      <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 sm:py-14">
         <h2 id="impact-heading" className="sr-only">
           Engineering impact
         </h2>
@@ -53,10 +53,10 @@ export function Metrics() {
             <div key={metric.id} className="min-w-0">
               <dt className="sr-only">{metric.label}</dt>
               <dd>
-                <span className="block text-[1.75rem] font-semibold leading-none tracking-tight text-fg sm:text-[2rem]">
+                <span className="block text-[2.25rem] font-semibold leading-none tracking-[-0.04em] text-fg sm:text-[2.75rem]">
                   {metric.value}
                 </span>
-                <span className="mt-2 block text-[0.8125rem] leading-snug text-fg-muted">
+                <span className="mt-3 block text-[0.9375rem] leading-snug text-fg-muted">
                   {metric.label}
                 </span>
                 <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-fg-subtle">
