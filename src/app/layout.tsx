@@ -148,6 +148,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <noscript>
+          {/* Framer Motion sets opacity:0 inline during SSR. Without JS the
+              page would otherwise be blank — force every Reveal visible. */}
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}

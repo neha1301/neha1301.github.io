@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Neha Sharma — Resume</title>
+    <style>
+      @page { size: A4; margin: 0; }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #14171c;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 8.5pt;
+        line-height: 1.26;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page { padding: 10mm 13mm 9mm; }
+
+      header { border-bottom: 1.5px solid #14171c; padding-bottom: 2mm; }
+
+      h1 {
+        margin: 0;
+        font-size: 16pt;
+        letter-spacing: -0.4pt;
+        font-weight: 700;
+      }
+
+      .role {
+        margin: 0.8mm 0 1.4mm;
+        font-size: 9.2pt;
+        font-weight: 600;
+        color: #1f6f52;
+      }
+
+      .contact {
+        margin: 0;
+        font-size: 7.6pt;
+        color: #3d4450;
+        overflow-wrap: anywhere;
+      }
+
+      section { margin-top: 2.7mm; }
+
+      h2 {
+        margin: 0 0 1.4mm;
+        padding-bottom: 0.6mm;
+        border-bottom: 1px solid #cbd0d8;
+        font-size: 7.8pt;
+        font-weight: 700;
+        letter-spacing: 1pt;
+        text-transform: uppercase;
+        color: #3d4450;
+      }
+
+      p { margin: 0 0 1.2mm; }
+
+      .skills-line { margin: 0 0 0.8mm; }
+      .skills-line strong { font-weight: 700; }
+
+      .job { margin-bottom: 2.2mm; break-inside: avoid; }
+
+      .job-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 5mm;
+      }
+
+      .job-title { font-weight: 700; font-size: 9pt; }
+      .job-meta { font-size: 7.5pt; color: #5a626f; white-space: nowrap; }
+      .job-sub { font-size: 7.6pt; color: #5a626f; margin: 0.2mm 0 0.9mm; }
+
+      ul { margin: 0; padding-left: 3.6mm; }
+      li { margin: 0 0 0.7mm; padding-left: 0.4mm; }
+
+      .stack {
+        margin-top: 0.8mm;
+        font-size: 7.4pt;
+        color: #5a626f;
+      }
+
+      .project { margin-bottom: 1.2mm; break-inside: avoid; }
+      .project b { font-weight: 700; }
+
+      .tight li { margin-bottom: 0.5mm; }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Neha Sharma</h1>
+        <p class="role">DevOps Engineer II (SDE-2) · Site Reliability Engineer</p>
+        <p class="contact">
+          Gurugram, Haryana, India &nbsp;·&nbsp; nehasharma13dec2001@gmail.com
+          &nbsp;·&nbsp; linkedin.com/in/neha1301 &nbsp;·&nbsp; github.com/neha1301
+          &nbsp;·&nbsp; neha1301.github.io
+        </p>
+      </header>
+
+      <section>
+        <h2>Summary</h2>
+        <p>
+          Site Reliability and DevOps engineer with 3 years of experience
+          operating production Kubernetes platforms across AWS and GCP. Owns
+          reliability for two business verticals, with a track record of
+          zero-downtime upgrades, observability migrations, incident response
+          and automation that removes manual toil.
+        </p>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <p class="skills-line"><strong>Cloud &amp; Platforms:</strong> Kubernetes, AWS, GCP, EKS, GKE, Terraform, Helm, Karpenter, Docker, ArgoCD</p>
+        <p class="skills-line"><strong>Observability &amp; SRE:</strong> Prometheus, Grafana, Loki, Tempo, Pyroscope, OpenTelemetry, ELK, SLOs, incident response, RCA</p>
+        <p class="skills-line"><strong>Automation &amp; Languages:</strong> Python, Bash, GitHub Actions, Jenkins, FastAPI, SQL, PostgreSQL, MySQL</p>
+      </section>
+
+      <section>
+        <h2>Professional experience</h2>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">BharatPe — DevOps Engineer II (SDE-2)</span>
+            <span class="job-meta">September 2026 – Present</span>
+          </div>
+          <p class="job-sub">Gurugram, Haryana, India</p>
+          <ul>
+            <li>Centralizing SRE alerting across 5–10 services — a single service emits 300–400 alerts — by reviewing each use case and rewriting rules rather than forwarding raw noise. Built ~10 centralized Grafana dashboards aggregating data from 15+ clusters into one view.</li>
+            <li>Leading the migration of logging and dashboards from paid enterprise tooling to open-source Grafana, Prometheus and Loki, removing licence dependency.</li>
+            <li>Own end-to-end monitoring and observability for two business verticals: alert rules, dashboards, troubleshooting and incident investigation.</li>
+          </ul>
+          <p class="stack">Kubernetes · AWS · Prometheus · Grafana · OpenTelemetry · Loki · Tempo</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Devtron — DevOps Engineer</span>
+            <span class="job-meta">May 2024 – August 2026</span>
+          </div>
+          <p class="job-sub">Gurugram, Haryana, India</p>
+          <ul>
+            <li>Executed Kubernetes cluster upgrades across 30+ production environments with zero downtime, maintaining platform reliability and security compliance.</li>
+            <li>Resolved customer-facing Kubernetes and infrastructure incidents through debugging and root cause analysis, achieving a 95% first-response resolution rate and fewer escalations.</li>
+            <li>Built a Python onboarding automation pipeline that removed manual provisioning and cut application onboarding time by 60%.</li>
+            <li>Built observability with Prometheus, Grafana and Pyroscope for SLO-driven monitoring and faster incident detection; maintained 10+ Helm charts.</li>
+            <li>Developed a Kubernetes Validating Admission Policy on the native v1.32 API, standardizing deployment validation across production clusters.</li>
+            <li>Replaced static node provisioning with Karpenter, improving scheduling efficiency and lowering infrastructure costs; provisioned VPC, IAM and networking with Terraform.</li>
+          </ul>
+          <p class="stack">Kubernetes · AWS · GCP · Prometheus · Grafana · Pyroscope · Helm · Terraform · Karpenter · Python</p>
+        </div>
+
+        <div class="job">
+          <div class="job-head">
+            <span class="job-title">Devtron — DevOps Engineering Intern</span>
+            <span class="job-meta">January 2024 – May 2024</span>
+          </div>
+          <p class="job-sub">Gurugram, Haryana, India</p>
+          <ul>
+            <li>Developed a Bash-based post-release validation framework with automated sanity checks and real-time deployment notifications across microservices.</li>
+            <li>Investigated production Kubernetes incidents and introduced preventive monitoring rules that reduced recurring failures.</li>
+          </ul>
+          <p class="stack">Bash · Kubernetes · Monitoring · Release Automation</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <p class="project"><b>Alert Enrichment Service for Alertmanager (2026)</b> — FastAPI webhook that turns raw Alertmanager alerts into one Slack message with pod state, previous-container logs and a silence link inside a 4-second budget. Dedup before enrichment, Helm chart, read-only RBAC, 75 tests, 91.34% coverage. GitHub: neha1301/alertbrief</p>
+        <p class="project"><b>Kubernetes Node Insight Tool (2025)</b> — Single-file, read-only Python CLI that correlates node conditions, kubelet OOM events, capacity and workload state into a severity-ranked root cause. Detects SystemOOM, memory/disk/PID pressure and Ready-but-degraded nodes; cut node-level triage time by ~70%. GitHub: neha1301/Kubernetes-Node-Insight-Tool</p>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul class="tight">
+          <li>Certified Kubernetes Administrator (CKA) — The Linux Foundation, 2026 · Verify: credly.com/badges/4e34fd34</li>
+          <li>Prometheus Certified Associate (PCA) — CNCF / The Linux Foundation, 2026 · Verify: credly.com/badges/42c070f7</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Education &amp; achievements</h2>
+        <ul class="tight">
+          <li>B.Tech, Computer Science and Engineering — Mody University of Science and Technology, 2020–2024 · 8.31/10.0</li>
+          <li>Flipkart GWC 4.0 — Top 30 of 3.9 lakh+ participants</li>
+          <li>300+ DSA problems solved across LeetCode and GeeksforGeeks</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>

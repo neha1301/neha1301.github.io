@@ -14,7 +14,7 @@ export const site = {
   subtagline:
     "I'm Neha Sharma, a Site Reliability & DevOps Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure.",
   description:
-    "DevOps Engineer II at BharatPe and Site Reliability Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure across Kubernetes, AWS and GCP, observability, CI/CD, and incident response.",
+    "Site Reliability & DevOps Engineer at BharatPe. Three years running production Kubernetes, AWS and GCP — alerting, observability and incident response.",
 
   location: "Gurugram, Haryana, India",
   locationShort: "Gurugram, India",
@@ -66,5 +66,6 @@ export const navLinks = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "project", label: "Projects" },
+  { id: "certifications", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ] as const;

@@ -72,6 +72,16 @@ placeholder article titles are ever displayed.
 Replace `public/Neha-Sharma-Resume.pdf` (or point `site.resume.path` in
 `src/config/site.ts` at a new file). Every download button reads that single value.
 
+The committed PDF is generated from `scripts/resume.html`. Edit that HTML, then:
+
+```bash
+sh scripts/make-resume.sh
+```
+
+Keep the resume and the site in sync — they are the two artifacts a recruiter
+compares side by side, so a stale title, handle, or project claim on either one
+is worse than a missing detail.
+
 ### Social preview image
 
 The Open Graph / Twitter card is a static file at `public/og.png` (1200 × 630).

@@ -56,40 +56,16 @@ function CaseCard({
   );
 }
 
-function ProjectCaseStudy({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
-  const featured = index === 0;
-
+function ProjectCaseStudy({ project }: { project: Project }) {
   return (
-    <div
-      className={
-        index > 0 ? "border-t border-border pt-12 sm:pt-16" : undefined
-      }
-    >
+    <div>
       {/* Header */}
       <div className="flex flex-col gap-6">
         <Reveal>
           <div className="flex flex-wrap items-center gap-2.5">
-            <span
-              className={
-                featured
-                  ? "inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-accent"
-                  : "inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-fg-muted"
-              }
-            >
-              {featured ? (
-                <Sparkles className="h-3 w-3" aria-hidden="true" />
-              ) : (
-                <Layers className="h-3 w-3" aria-hidden="true" />
-              )}
-              {featured
-                ? "Featured project"
-                : `Case study ${String(index + 1).padStart(2, "0")}`}
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+              <Sparkles className="h-3 w-3" aria-hidden="true" />
+              Featured project
             </span>
             <span className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-fg-muted">
               {project.category}
@@ -270,6 +246,70 @@ function ProjectCaseStudy({
   );
 }
 
+function ProjectSummary({ project }: { project: Project }) {
+  const metric = project.impact.metric;
+
+  return (
+    <Reveal className="h-full">
+      <article className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-border-strong hover:bg-surface-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full border border-border bg-bg-elevated px-2.5 py-1 font-mono text-[10.5px] text-fg-muted">
+            {project.category}
+          </span>
+          <span className="rounded-full border border-border bg-bg-elevated px-2.5 py-1 font-mono text-[10.5px] text-fg-muted">
+            {project.year}
+          </span>
+        </div>
+
+        <h3 className="mt-4 text-xl font-semibold tracking-tight text-fg">
+          {project.name}
+        </h3>
+        <p className="mt-2 flex-1 text-[0.875rem] leading-relaxed text-fg-muted">
+          {project.tagline}
+        </p>
+
+        <ul className="mt-4 flex flex-wrap gap-1.5">
+          {project.stack.map((item) => (
+            <li key={item.name}>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-bg-elevated px-2 py-1 text-[11.5px] text-fg-muted">
+                <TechIcon
+                  name={item.icon}
+                  size="sm"
+                  className="h-4 w-4 rounded-[0.2rem] border-0 bg-transparent"
+                />
+                {item.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-5 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-t border-border pt-4">
+          <p className="flex items-baseline gap-1.5">
+            <span className="text-lg font-semibold leading-none text-fg">
+              {metric
+                ? `${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""}`
+                : project.impact.headline}
+            </span>
+            <span className="text-[11.5px] text-fg-subtle">
+              {metric?.label}
+            </span>
+          </p>
+          <a
+            href={project.repository.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-fg-muted transition-colors hover:text-accent"
+          >
+            <GithubIcon className="h-3.5 w-3.5 fill-current" />
+            Repository
+            <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+          </a>
+        </div>
+      </article>
+    </Reveal>
+  );
+}
+
 export function FeaturedProject() {
   return (
     <Section id="project" divided className="relative overflow-hidden">
@@ -287,14 +327,21 @@ export function FeaturedProject() {
         description="One explains why a Kubernetes workload failed; the other turns Alertmanager noise into a single actionable Slack message. Same build discipline, same production constraints."
       />
 
-      <div className="mt-10 space-y-16">
-        {projects.map((project, index) => (
-          <ProjectCaseStudy
-            key={project.id}
-            project={project}
-            index={index}
-          />
-        ))}
+      <div className="mt-10">
+        <ProjectCaseStudy project={projects[0]} />
+
+        {projects.length > 1 ? (
+          <div className="mt-12 border-t border-border pt-10 sm:mt-16 sm:pt-12">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+              More work
+            </h3>
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
+              {projects.slice(1).map((project) => (
+                <ProjectSummary key={project.id} project={project} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </Section>
   );

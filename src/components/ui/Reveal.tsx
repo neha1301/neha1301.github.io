@@ -37,12 +37,17 @@ export function Reveal({
   const StaticTag = as;
 
   if (reduce) {
-    return <StaticTag className={className}>{children}</StaticTag>;
+    return (
+      <StaticTag className={className} data-reveal="">
+        {children}
+      </StaticTag>
+    );
   }
 
   return (
     <MotionTag
       className={className}
+      data-reveal=""
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}

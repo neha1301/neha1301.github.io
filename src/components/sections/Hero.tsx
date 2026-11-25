@@ -101,8 +101,21 @@ export function Hero() {
           </Reveal>
 
           {/* Headline */}
+          <Reveal delay={0.04}>
+            <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11.5px] uppercase tracking-[0.14em] text-fg-subtle">
+              <span className="text-accent-text">
+                DevOps Engineer II at BharatPe
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-1 w-1 rounded-full bg-border-strong"
+              />
+              <span>Site Reliability Engineer</span>
+            </p>
+          </Reveal>
+
           <Reveal delay={0.06}>
-            <h1 className="mt-7 text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.03em] text-fg sm:text-[3.25rem] lg:text-[3.75rem]">
+            <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.03em] text-fg sm:text-[3.25rem] lg:text-[3.75rem]">
               Fewer alerts.{" "}
               <span className="text-gradient">Faster root causes.</span>
             </h1>

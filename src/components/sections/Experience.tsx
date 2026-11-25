@@ -45,6 +45,7 @@ export function Experience() {
                       <div className="flex flex-wrap items-center gap-2.5">
                         <h3 className="text-xl font-semibold tracking-tight text-fg">
                           {role.company}
+                          <span className="sr-only"> — {role.title}</span>
                         </h3>
                         {role.current ? (
                           <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.14em] text-accent">
