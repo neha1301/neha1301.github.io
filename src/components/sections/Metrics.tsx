@@ -12,10 +12,10 @@ const metrics = [
     detail: "zero downtime",
   },
   {
-    id: "first-response",
+    id: "no-escalation",
     value: "95%",
     label: "customer incidents resolved",
-    detail: "on first response",
+    detail: "without escalation",
   },
   {
     id: "onboarding",

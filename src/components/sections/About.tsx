@@ -21,7 +21,7 @@ const focusAreas: {
     points: [
       "Centralized alerting",
       "Incident response & RCA",
-      "95% first-response resolution",
+      "95% resolved without escalation",
     ],
   },
   {
@@ -76,9 +76,9 @@ export function About() {
             <p className="mt-6 leading-relaxed text-fg-muted">
               The last three years were spent deep in production Kubernetes:{" "}
               <span className="text-fg">30+ environments upgraded with zero
-              downtime</span>, a{" "}
-              <span className="text-fg">95% first-response resolution rate</span>{" "}
-              on customer-facing incidents, and a Kubernetes v1.32 admission
+              downtime</span>,{" "}
+              <span className="text-fg">95% of incidents resolved without
+              escalation</span>, and a Kubernetes v1.32 admission
               policy that rejects bad deploys before they land.
             </p>
           </Reveal>

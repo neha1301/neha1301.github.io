@@ -33,6 +33,7 @@ export const experience: ExperienceRole[] = [
       "Centralizing alerting across 5–10 services — a single service alone emits 300–400 alerts — by reviewing each use case and rewriting the rules instead of forwarding raw noise.",
       "Built ~10 centralized Grafana dashboards that aggregate data from 15+ clusters into a single view for on-call and service owners.",
       "Leading the migration of logging and dashboards off paid enterprise tooling onto open-source Grafana, Prometheus and Loki, cutting licence dependency.",
+      "Own the on-call rotation and lead cross-team work on alerting and observability standards.",
       "Own end-to-end monitoring and observability for BharatPe applications: alert rules, dashboards, troubleshooting and incident investigation across two business verticals.",
     ],
     stack: [
@@ -60,7 +61,7 @@ export const experience: ExperienceRole[] = [
       "Engineered a Python-based onboarding automation pipeline for Devtron applications, eliminating manual provisioning and reducing onboarding time by 60% across multiple production environments.",
       "Maintained and enhanced 10+ Helm charts while developing a Kubernetes Validating Admission Policy on the native v1.32 API, standardizing deployment validation across production clusters.",
       "Built and maintained an observability platform using Prometheus, Grafana, and Pyroscope, enabling SLO-driven monitoring and faster production incident detection.",
-      "Resolved customer-facing Kubernetes and infrastructure incidents through production debugging and root cause analysis, achieving a 95% first-response resolution rate while reducing escalations.",
+      "Resolved customer-facing Kubernetes and infrastructure incidents through production debugging and root cause analysis, with 95% of incidents resolved without escalation.",
       "Executed Kubernetes cluster upgrades across 30+ production environments with zero downtime, ensuring platform reliability and security compliance.",
       "Replaced static node provisioning with Karpenter, improving workload scheduling efficiency and lowering infrastructure costs.",
       "Designed reusable Kubernetes infrastructure using Terraform, provisioning VPCs, IAM, networking, and cluster add-ons to automate environment creation.",
