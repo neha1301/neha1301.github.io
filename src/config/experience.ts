@@ -28,12 +28,12 @@ export const experience: ExperienceRole[] = [
     location: "Gurugram, Haryana, India",
     current: true,
     summary:
-      "Own infrastructure and applications for two business verticals, and set the reliability direction: centralized alerting, monitoring tooling, and production operations.",
+      "Own infrastructure and applications for two business verticals, and set the reliability direction: centralizing alerting across 5–10 services, building cross-cluster dashboards, and moving off paid monitoring.",
     highlights: [
-      "Designed and implemented a centralized SRE alerting system, consolidating alerts across services to improve incident visibility and streamline incident response.",
-      "Led the migration from proprietary monitoring tools to an open-source observability stack using Prometheus, Grafana, Loki and Tempo, improving monitoring capabilities and reducing vendor dependency.",
-      "Manage end-to-end monitoring and observability for BharatPe applications, covering alerting, dashboard management, troubleshooting and incident investigation.",
-      "Handle infrastructure and application operations across two business verticals, supporting deployments, production troubleshooting and application reliability.",
+      "Centralizing alerting across 5–10 services — a single service alone emits 300–400 alerts — by reviewing each use case and rewriting the rules instead of forwarding raw noise.",
+      "Built ~10 centralized Grafana dashboards that aggregate data from 15+ clusters into a single view for on-call and service owners.",
+      "Leading the migration of logging and dashboards off paid enterprise tooling onto open-source Grafana, Prometheus and Loki, cutting licence dependency.",
+      "Own end-to-end monitoring and observability for BharatPe applications: alert rules, dashboards, troubleshooting and incident investigation across two business verticals.",
     ],
     stack: [
       "Kubernetes",

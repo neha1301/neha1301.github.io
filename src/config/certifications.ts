@@ -1,8 +1,7 @@
 /**
  * Certifications and achievements.
  *
- * Verification links point at official credential-verification portals.
- * A per-credential ID can be appended to the CKA link when available.
+ * Verification links point at the public Credly badge for each credential.
  */
 
 export interface Certification {
@@ -26,8 +25,8 @@ export const certifications: Certification[] = [
     year: "2026",
     description:
       "Hands-on administrator certification covering cluster installation, workload management, networking, storage, and troubleshooting.",
-    href: "https://training.linuxfoundation.org/certification/verify/",
-    hrefLabel: "Verify credential",
+    href: "https://www.credly.com/badges/4e34fd34-6b0f-4e5f-ae82-7c296f10ccd1",
+    hrefLabel: "Verify on Credly",
     skills: ["Cluster operations", "Networking", "Storage", "Troubleshooting"],
   },
   {
@@ -38,8 +37,8 @@ export const certifications: Certification[] = [
     year: "2026",
     description:
       "Certification covering Prometheus fundamentals, instrumentation, querying with PromQL, alerting, and practical troubleshooting.",
-    href: "https://training.linuxfoundation.org/certification/verify/",
-    hrefLabel: "Verify credential",
+    href: "https://www.credly.com/badges/42c070f7-827d-4fb5-b1a9-3bd24320c8c3",
+    hrefLabel: "Verify on Credly",
     skills: ["PromQL", "Alerting", "Instrumentation", "Monitoring"],
   },
 ];
@@ -60,8 +59,8 @@ export const achievements: Achievement[] = [
     detail:
       "Top 30 performer out of 3.9 lakh+ participants in Flipkart's nationwide coding contest.",
     metric: "Top 30",
-    href: "https://www.flipkart.com/",
-    hrefLabel: "Flipkart",
+    href: "https://www.linkedin.com/posts/neha1301_slaywithcode-girlswhocode-technologyforgood-share-7069625144498884609-E6cd/",
+    hrefLabel: "View post",
   },
   {
     id: "dsa",
@@ -69,7 +68,7 @@ export const achievements: Achievement[] = [
     detail:
       "Solved 300+ Data Structures and Algorithms problems across LeetCode and GeeksforGeeks.",
     metric: "300+",
-    href: "https://leetcode.com/",
-    hrefLabel: "LeetCode",
+    href: "https://leetcode.com/u/neha_onefour/",
+    hrefLabel: "LeetCode profile",
   },
 ];

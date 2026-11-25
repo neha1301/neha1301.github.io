@@ -1,4 +1,4 @@
-import { ArrowUp, MapPin } from "lucide-react";
+import { ArrowUp, Mail, MapPin } from "lucide-react";
 
 import { navLinks, site } from "@/config/site";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
@@ -48,6 +48,15 @@ export function Footer() {
                 Get in touch
               </h3>
               <ul className="mt-4 flex flex-col gap-2.5">
+                <li>
+                  <a
+                    href={site.links.email}
+                    className="inline-flex items-start gap-2 break-all text-sm text-fg-muted transition-colors hover:text-fg"
+                  >
+                    <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    {site.email}
+                  </a>
+                </li>
                 <li>
                   <a
                     href={site.links.linkedin}

@@ -8,9 +8,9 @@ export const site = {
   shortName: "Neha",
   /** Canonical origin — used for SEO metadata, OG tags and sitemap. */
   url: "https://neha1301.github.io",
-  title: "Neha Sharma — DevOps Engineer II & Site Reliability Engineer",
+  title: "Neha Sharma — Site Reliability & DevOps Engineer",
   role: "DevOps Engineer II (SDE-2) at BharatPe · Site Reliability Engineer",
-  tagline: "Engineering Reliable Systems. Building for Scale.",
+  tagline: "Fewer alerts. Faster root causes.",
   subtagline:
     "I'm Neha Sharma, a Site Reliability & DevOps Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure.",
   description:
@@ -29,8 +29,9 @@ export const site = {
   },
 
   links: {
-    github: "https://github.com/neha130",
+    github: "https://github.com/neha1301",
     linkedin: "https://www.linkedin.com/in/neha1301/",
+    leetcode: "https://leetcode.com/u/neha_onefour/",
     email: "mailto:nehasharma13dec2001@gmail.com",
     /** Opens a compose window in the browser even without a desktop mail app. */
     emailCompose:
@@ -42,7 +43,7 @@ export const socials = [
   {
     id: "github",
     label: "GitHub",
-    handle: "neha130",
+    handle: "neha1301",
     href: site.links.github,
   },
   {
@@ -65,4 +66,5 @@ export const navLinks = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "project", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ] as const;

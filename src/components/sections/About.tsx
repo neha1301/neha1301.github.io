@@ -95,11 +95,11 @@ export function About() {
           <Reveal delay={0.14}>
             <p className="mt-5 leading-relaxed text-fg-muted">
               The current focus is quieter on-call shifts: consolidating alerting
-              across services and moving the monitoring stack from proprietary
+              across 5–10 services and moving the monitoring stack from paid
               tooling to open source. The same instinct produced an LLM-assisted
-              debugger that turns OOMKilled and pressure signals into a root cause
-              (~70% less debugging time), and a FastAPI service that enriches
-              Alertmanager alerts so one Slack message carries the whole story.
+              debugger that turns OOMKilled and pressure signals into a root cause,
+              and a FastAPI service that enriches Alertmanager alerts so one Slack
+              message carries the whole story.
             </p>
           </Reveal>
 

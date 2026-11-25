@@ -28,6 +28,11 @@ export interface Project {
   problem: string;
   solution: string;
   capabilities: string[];
+  /**
+   * Design decisions and what they cost — the "why" behind the build.
+   * Only include trade-offs that are verifiable from the project notes/README.
+   */
+  tradeoffs?: string[];
   impact: {
     headline: string;
     description: string;
@@ -74,6 +79,11 @@ export const projects: Project[] = [
       "Duplicate suppression (memory + Redis Lua)",
       "Per-alert runbook and silence links",
       "Helm chart, read-only RBAC, CI",
+    ],
+    tradeoffs: [
+      "Dedup is reserved before enrichment, not after. A failed enrichment can therefore suppress a retry, but a flapping pod cannot produce a second Slack message.",
+      "Enrichment runs on a 4-second budget with a 1.5s hard timeout per Kubernetes call. Partial context is always sent — a complete message that arrives late is worse than a partial one that arrives while someone is still reading the alert.",
+      "In-memory dedup is the default; Redis with an atomic Lua reservation is opt-in for multi-replica deployments, where two pods could otherwise claim the same incident key.",
     ],
     impact: {
       headline: "×3 alerts → one message",
@@ -189,7 +199,7 @@ export const projects: Project[] = [
       },
     ],
     repository: {
-      href: "https://github.com/neha130",
+      href: "https://github.com/neha1301",
       label: "More on GitHub",
       live: false,
     },

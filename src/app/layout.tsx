@@ -60,12 +60,21 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: site.title,
     description: site.description,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: `${site.name} — ${site.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
-    creator: "@neha130",
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -93,8 +102,8 @@ const personSchema = {
   "@type": "Person",
   name: site.name,
   url: site.url,
-  image: `${site.url}/opengraph-image`,
-  jobTitle: "DevOps Engineer II (SDE-2) | Site Reliability Engineer",
+  image: `${site.url}/og.png`,
+  jobTitle: "Site Reliability Engineer | DevOps Engineer II (SDE-2)",
   description: site.description,
   email: `mailto:${site.email}`,
   address: {
@@ -107,7 +116,7 @@ const personSchema = {
     "@type": "Organization",
     name: "BharatPe",
   },
-  sameAs: [site.links.github, site.links.linkedin],
+  sameAs: [site.links.github, site.links.linkedin, site.links.leetcode],
   knowsAbout: [
     "Site Reliability Engineering",
     "Kubernetes",

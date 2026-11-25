@@ -39,14 +39,13 @@ npm run lint     # eslint
 
 | File | Contents |
 | --- | --- |
-| `src/config/site.ts` | Name, role, tagline, location, email, phone, social links, resume path, nav links |
+| `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn, LeetCode), resume path, nav links |
 | `src/config/experience.ts` | Roles, periods, ownership summaries, highlights, stack chips |
-| `src/config/skills.ts` | Skill groups (Cloud, Containerization, Observability, SRE, CI/CD, Programming, AI) and their icons |
-| `src/config/metrics.ts` | The five engineering-impact metrics |
-| `src/config/projects.ts` | The featured case study: problem, solution, architecture, capabilities, impact, repository |
+| `src/config/skills.ts` | Skill groups (daily / working / familiar) and their icons |
+| `src/config/projects.ts` | Case studies: problem, solution, architecture, capabilities, design trade-offs, impact, repository |
 | `src/config/articles.ts` | Article showcase entries (see below) |
-| `src/config/certifications.ts` | Certifications (with verification links) and achievements |
-| `src/config/education.ts` | Degree, institution, CGPA, coursework, target roles, location preferences |
+| `src/config/certifications.ts` | Certifications (Credly verification links) and achievements |
+| `src/config/education.ts` | Degree, field, institution, period |
 
 ### Adding an article
 
@@ -73,6 +72,22 @@ placeholder article titles are ever displayed.
 Replace `public/Neha-Sharma-Resume.pdf` (or point `site.resume.path` in
 `src/config/site.ts` at a new file). Every download button reads that single value.
 
+### Social preview image
+
+The Open Graph / Twitter card is a static file at `public/og.png` (1200 × 630).
+It is committed rather than generated at request time because GitHub Pages serves
+extension-less routes as `application/octet-stream`, which breaks link previews on
+LinkedIn and Slack.
+
+If you change the hero headline, edit `scripts/make-og.mjs` and regenerate:
+
+```bash
+node scripts/make-og.mjs
+```
+
+The metadata in `src/app/layout.tsx` points at `/og.png` explicitly, so the file
+always keeps a `.png` extension and the correct content type.
+
 ### Changing the accent colour
 
 Edit the `--accent` / `--accent-2` custom properties in `src/app/globals.css`.
@@ -89,7 +104,6 @@ src/
 │   ├── layout.tsx          # fonts, metadata, JSON-LD, theme bootstrap
 │   ├── page.tsx            # composes the sections in order
 │   ├── globals.css         # design system: tokens, base styles, utilities
-│   ├── opengraph-image.tsx # generated OG image
 │   ├── icon.svg            # favicon
 │   ├── robots.ts
 │   └── sitemap.ts
@@ -99,6 +113,13 @@ src/
 │   └── ui/                 # Button, Reveal, Terminal, TechIcon, AnimatedCounter, …
 ├── config/                 # ← all editable content
 └── lib/                    # helpers (cn, formatDate, cached year)
+
+public/
+├── Neha-Sharma-Resume.pdf  # downloadable resume
+└── og.png                  # static social preview (1200 × 630)
+
+scripts/
+└── make-og.mjs             # regenerates public/og.png
 ```
 
 ### Theme handling

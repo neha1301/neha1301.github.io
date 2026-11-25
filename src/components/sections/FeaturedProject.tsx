@@ -4,6 +4,7 @@ import {
   Boxes,
   Layers,
   Lightbulb,
+  Scale,
   Sparkles,
   Target,
   TrendingUp,
@@ -199,6 +200,25 @@ function ProjectCaseStudy({
             </CaseCard>
           </Reveal>
         </div>
+
+        {project.tradeoffs?.length ? (
+          <Reveal delay={0.08}>
+            <CaseCard icon={Scale} label="Design trade-offs">
+              <ul className="space-y-3">
+                {project.tradeoffs.map((tradeoff) => (
+                  <li key={tradeoff} className="flex items-start gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-2"
+                    />
+                    <span>{tradeoff}</span>
+                  </li>
+                ))}
+              </ul>
+            </CaseCard>
+          </Reveal>
+        ) : null}
+
         <Reveal delay={0.1}>
           <article className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/[0.09] via-surface to-surface p-6 sm:p-8">
             <div className="flex items-center gap-2.5">

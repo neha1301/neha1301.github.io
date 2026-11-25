@@ -4,6 +4,7 @@ import { TechStack } from "@/components/sections/TechStack";
 import { Experience } from "@/components/sections/Experience";
 import { FeaturedProject } from "@/components/sections/FeaturedProject";
 import { Certifications } from "@/components/sections/Certifications";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Experience />
       <FeaturedProject />
       <Certifications />
+      <Contact />
     </>
   );
 }

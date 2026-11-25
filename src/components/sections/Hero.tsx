@@ -27,7 +27,7 @@ const terminalScenes: TerminalScene[] = [
       { type: "success", text: "✓ OOMKilled event detected" },
       { type: "success", text: "✓ MemoryPressure on ip-10-0-3-21" },
       { type: "output", text: "→ LLM root cause: memory limit below peak usage" },
-      { type: "success", text: "→ debugging time reduced ~70%" },
+      { type: "success", text: "→ root cause in one pass, not five commands" },
     ],
   },
   {
@@ -103,8 +103,8 @@ export function Hero() {
           {/* Headline */}
           <Reveal delay={0.06}>
             <h1 className="mt-7 text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.03em] text-fg sm:text-[3.25rem] lg:text-[3.75rem]">
-              Engineering Reliable Systems.{" "}
-              <span className="text-gradient">Building for Scale.</span>
+              Fewer alerts.{" "}
+              <span className="text-gradient">Faster root causes.</span>
             </h1>
           </Reveal>
 
