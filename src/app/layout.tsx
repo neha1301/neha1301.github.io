@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "Prometheus",
     "Grafana",
     "Observability",
-    "AI-assisted debugging",
+    "Incident response",
     "Gurugram",
   ],
   alternates: { canonical: "/" },
@@ -128,7 +128,7 @@ const personSchema = {
     "Grafana",
     "OpenTelemetry",
     "GitOps",
-    "Generative AI",
+    "Incident Response",
   ],
 };
 

@@ -21,13 +21,13 @@ const terminalScenes: TerminalScene[] = [
     ],
   },
   {
-    title: "k8s-debugger / llm analysis",
+    title: "node-insight / diagnostics",
     lines: [
-      { type: "command", text: "python k8s_debug.py --analyze" },
-      { type: "success", text: "✓ OOMKilled event detected" },
+      { type: "command", text: "python node_inspector.py" },
+      { type: "success", text: "✓ SystemOOM found in kubelet events" },
       { type: "success", text: "✓ MemoryPressure on ip-10-0-3-21" },
-      { type: "output", text: "→ LLM root cause: memory limit below peak usage" },
-      { type: "success", text: "→ root cause in one pass, not five commands" },
+      { type: "output", text: "→ root cause: memory limit below peak usage" },
+      { type: "success", text: "→ one pass, not five commands" },
     ],
   },
   {
@@ -117,8 +117,8 @@ export function Hero() {
           <Reveal delay={0.18}>
             <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-subtle">
               From Kubernetes and multi-cloud infrastructure to observability and
-              AI-assisted debugging, I turn production problems into systems that
-              stay up.
+              incident response, I turn production problems into systems that stay
+              up.
             </p>
           </Reveal>
 

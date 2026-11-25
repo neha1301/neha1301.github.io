@@ -6,9 +6,9 @@ import type { SkillIconKey } from "@/config/skills";
 const nodeIcons: Record<string, SkillIconKey> = {
   cluster: "kubernetes",
   api: "kubernetes",
-  engine: "python",
-  llm: "llm",
-  insights: "aidebug",
+  collector: "python",
+  correlate: "monitoring",
+  verdict: "rca",
   alertmanager: "prometheus",
   webhook: "fastapi",
   dedupe: "monitoring",

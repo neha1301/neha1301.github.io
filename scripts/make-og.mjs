@@ -20,7 +20,7 @@ const chips = [
   "Open to opportunities",
   "Kubernetes · AWS · GCP",
   "Prometheus · Grafana",
-  "AI-assisted debugging",
+  "Incident response",
 ];
 
 // Rough width estimate for the chip pills (18px sans).

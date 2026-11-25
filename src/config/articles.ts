@@ -39,7 +39,7 @@ export const articles: Article[] = [];
 export const writingFallback = {
   headline: "Technical posts on LinkedIn",
   description:
-    "My engineering writing lives on LinkedIn — notes from production Kubernetes, observability, SRE practice, and AI-assisted debugging. Direct links to individual posts are added here as they are published.",
+    "My engineering writing lives on LinkedIn — notes from production Kubernetes, observability, SRE practice, and incident response. Direct links to individual posts are added here as they are published.",
   ctaLabel: "Explore My Technical Posts",
   ctaHref: "https://www.linkedin.com/in/neha1301/",
 };
@@ -52,5 +52,5 @@ export const writingTopics = [
   "Incident response",
   "Terraform modules",
   "Helm & GitOps",
-  "AI-assisted debugging",
+  "Node-level diagnostics",
 ];

@@ -1,4 +1,4 @@
-import { BrainCircuit, Cloud, ShieldCheck } from "lucide-react";
+import { Cloud, ShieldCheck, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Section } from "@/components/ui/Section";
@@ -37,13 +37,13 @@ const focusAreas: {
     ],
   },
   {
-    id: "ai",
-    title: "AI-powered Infrastructure Automation",
-    icon: BrainCircuit,
+    id: "diagnostics",
+    title: "Diagnostics & Tooling",
+    icon: Wrench,
     description:
-      "LLMs used where they earn their keep: turning scattered cluster signals into an explanation an on-call engineer can act on.",
+      "Tools that collapse a twenty-command investigation into one readable answer — deterministic where it can be, automated where it saves a page.",
     points: [
-      "K8s debugger, ~70% faster triage",
+      "Node insight tool, ~70% faster triage",
       "Alert enrichment with cluster context",
       "Python + Kubernetes API",
     ],
@@ -96,10 +96,10 @@ export function About() {
             <p className="mt-5 leading-relaxed text-fg-muted">
               The current focus is quieter on-call shifts: consolidating alerting
               across 5–10 services and moving the monitoring stack from paid
-              tooling to open source. The same instinct produced an LLM-assisted
-              debugger that turns OOMKilled and pressure signals into a root cause,
-              and a FastAPI service that enriches Alertmanager alerts so one Slack
-              message carries the whole story.
+              tooling to open source. The same instinct produced a node-level
+              debugger that turns OOMKilled and pressure signals into a ranked
+              root cause, and a FastAPI service that enriches Alertmanager alerts
+              so one Slack message carries the whole story.
             </p>
           </Reveal>
 

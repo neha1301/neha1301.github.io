@@ -14,7 +14,7 @@ export const site = {
   subtagline:
     "I'm Neha Sharma, a Site Reliability & DevOps Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure.",
   description:
-    "DevOps Engineer II at BharatPe and Site Reliability Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure across Kubernetes, AWS and GCP, observability, CI/CD, and AI-assisted debugging.",
+    "DevOps Engineer II at BharatPe and Site Reliability Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure across Kubernetes, AWS and GCP, observability, CI/CD, and incident response.",
 
   location: "Gurugram, Haryana, India",
   locationShort: "Gurugram, India",

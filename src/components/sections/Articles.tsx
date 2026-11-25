@@ -13,7 +13,7 @@ export function Articles() {
       <SectionHeading
         eyebrow="Articles & Engineering Writing"
         title="Sharing what I learn."
-        description="Notes from real production work — Kubernetes operations, observability, SRE practice, and applying AI to infrastructure debugging."
+        description="Notes from real production work — Kubernetes operations, observability, SRE practice, and incident response."
       />
 
       {articles.length > 0 ? (
@@ -105,7 +105,7 @@ export function Articles() {
                     "Platform and SRE write-ups",
                     "Observability and SLO practice",
                     "Kubernetes & Terraform deep dives",
-                    "AI-assisted debugging write-ups",
+                    "Incident response and RCA notes",
                   ].map((line) => (
                     <li key={line} className="flex gap-2.5">
                       <span

@@ -12,8 +12,7 @@ export interface ProjectStackItem {
   icon:
     | "python"
     | "kubernetes"
-    | "llm"
-    | "ai"
+    | "karpenter"
     | "fastapi"
     | "slack"
     | "docker";
@@ -136,72 +135,72 @@ export const projects: Project[] = [
     },
   },
   {
-    id: "ai-k8s-debugger",
-    name: "AI-Powered Kubernetes Infrastructure Debugging Tool",
-    category: "AI Engineering / Platform Engineering",
+    id: "k8s-node-insight",
+    name: "Kubernetes Node Insight Tool",
+    category: "Platform Engineering / SRE Tooling",
     year: "2025",
     tagline:
-      "An LLM-assisted diagnostic engine that turns raw cluster signals into an actionable root cause.",
+      "One read-only command that turns scattered node signals into a ranked root cause.",
     problem:
-      "Diagnosing Kubernetes production incidents can require engineers to inspect multiple cluster signals, events, and workload states manually. The context needed for a correct root cause is scattered across nodes, pods, events, and pressure conditions. Triage stays slow and inconsistent.",
+      "A node can stay Ready after a kernel-level OOM, so the worst failures never trip an alert. The evidence sits in kubelet events, node conditions, capacity and workload state, while standard dashboards watch pod metrics rather than node internals. Triage means running five commands and still guessing whether the fault is the node or the app.",
     solution:
-      "Built an AI-powered debugging tool that analyzes Kubernetes infrastructure signals and uses LLM-based reasoning to assist with root cause analysis, turning raw cluster evidence into a clear explanation of what failed and why.",
+      "Built a single-file, read-only Python CLI that correlates node conditions, kubelet OOM events, capacity and workload state in one pass, then ranks the most likely root cause by severity. It diagnoses NotReady nodes and Ready-but-degraded ones, where the damage is invisible to a status check.",
     capabilities: [
-      "OOMKilled event analysis",
-      "MemoryPressure detection",
-      "DiskPressure detection",
-      "Evicted pod analysis",
-      "LLM-powered root cause analysis",
-      "Automated infrastructure troubleshooting assistance",
+      "SystemOOM detection from kubelet events",
+      "Pod-level OOMKill correlation",
+      "Memory, disk and PID pressure checks",
+      "Ready-but-degraded node diagnosis",
+      "Priority-ranked root cause summary",
+      "Karpenter-aware capacity overview",
     ],
     impact: {
       headline: "~70% less debugging time",
       description:
-        "Reduced debugging time by approximately 70%, helping identify infrastructure issues within minutes.",
+        "Cut node-level triage from a multi-command investigation to a single pass, reducing debugging time by approximately 70%.",
       metric: {
         value: 70,
         suffix: "%",
         label: "less debugging time",
       },
-      detail: "Identifying infrastructure issues within minutes.",
+      detail: "Root cause identified in one run instead of five commands.",
     },
     stack: [
       { name: "Python", icon: "python" },
       { name: "Kubernetes API", icon: "kubernetes" },
-      { name: "LLMs", icon: "llm" },
-      { name: "Generative AI", icon: "ai" },
+      { name: "Kubelet events", icon: "kubernetes" },
+      { name: "Karpenter", icon: "karpenter" },
     ],
     architecture: [
       {
         id: "cluster",
         label: "Kubernetes Cluster",
-        detail: "Nodes, pods, events and workload state",
+        detail: "Nodes, pods, kubelet events and workload state",
       },
       {
         id: "api",
         label: "Kubernetes API",
-        detail: "Programmatic access to cluster objects",
+        detail: "Read-only access to node conditions and events",
       },
       {
-        id: "engine",
-        label: "Python Diagnostic Engine",
-        detail: "Collects and normalises cluster signals",
+        id: "collector",
+        label: "Python Collector",
+        detail: "Single file, no agent, no cluster changes",
       },
       {
-        id: "llm",
-        label: "LLM Analysis",
-        detail: "Reasoning over the collected evidence",
+        id: "correlate",
+        label: "Signal Correlation",
+        detail: "OOM, pressure and capacity scored by severity",
       },
       {
-        id: "insights",
-        label: "Root Cause Insights",
-        detail: "Actionable cause and troubleshooting steps",
+        id: "verdict",
+        label: "Root Cause Summary",
+        detail: "Ranked cause plus the pods it affects",
       },
     ],
     repository: {
-      href: "https://github.com/neha1301",
-      label: "More on GitHub",
-      live: false,
+      href: "https://github.com/neha1301/Kubernetes-Node-Insight-Tool",
+      label: "View on GitHub",
+      live: true,
     },
   },
 ];
