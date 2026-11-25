@@ -3,10 +3,9 @@ import {
   Award,
   GraduationCap,
   ShieldCheck,
-  Trophy,
 } from "lucide-react";
 
-import { achievements, certifications } from "@/config/certifications";
+import { certifications } from "@/config/certifications";
 import { education } from "@/config/education";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,7 +16,7 @@ export function Certifications() {
     <Section id="certifications" divided>
       <SectionHeading
         eyebrow="Credentials & proof"
-        title="Certifications & achievements."
+        title="Certifications & education."
         description="The certificates are checkpoints. The real evidence is the systems I run, the incidents I close, and the open-source work on this page."
       />
 
@@ -103,42 +102,6 @@ export function Certifications() {
           </span>
         </article>
       </Reveal>
-
-      {/* Achievements */}
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        {achievements.map((achievement, i) => (
-          <Reveal key={achievement.id} delay={0.06 * i}>
-            <article className="group flex h-full items-start gap-4 rounded-2xl border border-border bg-bg-elevated p-6 transition-all duration-300 hover:border-border-strong hover:bg-surface">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-border bg-surface text-accent">
-                <Trophy className="h-4.5 w-4.5" aria-hidden="true" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-[1.375rem] font-semibold leading-none tracking-tight text-fg">
-                  {achievement.metric}
-                </p>
-                <h3 className="mt-2 text-[0.9375rem] font-medium text-fg">
-                  {achievement.title}
-                </h3>
-                <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-fg-muted">
-                  {achievement.detail}
-                </p>
-                {achievement.href ? (
-                  <a
-                    href={achievement.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-1.5 text-[0.75rem] font-medium text-fg-subtle transition-colors hover:text-accent"
-                  >
-                    {achievement.hrefLabel}
-                    <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
-                  </a>
-                ) : null}
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-
     </Section>
   );
 }

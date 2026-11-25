@@ -31,7 +31,6 @@ export const site = {
   links: {
     github: "https://github.com/neha1301",
     linkedin: "https://www.linkedin.com/in/neha1301/",
-    leetcode: "https://leetcode.com/u/neha_onefour/",
     email: "mailto:nehasharma13dec2001@gmail.com",
     /** Opens a compose window in the browser even without a desktop mail app. */
     emailCompose:

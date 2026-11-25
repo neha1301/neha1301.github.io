@@ -39,13 +39,18 @@ npm run lint     # eslint
 
 | File | Contents |
 | --- | --- |
-| `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn, LeetCode), resume path, nav links |
+| `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn), resume path, nav links |
 | `src/config/experience.ts` | Roles, periods, ownership summaries, highlights, stack chips |
 | `src/config/skills.ts` | Skill groups (daily / working / familiar) and their icons |
 | `src/config/projects.ts` | Case studies: problem, solution, architecture, capabilities, design trade-offs, impact, repository |
 | `src/config/articles.ts` | Article showcase entries (see below) |
-| `src/config/certifications.ts` | Certifications (Credly verification links) and achievements |
+| `src/config/certifications.ts` | Certifications (Credly verification links) |
 | `src/config/education.ts` | Degree, field, institution, period |
+
+Contest rankings and DSA problem counts are deliberately **not** listed on the
+site or the resume. They are real, but they read as junior signals next to
+production reliability work. Add them back only if applying to roles that
+explicitly ask for them.
 
 ### Adding an article
 

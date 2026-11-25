@@ -22,13 +22,6 @@ const channels = [
     href: site.links.github,
     icon: GithubIcon,
   },
-  {
-    id: "leetcode",
-    label: "LeetCode",
-    value: "neha_onefour",
-    href: site.links.leetcode,
-    icon: null,
-  },
 ] as const;
 
 export function Contact() {

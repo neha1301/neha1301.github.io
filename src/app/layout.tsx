@@ -116,7 +116,7 @@ const personSchema = {
     "@type": "Organization",
     name: "BharatPe",
   },
-  sameAs: [site.links.github, site.links.linkedin, site.links.leetcode],
+  sameAs: [site.links.github, site.links.linkedin],
   knowsAbout: [
     "Site Reliability Engineering",
     "Kubernetes",

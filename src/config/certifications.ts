@@ -1,7 +1,9 @@
 /**
- * Certifications and achievements.
+ * Certifications.
  *
  * Verification links point at the public Credly badge for each credential.
+ * Contest and DSA counts are deliberately omitted — at this career stage they
+ * distract from the production reliability work above.
  */
 
 export interface Certification {
@@ -43,32 +45,3 @@ export const certifications: Certification[] = [
   },
 ];
 
-export interface Achievement {
-  id: string;
-  title: string;
-  detail: string;
-  metric: string;
-  href?: string;
-  hrefLabel?: string;
-}
-
-export const achievements: Achievement[] = [
-  {
-    id: "gwc",
-    title: "Flipkart GWC 4.0",
-    detail:
-      "Top 30 performer out of 3.9 lakh+ participants in Flipkart's nationwide coding contest.",
-    metric: "Top 30",
-    href: "https://www.linkedin.com/posts/neha1301_slaywithcode-girlswhocode-technologyforgood-share-7069625144498884609-E6cd/",
-    hrefLabel: "View post",
-  },
-  {
-    id: "dsa",
-    title: "300+ DSA problems solved",
-    detail:
-      "Solved 300+ Data Structures and Algorithms problems across LeetCode and GeeksforGeeks.",
-    metric: "300+",
-    href: "https://leetcode.com/u/neha_onefour/",
-    hrefLabel: "LeetCode profile",
-  },
-];
