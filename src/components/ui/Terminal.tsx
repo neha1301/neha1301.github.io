@@ -75,7 +75,7 @@ export function Terminal({
     return (
       <div
         className={cn(
-          "overflow-hidden rounded-xl border border-border bg-surface-2/60 shadow-lift",
+          "panel overflow-hidden bg-surface-2/60",
           className,
         )}
       >
@@ -95,7 +95,7 @@ export function Terminal({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border bg-surface-2/60 shadow-lift backdrop-blur-sm",
+        "panel overflow-hidden bg-surface-2/60 backdrop-blur-sm",
         className,
       )}
     >

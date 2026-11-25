@@ -8,6 +8,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  /* Font stacks are resolved on the element that uses them. Keeping them as
+     their own variables avoids Tailwind's theme-variable indirection, which
+     silently drops next/font variables in compiled utilities. */
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display-local: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-mono-local: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular,
+    monospace;
+
   /* Surfaces */
   --bg: #08090b;
   --bg-elevated: #0b0d10;
@@ -99,8 +107,10 @@
   --color-accent-2: var(--accent-2);
   --color-accent-2-soft: var(--accent-2-soft);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display-local);
+  --font-display: var(--font-display-local);
+  --font-mono: var(--font-mono-local);
 
   --radius-xs: 0.375rem;
   --radius-sm: 0.5rem;
@@ -203,7 +213,7 @@
   body {
     background-color: var(--bg);
     color: var(--fg);
-    font-family: var(--font-sans);
+    font-family: var(--font-body);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -332,6 +342,69 @@
   box-shadow:
     0 1px 0 0 rgb(255 255 255 / 0.9) inset,
     0 18px 40px -24px rgb(8 60 40 / 0.35);
+}
+
+/* ---------------------------------------------------------------------------
+   Component primitives
+   --------------------------------------------------------------------------- */
+
+/* Display face — declared here so the next/font variable is always resolved. */
+.font-display {
+  font-family: var(--font-display-local);
+}
+
+/* A quiet, premium surface: hairline border, soft top highlight, no toy shadow. */
+.panel {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--surface) 94%, var(--bg) 6%),
+    var(--surface)
+  );
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, var(--fg) 6%, transparent) inset,
+    0 24px 48px -40px rgb(0 0 0 / 0.85);
+}
+
+.light .panel {
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.9) inset,
+    0 20px 44px -34px rgb(8 60 40 / 0.22);
+}
+
+/* Accent-led panel for the thing we want the eye to land on. */
+.panel-accent {
+  border-color: color-mix(in oklab, var(--accent) 40%, var(--border));
+  background:
+    radial-gradient(
+      120% 120% at 100% 0%,
+      color-mix(in oklab, var(--accent) 10%, transparent),
+      transparent 62%
+    ),
+    var(--surface);
+}
+
+/* Small mono label used above headings and inside cards. */
+.kicker {
+  font-family: var(--font-mono-local);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Thin decorative rule with a short accent segment. */
+.accent-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--accent) 0,
+    var(--accent) 40px,
+    var(--border) 40px
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {

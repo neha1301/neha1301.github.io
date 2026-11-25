@@ -37,26 +37,19 @@ export function Contact() {
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="lg:col-span-7">
           <Reveal>
-            <div className="relative flex w-full items-center gap-5">
-              <span className="inline-flex shrink-0 items-center gap-3">
-                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
-                <span className="font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-text">
-                  06 — Contact
-                </span>
-              </span>
-              <span aria-hidden="true" className="h-px w-full bg-border-strong" />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-8 right-0 hidden select-none font-mono text-[7rem] font-semibold leading-none tracking-[-0.09em] text-transparent [-webkit-text-stroke:1px_var(--border-strong)] lg:block"
-              >
+            <div className="flex w-full items-center gap-4">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent/30 bg-accent-soft font-mono text-[13px] font-semibold text-accent-text">
                 06
               </span>
+              <span aria-hidden="true" className="h-px w-10 bg-accent" />
+              <span className="kicker text-fg-subtle">Contact</span>
+              <span aria-hidden="true" className="h-px w-full bg-border" />
             </div>
           </Reveal>
 
           <Reveal delay={0.04}>
-            <h2 className="mt-6 max-w-2xl text-[2.25rem] font-semibold leading-[1.06] tracking-[-0.04em] text-fg sm:text-[3.25rem] lg:text-[3.875rem]">
-              Let&apos;s talk about keeping systems up.
+            <h2 className="mt-8 max-w-2xl font-display text-[2.75rem] leading-[0.94] tracking-[-0.035em] text-fg sm:text-[4rem] lg:text-[5.25rem]">
+              Let&apos;s keep systems <span className="text-accent-text italic">up.</span>
             </h2>
           </Reveal>
 
@@ -108,21 +101,19 @@ export function Contact() {
 
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <div className="border-t border-border">
-              <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
-                Email
-              </p>
-              <div className="mt-3 flex items-center justify-between gap-3">
+            <div className="panel p-7 sm:p-9">
+              <p className="kicker text-fg-subtle">Email</p>
+              <div className="mt-4 flex items-center justify-between gap-3">
                 <a
                   href={site.links.email}
-                  className="min-w-0 truncate text-[1.375rem] font-medium tracking-tight text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
+                  className="min-w-0 truncate font-display text-[1.75rem] leading-tight text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
                 >
                   {site.email}
                 </a>
                 <CopyEmail email={site.email} />
               </div>
 
-              <ul className="mt-8 space-y-1 border-t border-border pt-5">
+              <ul className="mt-8 border-t border-border pt-4">
                 {channels.map((channel) => {
                   const Icon = channel.icon;
                   return (
@@ -131,10 +122,13 @@ export function Contact() {
                         href={channel.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between gap-3 rounded px-1 py-3 transition-colors hover:bg-surface"
+                        className="group flex items-center justify-between gap-3 rounded-lg px-1 py-3 transition-colors hover:bg-surface-2/60"
                       >
                         <span className="inline-flex items-center gap-3 text-[1rem] text-fg-muted transition-colors group-hover:text-fg">
-                          <Icon className="h-4 w-4 fill-current" aria-hidden="true" />
+                          <Icon
+                            className="h-4 w-4 fill-current"
+                            aria-hidden="true"
+                          />
                           {channel.label}
                         </span>
                         <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-fg-subtle">

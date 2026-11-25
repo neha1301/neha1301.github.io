@@ -58,34 +58,40 @@ export function About() {
           <SectionHeading
             index="01"
             eyebrow="About"
-            title="Less firefighting. More automation. Stronger systems."
+            title={
+              <>
+                Reliability is a{" "}
+                <span className="text-accent-text italic">design choice.</span>
+              </>
+            }
             className="lg:sticky lg:top-28"
           />
         </div>
 
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="text-[1.25rem] leading-[1.6] text-fg sm:text-[1.375rem]">
-              I&apos;m an SRE and DevOps engineer who owns systems after they
-              ship. At BharatPe that means the alerting that wakes us up, the
+            <p className="font-display text-[1.75rem] leading-[1.3] tracking-[-0.02em] text-fg sm:text-[2.125rem]">
+              I own systems after they ship — the alerting that wakes us up, the
               monitoring we trust, and the deployments that don&apos;t page
               anyone.
             </p>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <p className="mt-6 text-[1.0625rem] leading-[1.75] text-fg-muted">
-              The last three years were spent deep in production Kubernetes:{" "}
-              <span className="text-fg">30+ environments upgraded with zero
-              downtime</span>,{" "}
-              <span className="text-fg">95% of incidents resolved without
-              escalation</span>, and a Kubernetes v1.32 admission
-              policy that rejects bad deploys before they land.
-            </p>
+            <div className="mt-8 border-l-2 border-accent pl-6">
+              <p className="text-[1.0625rem] leading-[1.75] text-fg-muted">
+                The last three years were spent deep in production Kubernetes:{" "}
+                <span className="text-fg">30+ environments upgraded with zero
+                downtime</span>,{" "}
+                <span className="text-fg">95% of incidents resolved without
+                escalation</span>, and a Kubernetes v1.32 admission policy that
+                rejects bad deploys before they land.
+              </p>
+            </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-5 text-[1.0625rem] leading-[1.75] text-fg-muted">
+            <p className="mt-6 text-[1.0625rem] leading-[1.75] text-fg-muted">
               I&apos;d rather remove a manual step than get faster at doing it.
               A Python onboarding pipeline cut onboarding time by 60%,
               Terraform modules made new environments reproducible, and Karpenter
@@ -106,25 +112,27 @@ export function About() {
         </div>
       </div>
 
-      <div className="mt-14 grid gap-10 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+      <div className="mt-16 grid gap-4 md:grid-cols-3">
         {focusAreas.map((area, i) => {
           const Icon = area.icon;
           return (
-            <Reveal key={area.id} delay={0.08 * i}>
-              <div className="flex flex-col">
-                <div className="flex items-center justify-between border-b border-border pb-4">
-                  <span className="font-mono text-[2rem] font-semibold leading-none tracking-[-0.06em] text-accent-text">
+            <Reveal key={area.id} delay={0.08 * i} className="h-full">
+              <article className="panel group h-full p-7 transition-all duration-200 hover:-translate-y-1 hover:border-border-strong">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface-2 text-accent-text transition-colors group-hover:border-accent/40 group-hover:text-accent">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <span className="font-mono text-[13px] font-semibold tracking-[0.12em] text-fg-subtle">
                     0{i + 1}
                   </span>
-                  <Icon className="h-5 w-5 text-fg-subtle" aria-hidden="true" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold leading-snug tracking-tight text-fg">
+                <h3 className="mt-8 font-display text-[1.875rem] leading-[1.08] text-fg">
                   {area.title}
                 </h3>
-                <p className="mt-3 flex-1 text-[0.9375rem] leading-[1.7] text-fg-muted">
+                <p className="mt-4 text-[0.9375rem] leading-[1.7] text-fg-muted">
                   {area.description}
                 </p>
-                <ul className="mt-5 space-y-2 border-t border-border pt-4">
+                <ul className="mt-6 space-y-2.5 border-t border-border pt-5">
                   {area.points.map((point) => (
                     <li
                       key={point}
@@ -137,7 +145,7 @@ export function About() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             </Reveal>
           );
         })}

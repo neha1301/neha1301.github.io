@@ -65,9 +65,8 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden px-5 pb-12 pt-24 sm:px-8 sm:pt-28 md:pb-16 md:pt-32"
+      className="relative overflow-hidden px-5 pb-14 pt-24 sm:px-8 sm:pt-28 md:pb-20 md:pt-32"
     >
-      {/* Background */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
@@ -78,11 +77,9 @@ export function Hero() {
       </div>
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-12 lg:gap-12">
-        {/* Copy */}
         <div className="lg:col-span-7">
-          {/* Status chips */}
           <Reveal>
-            <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {statusChips.map((chip) => (
                 <li
                   key={chip.id}
@@ -100,42 +97,37 @@ export function Hero() {
             </ul>
           </Reveal>
 
-          {/* Headline */}
           <Reveal delay={0.04}>
-            <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[13px] font-medium uppercase tracking-[0.14em] text-fg-subtle">
-              <span className="text-accent-text">
-                DevOps Engineer II at BharatPe
+            <div className="mt-8 flex items-center gap-4 border-l-2 border-accent pl-5">
+              <span className="kicker text-accent-text">
+                DevOps Engineer II · BharatPe
               </span>
-              <span
-                aria-hidden="true"
-                className="h-1 w-1 rounded-full bg-border-strong"
-              />
-              <span>Site Reliability Engineer</span>
-            </p>
+              <span aria-hidden="true" className="h-px w-8 bg-border-strong" />
+              <span className="kicker text-fg-subtle">Site Reliability</span>
+            </div>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.03em] text-fg sm:text-[3.25rem] lg:text-[3.75rem]">
+            <h1 className="mt-5 font-display text-[3.25rem] leading-[0.94] tracking-[-0.035em] text-fg sm:text-[5rem] lg:text-[5.75rem]">
               Fewer alerts.{" "}
-              <span className="text-gradient">Faster root causes.</span>
+              <span className="text-gradient italic">Faster root causes.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
-            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-fg-muted sm:text-[1.125rem]">
+            <p className="mt-7 max-w-xl text-[1.125rem] leading-[1.65] text-fg-muted sm:text-[1.1875rem]">
               {site.subtagline}
             </p>
           </Reveal>
 
           <Reveal delay={0.18}>
-            <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-subtle">
+            <p className="mt-4 max-w-xl text-[1rem] leading-[1.75] text-fg-subtle">
               From Kubernetes and multi-cloud infrastructure to observability and
               incident response, I turn production problems into systems that stay
               up.
             </p>
           </Reveal>
 
-          {/* Actions */}
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button
@@ -157,12 +149,9 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Social */}
           <Reveal delay={0.3}>
             <div className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
-                Find me on
-              </span>
+              <span className="kicker text-fg-subtle">Find me on</span>
               <span className="h-px w-8 bg-border" aria-hidden="true" />
               <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13.5px] font-medium text-fg-muted">
                 <a
@@ -171,7 +160,10 @@ export function Hero() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-text"
                 >
-                  <GithubIcon className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                  <GithubIcon
+                    className="h-3.5 w-3.5 fill-current"
+                    aria-hidden="true"
+                  />
                   GitHub
                 </a>
                 <a
@@ -180,7 +172,10 @@ export function Hero() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 transition-colors hover:text-accent-text"
                 >
-                  <LinkedinIcon className="h-3.5 w-3.5 fill-current" aria-hidden="true" />
+                  <LinkedinIcon
+                    className="h-3.5 w-3.5 fill-current"
+                    aria-hidden="true"
+                  />
                   LinkedIn
                 </a>
                 <a
@@ -197,33 +192,28 @@ export function Hero() {
           </Reveal>
         </div>
 
-        {/* Terminal */}
         <div className="lg:col-span-5">
           <Reveal delay={0.16} y={26}>
             <div className="relative">
               <div
                 aria-hidden="true"
-                className="absolute -inset-3 -z-10 rounded-2xl bg-gradient-to-br from-accent/10 via-transparent to-accent-2/10 blur-2xl"
+                className="absolute -inset-4 -z-10 rounded-[24px] bg-gradient-to-br from-accent/10 via-transparent to-accent-2/10 blur-2xl"
               />
               <Terminal scenes={terminalScenes} />
+              <p className="mt-4 flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.14em] text-fg-subtle">
+                <span aria-hidden="true" className="h-px w-6 bg-accent" />
+                Raw alert → ranked root cause
+              </p>
             </div>
           </Reveal>
         </div>
       </div>
 
-      {/* Scroll cue */}
       <div className="mx-auto mt-16 hidden w-full max-w-6xl items-center gap-2 text-fg-subtle lg:flex">
-        <ArrowDown
-          className="h-3.5 w-3.5 animate-float"
-          aria-hidden="true"
-        />
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-          Scroll to explore
-        </span>
+        <ArrowDown className="h-3.5 w-3.5 animate-float" aria-hidden="true" />
+        <span className="kicker">Scroll to explore</span>
         <MapPin className="ml-auto h-3.5 w-3.5" aria-hidden="true" />
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-          {site.location}
-        </span>
+        <span className="kicker">{site.location}</span>
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ import { Reveal } from "./Reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
-  /** Two-digit chapter number. Rendered large and as a label prefix. */
+  /** Two-digit chapter number, shown as a visible index chip. */
   index?: string;
   title: ReactNode;
   description?: ReactNode;
@@ -23,45 +23,39 @@ export function SectionHeading({
   const centered = align === "center";
 
   return (
-    <Reveal
-      className={cn("relative flex flex-col gap-6", centered && "items-center text-center", className)}
-    >
+    <Reveal className={cn("relative", centered && "text-center", className)}>
       <div
         className={cn(
-          "flex w-full items-center gap-5",
+          "flex w-full items-center gap-4",
           centered && "justify-center",
         )}
       >
-        <span className="inline-flex shrink-0 items-center gap-3">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
-          <span className="font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-text">
-            {index ? `${index} — ` : ""}
-            {eyebrow}
+        {index ? (
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent/30 bg-accent-soft font-mono text-[13px] font-semibold text-accent-text">
+            {index}
           </span>
-        </span>
+        ) : null}
+        <span aria-hidden="true" className="h-px w-10 shrink-0 bg-accent" />
+        <span className="kicker text-fg-subtle">{eyebrow}</span>
         <span
           aria-hidden="true"
-          className={cn("h-px w-full bg-border-strong", centered && "max-w-16")}
+          className={cn("h-px w-full bg-border", centered && "max-w-12")}
         />
       </div>
 
-      {index ? (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-8 right-0 hidden select-none font-mono text-[7rem] font-semibold leading-none tracking-[-0.09em] text-transparent [-webkit-text-stroke:1px_var(--border-strong)] lg:block"
-        >
-          {index}
-        </span>
-      ) : null}
-
-      <h2 className="relative max-w-3xl text-[2.25rem] font-semibold leading-[1.06] tracking-[-0.04em] text-fg sm:text-[3.25rem] lg:text-[3.875rem]">
+      <h2
+        className={cn(
+          "mt-7 max-w-3xl font-display text-[2.75rem] leading-[0.94] tracking-[-0.035em] text-fg sm:text-[4rem] lg:text-[5.25rem]",
+          centered && "mx-auto",
+        )}
+      >
         {title}
       </h2>
 
       {description ? (
         <p
           className={cn(
-            "max-w-2xl text-[1.125rem] leading-[1.7] text-fg-muted sm:text-[1.1875rem]",
+            "mt-6 max-w-2xl text-[1.125rem] leading-[1.7] text-fg-muted sm:text-[1.1875rem]",
             centered && "mx-auto",
           )}
         >
