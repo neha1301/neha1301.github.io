@@ -1,6 +1,7 @@
 import { MapPin } from "lucide-react";
 
 import { experience } from "@/config/experience";
+import { cn } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -21,18 +22,27 @@ export function Experience() {
             as="li"
             key={role.id}
             delay={0.05 * i}
-            className="border-b border-border py-10 sm:py-12"
+            className={cn(
+              "border-b border-border py-10 sm:py-12",
+              role.current &&
+                "bg-gradient-to-r from-accent/[0.05] via-transparent to-transparent",
+            )}
           >
             <div className="grid gap-8 lg:grid-cols-12 lg:gap-14">
-              <div className="lg:col-span-4">
-                <p className="font-mono text-[12px] uppercase tracking-[0.16em] text-accent-text">
+              <div
+                className={cn(
+                  "border-l pl-6 lg:col-span-4",
+                  role.current ? "border-accent/70" : "border-border",
+                )}
+              >
+                <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-accent-text">
                   {role.period}
                 </p>
                 <h3 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-fg sm:text-[1.75rem]">
                   {role.company}
                   <span className="sr-only"> — {role.title}</span>
                 </h3>
-                <p className="mt-2 text-[1.0625rem] font-medium text-accent-text">
+                <p className="mt-2 text-[1.125rem] font-medium text-accent-text">
                   {role.title}
                 </p>
                 <p className="mt-3 flex items-center gap-1.5 text-[0.875rem] text-fg-subtle">

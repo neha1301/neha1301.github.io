@@ -102,7 +102,7 @@ export function Hero() {
 
           {/* Headline */}
           <Reveal delay={0.04}>
-            <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11.5px] uppercase tracking-[0.14em] text-fg-subtle">
+            <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[13px] font-medium uppercase tracking-[0.14em] text-fg-subtle">
               <span className="text-accent-text">
                 DevOps Engineer II at BharatPe
               </span>
@@ -160,7 +160,7 @@ export function Hero() {
           {/* Social */}
           <Reveal delay={0.3}>
             <div className="mt-9 flex flex-wrap items-center gap-x-4 gap-y-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+              <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
                 Find me on
               </span>
               <span className="h-px w-8 bg-border" aria-hidden="true" />

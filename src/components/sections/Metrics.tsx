@@ -59,7 +59,7 @@ export function Metrics() {
                 <span className="mt-3 block text-[0.9375rem] leading-snug text-fg-muted">
                   {metric.label}
                 </span>
-                <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-fg-subtle">
+                <span className="mt-1.5 block font-mono text-[11.5px] uppercase tracking-[0.12em] text-fg-subtle">
                   {metric.detail}
                 </span>
               </dd>

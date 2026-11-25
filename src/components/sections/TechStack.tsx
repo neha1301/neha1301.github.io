@@ -7,7 +7,7 @@ import { TechIcon } from "@/components/ui/TechIcon";
 
 export function TechStack() {
   return (
-    <Section id="skills" divided>
+    <Section id="skills" divided className="bg-bg-elevated/40">
       <SectionHeading
         index="02"
         eyebrow="Technical expertise"
@@ -20,10 +20,13 @@ export function TechStack() {
           <Reveal
             key={group.id}
             delay={0.05 * gi}
-            className="grid gap-5 border-b border-border py-8 md:grid-cols-[240px_1fr] md:gap-10"
+            className="grid gap-5 border-b border-border py-9 md:grid-cols-[240px_1fr] md:gap-10"
           >
             <div>
-              <h3 className="text-lg font-semibold leading-snug text-fg">
+              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-accent-text">
+                0{gi + 1} / {group.marker}
+              </p>
+              <h3 className="mt-3 text-xl font-semibold leading-snug tracking-tight text-fg">
                 {group.title}
               </h3>
               <p className="mt-1.5 text-[0.875rem] leading-relaxed text-fg-subtle">
@@ -36,14 +39,14 @@ export function TechStack() {
                 <li key={item.name}>
                   <span
                     className={cn(
-                      "inline-flex items-center gap-2 text-[0.9375rem] font-medium",
+                      "inline-flex items-center gap-2.5 text-[1rem] font-medium",
                       group.marker === "daily" ? "text-fg" : "text-fg-muted",
                     )}
                   >
                     <TechIcon
                       name={item.icon}
                       size="sm"
-                      className="h-[18px] w-[18px] rounded-[0.2rem] border-0 bg-transparent"
+                      className="h-5 w-5 rounded-[0.2rem] border-0 bg-transparent"
                     />
                     {item.name}
                   </span>

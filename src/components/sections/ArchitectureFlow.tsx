@@ -21,7 +21,7 @@ export function ArchitectureFlow({ project }: { project: Project }) {
 
   return (
     <div>
-      <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+      <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
         System architecture · {nodes.length} stages
       </p>
 

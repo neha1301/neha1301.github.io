@@ -37,16 +37,25 @@ export function Contact() {
       <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="lg:col-span-7">
           <Reveal>
-            <div className="flex w-full items-center gap-4">
-              <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-text">
-                06 / Contact
+            <div className="relative flex w-full items-center gap-5">
+              <span className="inline-flex shrink-0 items-center gap-3">
+                <span aria-hidden="true" className="h-2 w-2 rounded-full bg-accent" />
+                <span className="font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-accent-text">
+                  06 — Contact
+                </span>
               </span>
-              <span aria-hidden="true" className="h-px w-full bg-border" />
+              <span aria-hidden="true" className="h-px w-full bg-border-strong" />
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -top-8 right-0 hidden select-none font-mono text-[7rem] font-semibold leading-none tracking-[-0.09em] text-transparent [-webkit-text-stroke:1px_var(--border-strong)] lg:block"
+              >
+                06
+              </span>
             </div>
           </Reveal>
 
           <Reveal delay={0.04}>
-            <h2 className="mt-6 max-w-2xl text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.035em] text-fg sm:text-[3rem] md:text-[3.375rem]">
+            <h2 className="mt-6 max-w-2xl text-[2.25rem] font-semibold leading-[1.06] tracking-[-0.04em] text-fg sm:text-[3.25rem] lg:text-[3.875rem]">
               Let&apos;s talk about keeping systems up.
             </h2>
           </Reveal>
@@ -106,7 +115,7 @@ export function Contact() {
               <div className="mt-3 flex items-center justify-between gap-3">
                 <a
                   href={site.links.email}
-                  className="min-w-0 truncate text-[1.0625rem] font-medium text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
+                  className="min-w-0 truncate text-[1.375rem] font-medium tracking-tight text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
                 >
                   {site.email}
                 </a>

@@ -47,6 +47,10 @@ npm run lint     # eslint
 | `src/config/certifications.ts` | Certifications (Credly verification links) |
 | `src/config/education.ts` | Degree, field, institution, period |
 
+Section chapter numbers (`01 — About`, `02 — Technical expertise`, …) are passed
+as `index` to `SectionHeading` in `src/components/sections/*`. Keep them in sync
+with `navLinks` in `src/config/site.ts`.
+
 Contest rankings and DSA problem counts are deliberately **not** listed on the
 site or the resume. They are real, but they read as junior signals next to
 production reliability work. Add them back only if applying to roles that

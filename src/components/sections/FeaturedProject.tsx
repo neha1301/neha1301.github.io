@@ -36,10 +36,10 @@ function ProjectCaseStudy({ project }: { project: Project }) {
     <div>
       {/* Case-study hero — the loudest thing in this section. */}
       <Reveal>
-        <div className="border-y border-border bg-bg-elevated">
+        <div className="border-y border-border bg-gradient-to-br from-accent/[0.06] via-bg-elevated to-bg-elevated">
           <div className="grid gap-10 py-10 lg:grid-cols-12 lg:gap-14 lg:py-14">
             <div className="lg:col-span-7">
-              <p className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent-text">
+              <p className="inline-flex items-center gap-2 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-accent-text">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
                 Featured case study · {project.year} · {project.category}
               </p>
@@ -53,7 +53,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
             </div>
 
             <div className="lg:col-span-5 lg:border-l lg:border-border lg:pl-14">
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+              <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
                 What changed
               </p>
               {metric ? (
@@ -93,7 +93,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
       {/* Narrative — no boxes, just two clear columns. */}
       <div className="mt-16 grid gap-12 md:grid-cols-2 md:gap-16">
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent-text">
+          <p className="font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-accent-text">
             01 / The problem
           </p>
           <h4 className="mt-4 text-2xl font-semibold tracking-tight text-fg">
@@ -105,7 +105,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent-text">
+          <p className="font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-accent-text">
             02 / The fix
           </p>
           <h4 className="mt-4 text-2xl font-semibold tracking-tight text-fg">
@@ -119,7 +119,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
 
       <div className="mt-14 grid gap-12 border-t border-border pt-10 md:grid-cols-2 md:gap-16">
         <Reveal>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+          <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
             Stack
           </p>
           <p className="mt-4 text-[1rem] leading-[1.8] text-fg-muted">
@@ -128,7 +128,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
         </Reveal>
 
         <Reveal delay={0.06}>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+          <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
             Capabilities
           </p>
           <ul className="mt-4 space-y-3">
@@ -150,7 +150,7 @@ function ProjectCaseStudy({ project }: { project: Project }) {
       {project.tradeoffs?.length ? (
         <Reveal delay={0.08}>
           <div className="mt-14 border-l-2 border-accent-2/60 pl-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+            <p className="font-mono text-[12px] uppercase tracking-[0.18em] text-fg-subtle">
               Design trade-offs
             </p>
             <ul className="mt-5 space-y-4">
@@ -221,7 +221,7 @@ export function FeaturedProject() {
 
         {projects.length > 1 ? (
           <div className="mt-14 border-t border-border pt-10">
-            <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+            <h3 className="font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-accent-text">
               More work
             </h3>
             <div className="mt-8 grid gap-10 md:grid-cols-2">

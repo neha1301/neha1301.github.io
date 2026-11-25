@@ -112,13 +112,13 @@ export function About() {
           return (
             <Reveal key={area.id} delay={0.08 * i}>
               <div className="flex flex-col">
-                <div className="flex items-center justify-between">
-                  <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
-                  <span className="font-mono text-[11px] text-fg-subtle">
+                <div className="flex items-center justify-between border-b border-border pb-4">
+                  <span className="font-mono text-[2rem] font-semibold leading-none tracking-[-0.06em] text-accent-text">
                     0{i + 1}
                   </span>
+                  <Icon className="h-5 w-5 text-fg-subtle" aria-hidden="true" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold leading-snug text-fg">
+                <h3 className="mt-5 text-xl font-semibold leading-snug tracking-tight text-fg">
                   {area.title}
                 </h3>
                 <p className="mt-3 flex-1 text-[0.9375rem] leading-[1.7] text-fg-muted">
