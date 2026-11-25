@@ -85,10 +85,11 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.16}>
-            <p className="mt-6 inline-flex items-center gap-2 text-sm text-fg-subtle">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              {site.location}
-              <span className="mx-1 h-1 w-1 rounded-full bg-border-strong" aria-hidden="true" />
+            <div className="mt-6 flex flex-col gap-1.5 text-sm text-fg-subtle sm:flex-row sm:items-center sm:gap-5">
+              <span className="inline-flex items-center gap-2">
+                <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                {site.location}
+              </span>
               <span className="inline-flex items-center gap-1.5">
                 <span
                   aria-hidden="true"
@@ -96,7 +97,7 @@ export function Contact() {
                 />
                 {site.availability}
               </span>
-            </p>
+            </div>
           </Reveal>
         </div>
 
