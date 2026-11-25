@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 
 import { site } from "@/config/site";
 import { ThemeProvider, themeInitScript } from "@/components/layout/ThemeProvider";
@@ -21,15 +21,6 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   weight: ["400", "500", "600"],
   preload: false,
-});
-
-/** Display serif — gives headings an editorial, non-template voice. */
-const display = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-  weight: "400",
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -147,11 +138,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} ${display.variable} ${jetbrainsMono.variable} scroll-smooth`}
-    >
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <script
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
@@ -167,7 +154,9 @@ export default function RootLayout({
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
-      <body className="antialiased">
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      >
         <ThemeProvider>
           <a
             href="#main"

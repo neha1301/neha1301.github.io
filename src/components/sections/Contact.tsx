@@ -34,27 +34,22 @@ export function Contact() {
         <div className="absolute -bottom-40 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,var(--accent-soft),transparent_68%)]" />
       </div>
 
-      <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <Reveal>
-            <div className="flex w-full items-center gap-4">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent/30 bg-accent-soft font-mono text-[13px] font-semibold text-accent-text">
-                06
-              </span>
-              <span aria-hidden="true" className="h-px w-10 bg-accent" />
-              <span className="kicker text-fg-subtle">Contact</span>
-              <span aria-hidden="true" className="h-px w-full bg-border" />
-            </div>
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fg-muted">
+              Contact
+            </span>
           </Reveal>
 
           <Reveal delay={0.04}>
-            <h2 className="mt-8 max-w-2xl font-display text-[2.75rem] leading-[0.94] tracking-[-0.035em] text-fg sm:text-[4rem] lg:text-[5.25rem]">
-              Let&apos;s keep systems <span className="text-accent-text italic">up.</span>
+            <h2 className="mt-5 max-w-2xl text-3xl font-semibold leading-[1.12] tracking-tight text-fg sm:text-4xl md:text-[2.75rem]">
+              Let&apos;s talk about keeping systems up.
             </h2>
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="mt-6 max-w-xl text-[1.125rem] leading-[1.7] text-fg-muted">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted sm:text-[1.0625rem]">
               I&apos;m open to Site Reliability, Platform and DevOps roles. If
               you&apos;re hiring for someone who owns production after it ships,
               the fastest way to reach me is email.
@@ -62,7 +57,7 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.12}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button
                 href={site.links.emailCompose}
                 size="lg"
@@ -83,12 +78,12 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.16}>
-            <div className="mt-8 flex flex-col gap-1.5 text-[0.9375rem] text-fg-subtle sm:flex-row sm:items-center sm:gap-6">
+            <div className="mt-6 flex flex-col gap-1.5 text-sm text-fg-subtle sm:flex-row sm:items-center sm:gap-5">
               <span className="inline-flex items-center gap-2">
                 <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 {site.location}
               </span>
-              <span className="inline-flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5">
                 <span
                   aria-hidden="true"
                   className="h-1.5 w-1.5 rounded-full bg-accent"
@@ -101,19 +96,21 @@ export function Contact() {
 
         <div className="lg:col-span-5">
           <Reveal delay={0.1}>
-            <div className="panel p-7 sm:p-9">
-              <p className="kicker text-fg-subtle">Email</p>
-              <div className="mt-4 flex items-center justify-between gap-3">
+            <div className="rounded-2xl border border-border bg-surface p-6 sm:p-7">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+                Email
+              </p>
+              <div className="mt-3 flex items-center justify-between gap-3">
                 <a
                   href={site.links.email}
-                  className="min-w-0 truncate font-display text-[1.75rem] leading-tight text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
+                  className="min-w-0 truncate text-[0.9375rem] font-medium text-fg underline decoration-border underline-offset-4 transition-colors hover:text-accent-text hover:decoration-accent"
                 >
                   {site.email}
                 </a>
                 <CopyEmail email={site.email} />
               </div>
 
-              <ul className="mt-8 border-t border-border pt-4">
+              <ul className="mt-6 space-y-1 border-t border-border pt-5">
                 {channels.map((channel) => {
                   const Icon = channel.icon;
                   return (
@@ -122,16 +119,22 @@ export function Contact() {
                         href={channel.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between gap-3 rounded-lg px-1 py-3 transition-colors hover:bg-surface-2/60"
+                        className="group flex items-center justify-between gap-3 rounded-lg px-2 py-2.5 transition-colors hover:bg-surface-2"
                       >
-                        <span className="inline-flex items-center gap-3 text-[1rem] text-fg-muted transition-colors group-hover:text-fg">
-                          <Icon
-                            className="h-4 w-4 fill-current"
-                            aria-hidden="true"
-                          />
+                        <span className="inline-flex items-center gap-2.5 text-sm text-fg-muted transition-colors group-hover:text-fg">
+                          {Icon ? (
+                            <Icon className="h-4 w-4 fill-current" />
+                          ) : (
+                            <span
+                              aria-hidden="true"
+                              className="grid h-4 w-4 place-items-center font-mono text-[10px] font-semibold text-fg-subtle"
+                            >
+                              LC
+                            </span>
+                          )}
                           {channel.label}
                         </span>
-                        <span className="inline-flex items-center gap-1.5 font-mono text-[12px] text-fg-subtle">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] text-fg-subtle">
                           {channel.value}
                           <ArrowUpRight
                             className="h-3 w-3 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"

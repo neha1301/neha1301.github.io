@@ -13,15 +13,10 @@ export function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [active, setActive] = React.useState<string>("");
-  const [progress, setProgress] = React.useState(0);
   const reduce = useReducedMotion();
 
   React.useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 12);
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -198,17 +193,6 @@ export function Navbar() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-
-      {/* Reading progress — a quiet cue that a new section is always ahead. */}
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-px bg-transparent"
-      >
-        <span
-          className="block h-full bg-accent transition-[width] duration-150"
-          style={{ width: `${progress}%` }}
-        />
-      </span>
     </header>
   );
 }

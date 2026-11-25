@@ -53,45 +53,38 @@ const focusAreas: {
 export function About() {
   return (
     <Section id="about" divided>
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <SectionHeading
-            index="01"
             eyebrow="About"
-            title={
-              <>
-                Reliability is a{" "}
-                <span className="text-accent-text italic">design choice.</span>
-              </>
-            }
+            title="Less firefighting. More automation. Stronger systems."
             className="lg:sticky lg:top-28"
           />
         </div>
 
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="font-display text-[1.75rem] leading-[1.3] tracking-[-0.02em] text-fg sm:text-[2.125rem]">
-              I own systems after they ship — the alerting that wakes us up, the
+            <p className="text-lg leading-relaxed text-fg sm:text-xl">
+              I&apos;m an SRE and DevOps engineer who owns systems after they
+              ship. At BharatPe that means the alerting that wakes us up, the
               monitoring we trust, and the deployments that don&apos;t page
               anyone.
             </p>
           </Reveal>
 
           <Reveal delay={0.06}>
-            <div className="mt-8 border-l-2 border-accent pl-6">
-              <p className="text-[1.0625rem] leading-[1.75] text-fg-muted">
-                The last three years were spent deep in production Kubernetes:{" "}
-                <span className="text-fg">30+ environments upgraded with zero
-                downtime</span>,{" "}
-                <span className="text-fg">95% of incidents resolved without
-                escalation</span>, and a Kubernetes v1.32 admission policy that
-                rejects bad deploys before they land.
-              </p>
-            </div>
+            <p className="mt-6 leading-relaxed text-fg-muted">
+              The last three years were spent deep in production Kubernetes:{" "}
+              <span className="text-fg">30+ environments upgraded with zero
+              downtime</span>,{" "}
+              <span className="text-fg">95% of incidents resolved without
+              escalation</span>, and a Kubernetes v1.32 admission
+              policy that rejects bad deploys before they land.
+            </p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-6 text-[1.0625rem] leading-[1.75] text-fg-muted">
+            <p className="mt-5 leading-relaxed text-fg-muted">
               I&apos;d rather remove a manual step than get faster at doing it.
               A Python onboarding pipeline cut onboarding time by 60%,
               Terraform modules made new environments reproducible, and Karpenter
@@ -100,7 +93,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.14}>
-            <p className="mt-5 text-[1.0625rem] leading-[1.75] text-fg-muted">
+            <p className="mt-5 leading-relaxed text-fg-muted">
               The current focus is quieter on-call shifts: consolidating alerting
               across 5–10 services and moving the monitoring stack from paid
               tooling to open source. The same instinct produced a node-level
@@ -109,38 +102,40 @@ export function About() {
               so one Slack message carries the whole story.
             </p>
           </Reveal>
+
+          {/* Focus areas */}
         </div>
       </div>
 
-      <div className="mt-16 grid gap-4 md:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {focusAreas.map((area, i) => {
           const Icon = area.icon;
           return (
             <Reveal key={area.id} delay={0.08 * i} className="h-full">
-              <article className="panel group h-full p-7 transition-all duration-200 hover:-translate-y-1 hover:border-border-strong">
-                <div className="flex items-start justify-between">
-                  <span className="grid h-12 w-12 place-items-center rounded-xl border border-border bg-surface-2 text-accent-text transition-colors group-hover:border-accent/40 group-hover:text-accent">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <span className="font-mono text-[13px] font-semibold tracking-[0.12em] text-fg-subtle">
-                    0{i + 1}
-                  </span>
-                </div>
-                <h3 className="mt-8 font-display text-[1.875rem] leading-[1.08] text-fg">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface-2">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+                <span className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-surface-2 text-accent transition-colors duration-300 group-hover:border-accent/40">
+                  <Icon className="h-4 w-4" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 text-[0.9375rem] font-semibold leading-snug text-fg">
                   {area.title}
                 </h3>
-                <p className="mt-4 text-[0.9375rem] leading-[1.7] text-fg-muted">
+                <p className="mt-2.5 flex-1 text-[0.8125rem] leading-relaxed text-fg-muted">
                   {area.description}
                 </p>
-                <ul className="mt-6 space-y-2.5 border-t border-border pt-5">
+                <ul className="mt-4 space-y-1.5">
                   {area.points.map((point) => (
                     <li
                       key={point}
-                      className="flex gap-2.5 text-[0.875rem] leading-relaxed text-fg-muted"
+                      className="flex items-center gap-2 font-mono text-[11px] text-fg-subtle"
                     >
-                      <span aria-hidden="true" className="text-accent">
-                        —
-                      </span>
+                      <span
+                        className="h-1 w-1 rounded-full bg-accent/70"
+                        aria-hidden="true"
+                      />
                       {point}
                     </li>
                   ))}

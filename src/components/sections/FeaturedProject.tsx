@@ -1,165 +1,247 @@
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import type { ReactNode } from "react";
+import {
+  ArrowUpRight,
+  Boxes,
+  Layers,
+  Lightbulb,
+  Scale,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Zap,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import { projects } from "@/config/projects";
 import type { Project } from "@/config/projects";
+import { cn } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { TechIcon } from "@/components/ui/TechIcon";
 import { GithubIcon } from "@/components/ui/SocialIcons";
 import { ArchitectureFlow } from "./ArchitectureFlow";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
-function RepositoryLink({ project }: { project: Project }) {
+function CaseCard({
+  icon: Icon,
+  label,
+  children,
+  className,
+}: {
+  icon: LucideIcon;
+  label: string;
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <a
-      href={project.repository.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group mt-7 inline-flex items-center gap-2 border-b border-border-strong pb-1 text-[0.9375rem] font-medium text-fg transition-colors hover:border-accent hover:text-accent-text"
+    <article
+      className={cn(
+        "h-full rounded-2xl border border-border bg-surface p-6 sm:p-7",
+        className,
+      )}
     >
-      <GithubIcon className="h-4 w-4 fill-current" aria-hidden="true" />
-      {project.repository.live
-        ? "Read the code on GitHub"
-        : project.repository.label}
-      <ArrowUpRight
-        className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-        aria-hidden="true"
-      />
-    </a>
+      <div className="flex items-center gap-2.5">
+        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-accent/25 bg-accent-soft text-accent">
+          <Icon className="h-4 w-4" aria-hidden="true" />
+        </span>
+        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+          {label}
+        </h3>
+      </div>
+      <div className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted">
+        {children}
+      </div>
+    </article>
   );
 }
 
 function ProjectCaseStudy({ project }: { project: Project }) {
-  const metric = project.impact.metric;
-
   return (
     <div>
-      <Reveal>
-        <div className="panel panel-accent overflow-hidden">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-            <div className="p-7 sm:p-10 lg:col-span-7 lg:p-12">
-              <p className="inline-flex items-center gap-2 kicker text-accent-text">
-                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                Case study 01 · {project.year} · {project.category}
-              </p>
-              <h3 className="mt-7 font-display text-[3rem] leading-[0.95] tracking-[-0.035em] text-fg sm:text-[4.5rem] lg:text-[5rem]">
-                {project.name}
-              </h3>
-              <p className="mt-6 max-w-2xl text-[1.125rem] leading-[1.7] text-fg-muted sm:text-[1.25rem]">
-                {project.tagline}
-              </p>
-              <RepositoryLink project={project} />
-            </div>
+      {/* Header */}
+      <div className="flex flex-col gap-6">
+        <Reveal>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
+              <Sparkles className="h-3 w-3" aria-hidden="true" />
+              Featured project
+            </span>
+            <span className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-fg-muted">
+              {project.category}
+            </span>
+            <span className="rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] text-fg-muted">
+              {project.year}
+            </span>
+            {project.repository.live ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-accent">
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
+                Open source
+              </span>
+            ) : null}
+          </div>
+        </Reveal>
 
-            <div className="border-t border-border px-7 pb-9 pt-8 sm:px-10 lg:col-span-5 lg:border-l lg:border-t-0 lg:px-12 lg:py-12">
-              <p className="kicker text-fg-subtle">The outcome</p>
-              {metric ? (
-                <p className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <AnimatedCounter
-                    value={metric.value}
-                    prefix={metric.prefix}
-                    suffix={metric.suffix}
-                    className="font-display text-[5rem] leading-[0.85] tracking-[-0.045em] text-fg sm:text-[6rem]"
-                  />
-                  <span className="max-w-[15rem] text-[1rem] leading-snug text-fg-muted">
-                    {metric.label}
-                  </span>
-                </p>
-              ) : (
-                <p className="mt-6 font-display text-[2.5rem] leading-[1.05] text-fg">
-                  {project.impact.headline}
-                </p>
-              )}
-              <p className="mt-6 text-[1rem] leading-[1.7] text-fg-muted">
-                {project.impact.description}
-              </p>
-              {project.impact.detail ? (
-                <p className="mt-6 border-l-2 border-accent pl-4 text-[0.9375rem] leading-relaxed text-fg-muted">
-                  {project.impact.detail}
-                </p>
-              ) : null}
+        <Reveal delay={0.06}>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-8">
+            <h2 className="max-w-3xl text-3xl font-semibold leading-[1.12] tracking-tight text-fg sm:text-4xl md:text-[2.75rem]">
+              {project.name}
+            </h2>
+            <div className="shrink-0 sm:pt-1.5">
+              <a
+                href={project.repository.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-3.5 py-2 text-[0.8125rem] font-medium text-fg-muted transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                <GithubIcon className="h-4 w-4 fill-current" />
+                {project.repository.live
+                  ? "View repository"
+                  : project.repository.label}
+                <ArrowUpRight
+                  className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </a>
             </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
 
-      <Reveal delay={0.06} className="mt-6">
+        <Reveal delay={0.1}>
+          <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-fg-muted">
+            {project.tagline}
+          </p>
+        </Reveal>
+      </div>
+
+      {/* Architecture */}
+      <Reveal delay={0.12} className="mt-8">
         <ArchitectureFlow project={project} />
       </Reveal>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        <Reveal>
-          <article className="panel h-full p-7 sm:p-9">
-            <p className="kicker text-accent-text">01 / The problem</p>
-            <h4 className="mt-5 font-display text-[1.875rem] leading-[1.08] text-fg">
-              Why it existed
-            </h4>
-            <p className="mt-4 text-[1.0625rem] leading-[1.8] text-fg-muted">
+      {/* Case study body */}
+      <div className="mt-4 space-y-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          <Reveal className="h-full">
+            <CaseCard icon={Target} label="Problem">
               {project.problem}
-            </p>
-          </article>
-        </Reveal>
-
-        <Reveal delay={0.06}>
-          <article className="panel h-full p-7 sm:p-9">
-            <p className="kicker text-accent-text">02 / The fix</p>
-            <h4 className="mt-5 font-display text-[1.875rem] leading-[1.08] text-fg">
-              How it works
-            </h4>
-            <p className="mt-4 text-[1.0625rem] leading-[1.8] text-fg-muted">
+            </CaseCard>
+          </Reveal>
+          <Reveal delay={0.06} className="h-full">
+            <CaseCard icon={Lightbulb} label="Solution">
               {project.solution}
-            </p>
+            </CaseCard>
+          </Reveal>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <Reveal className="h-full">
+            <CaseCard icon={Boxes} label="Technology stack">
+              <ul className="flex flex-wrap gap-2">
+                {project.stack.map((item) => (
+                  <li key={item.name}>
+                    <span className="inline-flex items-center gap-2 rounded-lg border border-border bg-bg-elevated px-2.5 py-1.5 text-[12.5px] font-medium text-fg-muted">
+                      <TechIcon
+                        name={item.icon}
+                        size="sm"
+                        className="h-5 w-5 rounded-[0.3rem] border-0 bg-transparent"
+                      />
+                      {item.name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </CaseCard>
+          </Reveal>
+
+          <Reveal delay={0.06} className="h-full">
+            <CaseCard icon={Layers} label="Key capabilities">
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {project.capabilities.map((capability) => (
+                  <li
+                    key={capability}
+                    className="flex items-start gap-2.5 rounded-lg border border-border bg-bg-elevated px-3 py-2.5 text-[0.8125rem] leading-snug text-fg-muted"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                    />
+                    {capability}
+                  </li>
+                ))}
+              </ul>
+            </CaseCard>
+          </Reveal>
+        </div>
+
+        {project.tradeoffs?.length ? (
+          <Reveal delay={0.08}>
+            <CaseCard icon={Scale} label="Design trade-offs">
+              <ul className="space-y-3">
+                {project.tradeoffs.map((tradeoff) => (
+                  <li key={tradeoff} className="flex items-start gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-2"
+                    />
+                    <span>{tradeoff}</span>
+                  </li>
+                ))}
+              </ul>
+            </CaseCard>
+          </Reveal>
+        ) : null}
+
+        <Reveal delay={0.1}>
+          <article className="relative overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/[0.09] via-surface to-surface p-6 sm:p-8">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-accent/25 bg-accent-soft text-accent">
+                <TrendingUp className="h-4 w-4" aria-hidden="true" />
+              </span>
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+                Results &amp; impact
+              </h3>
+            </div>
+
+            <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                {project.impact.metric ? (
+                  <p className="flex items-baseline gap-2 text-[2.5rem] font-semibold leading-none tracking-tight text-fg sm:text-[3rem]">
+                    <AnimatedCounter
+                      value={project.impact.metric.value}
+                      prefix={project.impact.metric.prefix}
+                      suffix={project.impact.metric.suffix}
+                    />
+                    <span className="text-[0.9375rem] font-medium text-fg-muted">
+                      {project.impact.metric.label}
+                    </span>
+                  </p>
+                ) : (
+                  <p className="text-[2rem] font-semibold leading-tight tracking-tight text-fg">
+                    {project.impact.headline}
+                  </p>
+                )}
+                <p className="mt-3 max-w-xl text-[0.875rem] leading-relaxed text-fg-muted">
+                  {project.impact.description}
+                </p>
+              </div>
+
+              {project.impact.detail ? (
+                <div className="flex shrink-0 items-center gap-2 rounded-lg border border-border bg-bg-elevated px-3.5 py-2.5 text-[0.75rem] text-fg-muted sm:max-w-xs">
+                  <Zap
+                    className="h-3.5 w-3.5 shrink-0 text-accent"
+                    aria-hidden="true"
+                  />
+                  {project.impact.detail}
+                </div>
+              ) : null}
+            </div>
           </article>
         </Reveal>
       </div>
-
-      <div className="mt-4 grid gap-4 md:grid-cols-2">
-        <Reveal>
-          <article className="panel h-full p-7 sm:p-9">
-            <p className="kicker text-fg-subtle">Stack</p>
-            <p className="mt-5 text-[1rem] leading-[1.8] text-fg-muted">
-              {project.stack.map((item) => item.name).join(" · ")}
-            </p>
-          </article>
-        </Reveal>
-
-        <Reveal delay={0.06}>
-          <article className="panel h-full p-7 sm:p-9">
-            <p className="kicker text-fg-subtle">Capabilities</p>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {project.capabilities.map((capability) => (
-                <li
-                  key={capability}
-                  className="flex gap-3 text-[0.9375rem] leading-relaxed text-fg-muted"
-                >
-                  <span aria-hidden="true" className="text-accent">
-                    —
-                  </span>
-                  {capability}
-                </li>
-              ))}
-            </ul>
-          </article>
-        </Reveal>
-      </div>
-
-      {project.tradeoffs?.length ? (
-        <Reveal delay={0.08}>
-          <article className="mt-4 rounded-xl border border-accent-2/30 bg-accent-2-soft/40 p-7 sm:p-9">
-            <p className="kicker text-accent-2">Design trade-offs</p>
-            <ul className="mt-5 grid gap-4 md:grid-cols-3">
-              {project.tradeoffs.map((tradeoff) => (
-                <li
-                  key={tradeoff}
-                  className="text-[0.9375rem] leading-[1.75] text-fg-muted"
-                >
-                  {tradeoff}
-                </li>
-              ))}
-            </ul>
-          </article>
-        </Reveal>
-      ) : null}
     </div>
   );
 }
@@ -169,28 +251,60 @@ function ProjectSummary({ project }: { project: Project }) {
 
   return (
     <Reveal className="h-full">
-      <article className="panel group h-full p-7 transition-all duration-200 hover:-translate-y-1 hover:border-border-strong sm:p-9">
-        <div className="flex items-center justify-between gap-3">
-          <p className="kicker text-fg-subtle">
-            {project.category} · {project.year}
-          </p>
-          <span className="font-mono text-[11px] text-fg-subtle">02</span>
+      <article className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-colors duration-300 hover:border-border-strong hover:bg-surface-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full border border-border bg-bg-elevated px-2.5 py-1 font-mono text-[10.5px] text-fg-muted">
+            {project.category}
+          </span>
+          <span className="rounded-full border border-border bg-bg-elevated px-2.5 py-1 font-mono text-[10.5px] text-fg-muted">
+            {project.year}
+          </span>
         </div>
-        <h4 className="mt-6 font-display text-[2rem] leading-[1.05] text-fg">
+
+        <h3 className="mt-4 text-xl font-semibold tracking-tight text-fg">
           {project.name}
-        </h4>
-        <p className="mt-4 text-[0.9375rem] leading-[1.7] text-fg-muted">
+        </h3>
+        <p className="mt-2 flex-1 text-[0.875rem] leading-relaxed text-fg-muted">
           {project.tagline}
         </p>
-        <div className="mt-7 flex flex-wrap items-baseline gap-x-3 gap-y-2 border-t border-border pt-6">
-          <span className="font-display text-[2.5rem] leading-none tracking-[-0.03em] text-fg">
-            {metric
-              ? `${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""}`
-              : project.impact.headline}
-          </span>
-          <span className="text-[0.875rem] text-fg-muted">{metric?.label}</span>
+
+        <ul className="mt-4 flex flex-wrap gap-1.5">
+          {project.stack.map((item) => (
+            <li key={item.name}>
+              <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-bg-elevated px-2 py-1 text-[11.5px] text-fg-muted">
+                <TechIcon
+                  name={item.icon}
+                  size="sm"
+                  className="h-4 w-4 rounded-[0.2rem] border-0 bg-transparent"
+                />
+                {item.name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-5 flex flex-wrap items-end justify-between gap-x-4 gap-y-3 border-t border-border pt-4">
+          <p className="flex items-baseline gap-1.5">
+            <span className="text-lg font-semibold leading-none text-fg">
+              {metric
+                ? `${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""}`
+                : project.impact.headline}
+            </span>
+            <span className="text-[11.5px] text-fg-subtle">
+              {metric?.label}
+            </span>
+          </p>
+          <a
+            href={project.repository.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-fg-muted transition-colors hover:text-accent"
+          >
+            <GithubIcon className="h-3.5 w-3.5 fill-current" />
+            Repository
+            <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
+          </a>
         </div>
-        <RepositoryLink project={project} />
       </article>
     </Reveal>
   );
@@ -199,6 +313,7 @@ function ProjectSummary({ project }: { project: Project }) {
 export function FeaturedProject() {
   return (
     <Section id="project" divided className="relative overflow-hidden">
+      {/* Prominence glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[560px]"
@@ -207,27 +322,20 @@ export function FeaturedProject() {
       </div>
 
       <SectionHeading
-        index="04"
-        eyebrow="Selected work"
-        title={
-          <>
-            Tools for the{" "}
-            <span className="text-accent-text italic">3 a.m. page.</span>
-          </>
-        }
-        description="Two production tools: one explains why a Kubernetes workload failed, the other turns Alertmanager noise into a single actionable message. Both designed around what an engineer needs at 3 a.m."
+        eyebrow="Projects"
+        title="Two tools, both built for 3 a.m."
+        description="One explains why a Kubernetes workload failed; the other turns Alertmanager noise into a single actionable Slack message. Same build discipline, same production constraints."
       />
 
-      <div className="mt-14">
+      <div className="mt-10">
         <ProjectCaseStudy project={projects[0]} />
 
         {projects.length > 1 ? (
-          <div className="mt-12">
-            <div className="flex items-center gap-4">
-              <span className="kicker text-accent-text">More work</span>
-              <span aria-hidden="true" className="h-px w-full bg-border" />
-            </div>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="mt-12 border-t border-border pt-10 sm:mt-16 sm:pt-12">
+            <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+              More work
+            </h3>
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
               {projects.slice(1).map((project) => (
                 <ProjectSummary key={project.id} project={project} />
               ))}

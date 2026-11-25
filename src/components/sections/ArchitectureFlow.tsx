@@ -1,5 +1,3 @@
-import { ArrowRight } from "lucide-react";
-
 import type { Project } from "@/config/projects";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechIcon } from "@/components/ui/TechIcon";
@@ -20,51 +18,56 @@ const nodeIcons: Record<string, SkillIconKey> = {
 
 export function ArchitectureFlow({ project }: { project: Project }) {
   const nodes = project.architecture;
+  const summary = nodes.map((node) => node.label).join(" → ");
 
   return (
-    <div className="panel p-7 sm:p-9">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="kicker text-fg-subtle">
-          System architecture · {nodes.length} stages
-        </p>
+    <div className="rounded-2xl border border-border bg-bg-elevated p-5 sm:p-7">
+      <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
+        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
+          System architecture
+        </h3>
         <span className="font-mono text-[11px] text-fg-subtle">
-          {project.repository.live ? "read-only design" : "design overview"}
+          {summary}
         </span>
       </div>
 
-      <ol className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="flex flex-col lg:flex-row lg:items-stretch">
         {nodes.map((node, i) => (
-          <Reveal
-            as="li"
-            key={node.id}
-            delay={0.05 * i}
-            className="relative h-full rounded-xl border border-border bg-surface-2/40 p-5 transition-colors duration-200 hover:border-border-strong"
-          >
-            <div className="flex items-start justify-between gap-3">
-              <TechIcon
-                name={nodeIcons[node.id] ?? "kubernetes"}
-                size="md"
-                className="h-9 w-9 rounded-lg"
-              />
-              <span className="font-mono text-[11px] text-fg-subtle">
-                0{i + 1}
-              </span>
-            </div>
-            <p className="mt-5 text-[0.9375rem] font-semibold leading-snug text-fg">
-              {node.label}
-            </p>
-            <p className="mt-2 text-[0.8125rem] leading-relaxed text-fg-muted">
-              {node.detail}
-            </p>
+          <div key={node.id} className="contents">
+            <Reveal delay={0.08 * i} className="flex-1">
+              <div className="group relative h-full rounded-xl border border-border bg-surface p-4 transition-all duration-300 hover:border-accent/40 hover:bg-surface-2">
+                <span className="absolute right-3 top-3 font-mono text-[10.5px] text-fg-subtle">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <TechIcon
+                  name={nodeIcons[node.id] ?? "kubernetes"}
+                  size="md"
+                  className="h-9 w-9 rounded-lg"
+                />
+                <p className="mt-3.5 text-[0.875rem] font-semibold leading-snug text-fg">
+                  {node.label}
+                </p>
+                <p className="mt-1.5 text-[0.75rem] leading-relaxed text-fg-muted">
+                  {node.detail}
+                </p>
+              </div>
+            </Reveal>
+
             {i < nodes.length - 1 ? (
-              <ArrowRight
-                aria-hidden="true"
-                className="absolute -right-3 top-1/2 hidden h-3.5 w-3.5 -translate-y-1/2 text-accent lg:block"
-              />
+              <>
+                {/* Vertical connector (mobile) */}
+                <div className="relative mx-auto h-9 w-px self-center overflow-hidden bg-border lg:hidden">
+                  <span className="absolute inset-x-0 h-1/2 animate-flow-y bg-gradient-to-b from-transparent via-accent to-transparent" />
+                </div>
+                {/* Horizontal connector (desktop) */}
+                <div className="relative hidden h-px flex-1 self-center overflow-hidden bg-border lg:block">
+                  <span className="absolute inset-y-0 w-1/3 animate-flow-x bg-gradient-to-r from-transparent via-accent to-transparent" />
+                </div>
+              </>
             ) : null}
-          </Reveal>
+          </div>
         ))}
-      </ol>
+      </div>
     </div>
   );
 }

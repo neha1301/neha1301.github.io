@@ -1,90 +1,86 @@
+import { BookOpen, Workflow, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 import { skillGroups } from "@/config/skills";
-import type { SkillGroup } from "@/config/skills";
 import { cn } from "@/lib/utils";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { TechIcon } from "@/components/ui/TechIcon";
 
-const depthBars: Record<SkillGroup["marker"], number> = {
-  daily: 3,
-  working: 2,
-  familiar: 1,
+const markers: Record<string, LucideIcon> = {
+  daily: Zap,
+  working: Workflow,
+  familiar: BookOpen,
 };
 
 export function TechStack() {
   return (
-    <Section id="skills" divided className="bg-bg-elevated/40">
+    <Section id="skills" divided>
       <SectionHeading
-        index="02"
         eyebrow="Technical expertise"
-        title={
-          <>
-            Depth{" "}
-            <span className="text-accent-text italic">where it counts.</span>
-          </>
-        }
+        title="The tools behind the work."
         description="Grouped by how deeply I use them, from daily production work to fundamentals."
       />
 
-      <div className="mt-14 grid gap-4 md:grid-cols-3">
-        {skillGroups.map((group, gi) => (
-          <Reveal key={group.id} delay={0.05 * gi} className="h-full">
-            <article className="panel group h-full p-7 transition-all duration-200 hover:-translate-y-1 hover:border-border-strong">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="kicker text-accent-text">
-                    0{gi + 1} / {group.marker}
-                  </p>
-                  <h3 className="mt-4 font-display text-[1.875rem] leading-[1.08] text-fg">
-                    {group.title}
-                  </h3>
+      <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface">
+        {skillGroups.map((group, gi) => {
+          const Marker = markers[group.marker] ?? Zap;
+          const daily = group.marker === "daily";
+
+          return (
+            <Reveal
+              key={group.id}
+              delay={0.05 * gi}
+              className="border-b border-border last:border-b-0"
+            >
+              <div className="grid gap-4 p-5 sm:p-6 md:grid-cols-[190px_1fr] md:gap-8">
+                <div className="flex items-center gap-3 md:items-start">
+                  <span
+                    className={cn(
+                      "grid h-9 w-9 shrink-0 place-items-center rounded-lg border",
+                      daily
+                        ? "border-accent/30 bg-accent-soft text-accent"
+                        : "border-border bg-bg-elevated text-fg-muted",
+                    )}
+                  >
+                    <Marker className="h-4 w-4" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h3 className="text-[0.9375rem] font-semibold leading-snug text-fg">
+                      {group.title}
+                    </h3>
+                    <p className="mt-0.5 text-[0.75rem] leading-snug text-fg-subtle">
+                      {group.blurb}
+                    </p>
+                  </div>
                 </div>
-                <span aria-hidden="true" className="mt-1 flex gap-1">
-                  {[1, 2, 3].map((bar) => (
-                    <span
-                      key={bar}
-                      className={cn(
-                        "h-4 w-1 rounded-full",
-                        bar <= depthBars[group.marker]
-                          ? "bg-accent"
-                          : "bg-border-strong",
-                      )}
-                    />
-                  ))}
-                </span>
-              </div>
 
-              <p className="mt-3 text-[0.875rem] leading-relaxed text-fg-subtle">
-                {group.blurb}
-              </p>
-
-              <ul className="mt-7 grid grid-cols-1 gap-x-5 gap-y-3 border-t border-border pt-6 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-                {group.items.map((item) => (
-                  <li key={item.name}>
-                    <span
-                      className={cn(
-                        "inline-flex items-center gap-2.5 text-[0.9375rem] font-medium",
-                        group.marker === "daily"
-                          ? "text-fg"
-                          : "text-fg-muted",
-                      )}
-                    >
-                      <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md border border-border bg-surface-2/70">
+                <ul className="flex flex-wrap gap-1.5">
+                  {group.items.map((item) => (
+                    <li key={item.name}>
+                      <span
+                        className={cn(
+                          "inline-flex items-center gap-1.5 rounded-md border px-2 py-1.5 text-[12px] font-medium text-fg-muted transition-colors duration-200 hover:text-fg",
+                          daily
+                            ? "border-accent/20 bg-accent-soft hover:border-accent/40"
+                            : "border-border bg-bg-elevated hover:border-border-strong",
+                        )}
+                      >
                         <TechIcon
                           name={item.icon}
                           size="sm"
                           className="h-4 w-4 rounded-[0.2rem] border-0 bg-transparent"
                         />
+                        {item.name}
                       </span>
-                      {item.name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          </Reveal>
-        ))}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
     </Section>
   );

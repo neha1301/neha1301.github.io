@@ -15,7 +15,7 @@ Dark-first, terminal-inspired, fully responsive, statically rendered, and driven
 | Styling | Tailwind CSS v4 (`@theme` tokens, CSS custom properties) |
 | Animation | Framer Motion (scroll reveals, layout transitions) |
 | Icons | Lucide (UI) + Simple Icons via `react-icons` (brand marks) |
-| Fonts | `next/font` — Instrument Serif (display), Inter (body), JetBrains Mono (labels) |
+| Fonts | `next/font` — Inter + JetBrains Mono |
 | Deployment | GitHub Pages via GitHub Actions |
 
 ---
@@ -46,15 +46,6 @@ npm run lint     # eslint
 | `src/config/articles.ts` | Article showcase entries (see below) |
 | `src/config/certifications.ts` | Certifications (Credly verification links) |
 | `src/config/education.ts` | Degree, field, institution, period |
-
-Section chapter numbers (`01`, `02`, …) are passed as `index` to `SectionHeading`
-in `src/components/sections/*`. Keep them in sync with `navLinks` in
-`src/config/site.ts`.
-
-The visual language lives in `src/app/globals.css`: `.panel` is the single refined
-card surface, `.kicker` is the mono micro-label, and `.font-display` resolves the
-self-hosted Instrument Serif variable. Next/font variables are applied to `<html>`
-so CSS custom properties that reference them resolve correctly.
 
 Contest rankings and DSA problem counts are deliberately **not** listed on the
 site or the resume. They are real, but they read as junior signals next to
