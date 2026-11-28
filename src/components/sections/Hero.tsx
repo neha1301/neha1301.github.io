@@ -71,37 +71,43 @@ export function Hero() {
         <div className="absolute -right-24 top-32 h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle_at_center,var(--accent-2-soft),transparent_70%)]" />
       </div>
 
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-12 lg:gap-12">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-12 lg:gap-10">
         {/* Copy */}
         <div className="lg:col-span-7">
           {/* Identity */}
           <Reveal>
-            <p className="text-2xl font-semibold tracking-tight text-fg sm:text-[1.75rem]">
+            <p className="text-[1.875rem] font-semibold tracking-tight text-fg sm:text-2xl">
               {site.name}
             </p>
           </Reveal>
 
           <Reveal delay={0.04}>
-            <p className="mt-1.5 font-mono text-[11.5px] uppercase tracking-[0.16em] text-accent-text">
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-accent-text">
+              Site Reliability &amp; Platform Engineer
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <p className="mt-1.5 text-[0.9375rem] text-fg-muted">
               DevOps Engineer II (SDE-2) · BharatPe
             </p>
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <h1 className="mt-8 max-w-2xl text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.035em] text-fg sm:text-[3.5rem] lg:text-[4rem]">
+          <Reveal delay={0.1}>
+            <h1 className="mt-7 max-w-2xl text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.035em] text-fg sm:text-[3.5rem] lg:text-[4rem]">
               Engineering reliability{" "}
-              <span className="text-gradient">beyond deployment.</span>
+              <span className="text-gradient">beyond deployment..</span>
             </h1>
           </Reveal>
 
-          <Reveal delay={0.12}>
+          <Reveal delay={0.14}>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-fg-muted sm:text-[1.125rem]">
               I build and operate Kubernetes platforms, automation and
               observability that make production calmer and root causes clearer.
             </p>
           </Reveal>
 
-          <Reveal delay={0.16}>
+          <Reveal delay={0.18}>
             <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-fg-subtle">
               <span>{site.yearsOfExperience} yrs experience</span>
               <span
@@ -128,7 +134,7 @@ export function Hero() {
 
           {/* Actions */}
           <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Button
                 href="#project"
                 size="lg"
@@ -150,7 +156,7 @@ export function Hero() {
 
           {/* Social */}
           <Reveal delay={0.3}>
-            <div className="mt-9 flex items-center gap-4">
+            <div className="mt-8 flex items-center gap-4">
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
                 Find me on
               </span>
