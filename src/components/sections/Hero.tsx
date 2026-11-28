@@ -127,17 +127,22 @@ export function Hero() {
             </p>
           </Reveal>
 
-
+          <Reveal delay={0.18}>
+            <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-subtle">
+              From Kubernetes platforms to incident response, I turn production
+              problems into systems that stay up.
+            </p>
+          </Reveal>
 
           {/* Actions */}
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button
-                href="#work"
+                href="#project"
                 size="lg"
                 icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
               >
-                Engineering work
+                View Projects
               </Button>
               <Button
                 href={site.resume.path}

@@ -31,6 +31,12 @@ const metrics = [
     label: "less node debugging time",
     detail: "single-pass diagnostics",
   },
+  {
+    id: "helm",
+    value: "10+",
+    label: "Helm charts maintained",
+    detail: "in production",
+  },
 ];
 
 export function Metrics() {
@@ -38,16 +44,17 @@ export function Metrics() {
     <section
       id="impact"
       aria-label="Engineering impact"
-      className="border-y border-border-strong bg-bg-elevated"
+      className="border-y border-border bg-bg-elevated"
     >
       <div className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
         <SectionHeading
-          eyebrow="Impact"
+          index="01"
+          eyebrow="Engineering Impact"
           title="What changed in production."
-          description="Verified outcomes from the work described below."
+          description="Five verified outcomes from the work described below."
           className="gap-3"
         />
-        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
           {metrics.map((metric) => (
             <div key={metric.id} className="min-w-0">
               <dt className="sr-only">{metric.label}</dt>

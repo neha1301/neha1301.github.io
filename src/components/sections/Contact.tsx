@@ -38,10 +38,10 @@ export function Contact() {
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
           <SectionHeading
-            index="06"
+            index="08"
             eyebrow="Contact"
             title="Let’s talk about keeping systems up."
-            description="Open to SRE, Platform and DevOps roles. If you're hiring for someone who owns production after it ships, email is fastest."
+            description="Open to Site Reliability, Platform and DevOps roles. If you’re hiring for someone who owns production after it ships, email is fastest."
           />
 
           <Reveal delay={0.12}>

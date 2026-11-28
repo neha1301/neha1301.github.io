@@ -29,7 +29,7 @@ export const experience: ExperienceRole[] = [
     location: "Gurugram, Haryana, India",
     current: true,
     summary:
-      "Own infrastructure and observability for two business verticals: alerting, cross-cluster dashboards, and the move off paid monitoring.",
+      "Own infrastructure and applications for two business verticals, and set the reliability direction: centralizing alerting, building cross-cluster dashboards, and moving logging and dashboards off paid tooling.",
     highlights: [
       "Centralizing alerting across 5–10 services — one service alone emits 300–400 alerts — by reviewing each use case and rewriting rules instead of forwarding raw noise.",
       "Built ~10 centralized Grafana dashboards that aggregate data from 15+ clusters into one view for on-call engineers and service owners.",
@@ -56,7 +56,7 @@ export const experience: ExperienceRole[] = [
     location: "Gurugram, Haryana, India",
     current: false,
     summary:
-      "Owned production Kubernetes platforms across 30+ environments: upgrades, infrastructure as code, observability and incident response.",
+      "Owned production Kubernetes platforms end to end — infrastructure as code, upgrades, observability and incident response — across 30+ environments on AWS and GCP.",
     highlights: [
       "Executed Kubernetes cluster upgrades across 30+ production environments with zero downtime, maintaining platform reliability and security compliance.",
       "Built a Python onboarding automation pipeline for Devtron applications, removing manual provisioning and cutting onboarding time by 60%.",
