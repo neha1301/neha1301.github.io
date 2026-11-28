@@ -55,17 +55,11 @@ const terminalScenes: TerminalScene[] = [
   },
 ];
 
-const statusChips = [
-  { id: "availability", label: site.availability, dot: true },
-  { id: "experience", label: `${site.yearsOfExperience} Years Experience` },
-  { id: "location", label: site.locationShort },
-];
-
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden px-5 pb-12 pt-24 sm:px-8 sm:pt-28 md:pb-16 md:pt-32"
+      className="relative overflow-hidden px-5 pb-14 pt-24 sm:px-8 sm:pt-28 md:pb-20 md:pt-32"
     >
       {/* Background */}
       <div
@@ -80,57 +74,55 @@ export function Hero() {
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-12 lg:gap-12">
         {/* Copy */}
         <div className="lg:col-span-7">
-          {/* Status chips */}
+          {/* Identity */}
           <Reveal>
-            <ul className="flex flex-wrap items-center gap-2.5">
-              {statusChips.map((chip) => (
-                <li
-                  key={chip.id}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1.5 text-[12.5px] font-medium text-fg-muted backdrop-blur-sm"
-                >
-                  {chip.dot ? (
-                    <span className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-                    </span>
-                  ) : null}
-                  {chip.label}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          {/* Headline */}
-          <Reveal delay={0.04}>
-            <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11.5px] uppercase tracking-[0.14em] text-fg-subtle">
-              <span className="text-accent-text">
-                Site Reliability &amp; Platform Engineer
-              </span>
-              <span
-                aria-hidden="true"
-                className="h-1 w-1 rounded-full bg-border-strong"
-              />
-              <span>BharatPe · DevOps Engineer II (SDE-2)</span>
+            <p className="text-2xl font-semibold tracking-tight text-fg sm:text-[1.75rem]">
+              {site.name}
             </p>
           </Reveal>
 
-          <Reveal delay={0.06}>
-            <h1 className="mt-3 text-[2.5rem] font-semibold leading-[1.06] tracking-[-0.03em] text-fg sm:text-[3.25rem] lg:text-[3.75rem]">
-              Fewer alerts.{" "}
-              <span className="text-gradient">Faster root causes.</span>
+          <Reveal delay={0.04}>
+            <p className="mt-1.5 font-mono text-[11.5px] uppercase tracking-[0.16em] text-accent-text">
+              DevOps Engineer II (SDE-2) · BharatPe
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <h1 className="mt-8 max-w-2xl text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.035em] text-fg sm:text-[3.5rem] lg:text-[4rem]">
+              Engineering reliability{" "}
+              <span className="text-gradient">beyond deployment.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-fg-muted sm:text-[1.125rem]">
-              {site.subtagline}
+              I build and operate Kubernetes platforms, automation and
+              observability that make production calmer and root causes clearer.
             </p>
           </Reveal>
 
-          <Reveal delay={0.18}>
-            <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-subtle">
-              From Kubernetes platforms to incident response, I turn production
-              problems into systems that stay up.
+          <Reveal delay={0.16}>
+            <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-fg-subtle">
+              <span>{site.yearsOfExperience} yrs experience</span>
+              <span
+                aria-hidden="true"
+                className="h-1 w-1 rounded-full bg-border-strong"
+              />
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3 w-3" aria-hidden="true" />
+                {site.locationShort}
+              </span>
+              <span
+                aria-hidden="true"
+                className="h-1 w-1 rounded-full bg-border-strong"
+              />
+              <span className="inline-flex items-center gap-1.5">
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-accent"
+                  aria-hidden="true"
+                />
+                {site.availability}
+              </span>
             </p>
           </Reveal>
 
@@ -218,10 +210,6 @@ export function Hero() {
         />
         <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
           Scroll to explore
-        </span>
-        <MapPin className="ml-auto h-3.5 w-3.5" aria-hidden="true" />
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
-          {site.location}
         </span>
       </div>
     </section>
