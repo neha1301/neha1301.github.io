@@ -11,6 +11,7 @@ import {
   SiHelm,
   SiJenkins,
   SiKubernetes,
+  SiLinux,
   SiMysql,
   SiOpentelemetry,
   SiPostgresql,
@@ -19,27 +20,28 @@ import {
   SiTerraform,
   SiGnubash,
   SiOpenjdk,
+  SiVictoriametrics,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import {
   Activity,
-  BrainCircuit,
-  Bug,
+  BellRing,
   Cpu,
+  Database,
   Gauge,
+  GitBranch,
+  Globe2,
+  KeyRound,
   MessageSquare,
   Network,
   Radar,
   ScrollText,
   Search,
+  Server,
   ShieldCheck,
   Siren,
-  Sparkles,
   Target,
-  Terminal,
-  Timer,
   Waypoints,
-  Zap,
 } from "lucide-react";
 
 import type { SkillIconKey } from "@/config/skills";
@@ -58,58 +60,62 @@ type IconSpec = {
 
 /**
  * Brand marks come from Simple Icons (via react-icons) wherever an official
- * mark exists. Concepts without an official mark use a lucide glyph.
+ * mark exists. Concepts without one use a neutral lucide glyph.
  */
 export const techIcons: Record<SkillIconKey, IconSpec> = {
   aws: { Icon: FaAws, color: "#ff9900" },
   gcp: { Icon: SiGooglecloud, color: "#4285f4" },
-  eks: { Icon: FaAws, color: "#ff9900" },
-  gke: { Icon: SiGooglecloud, color: "#4285f4" },
-  lambda: { Icon: Zap, color: "#ff9900" },
-  apigateway: { Icon: Network, color: "#8c4fff" },
+  vpc: { Icon: Network, color: "#ff9900" },
+  iam: { Icon: ShieldCheck, color: "#ff9900" },
+  ec2: { Icon: Server, color: "#ff9900" },
+  s3: { Icon: Database, color: "#ff9900" },
+  alb: { Icon: Network, color: "#ff9900" },
+  route53: { Icon: Globe2, color: "#ff9900" },
   cloudflare: { Icon: SiCloudflare, color: "#f38020" },
 
   kubernetes: { Icon: SiKubernetes, color: "#4c8dff" },
+  eks: { Icon: FaAws, color: "#ff9900" },
+  gke: { Icon: SiGooglecloud, color: "#4285f4" },
   docker: { Icon: SiDocker, color: "#2496ed" },
   helm: { Icon: SiHelm, color: "#5c7cfa" },
-  terraform: { Icon: SiTerraform, color: "#a06ee0" },
   karpenter: { Icon: Cpu, color: "#38bdf8" },
+  keda: { Icon: Activity, color: "#7aa2f7" },
+  hpa: { Icon: Gauge, color: "#326ce5" },
+  gatewayapi: { Icon: Waypoints, color: "#326ce5" },
+  rbac: { Icon: KeyRound, color: "#326ce5" },
+
+  terraform: { Icon: SiTerraform, color: "#a06ee0" },
+  argocd: { Icon: SiArgo, color: "#ef8354" },
+  argorollouts: { Icon: SiArgo, color: "#f4a261" },
+  gitops: { Icon: GitBranch, color: "#8b7cf6" },
+  ghactions: { Icon: SiGithubactions, color: "#4c8dff" },
+  jenkins: { Icon: SiJenkins, color: "#d24939" },
+  sre: { Icon: ShieldCheck, color: "#94a3b8" },
 
   prometheus: { Icon: SiPrometheus, color: "#f0603c" },
   grafana: { Icon: SiGrafana, color: "#f98400" },
-  opentelemetry: { Icon: SiOpentelemetry, color: "#f5a800" },
-  pyroscope: { Icon: Gauge, color: "#fbbf24" },
+  alertmanager: { Icon: BellRing, color: "#f0603c" },
   loki: { Icon: ScrollText, color: "#f5b73d" },
   tempo: { Icon: Waypoints, color: "#f46800" },
-  coralogix: { Icon: Radar, color: "#3d7dff" },
+  opentelemetry: { Icon: SiOpentelemetry, color: "#f5a800" },
+  victoriametrics: { Icon: SiVictoriametrics, color: "#5bbf7a" },
+  pyroscope: { Icon: Gauge, color: "#fbbf24" },
   elk: { Icon: SiElasticsearch, color: "#00a3bf" },
-
-  sre: { Icon: ShieldCheck, color: "#34d399" },
-  slos: { Icon: Target, color: "#34d399" },
+  coralogix: { Icon: Radar, color: "#3d7dff" },
+  slos: { Icon: Target, color: "#94a3b8" },
   incident: { Icon: Siren, color: "#fb7185" },
   rca: { Icon: Search, color: "#c084fc" },
-  mttr: { Icon: Timer, color: "#fbbf24" },
-  fault: { Icon: ShieldCheck, color: "#4ade9b" },
   monitoring: { Icon: Activity, color: "#38bdf8" },
-
-  argocd: { Icon: SiArgo, color: "#ef8354" },
-  ghactions: { Icon: SiGithubactions, color: "#4c8dff" },
-  jenkins: { Icon: SiJenkins, color: "#d24939" },
-  gitops: { Icon: SiGithubactions, color: "#8b7cf6" },
 
   python: { Icon: SiPython, color: "#4b8bbe" },
   bash: { Icon: SiGnubash, color: "#6ec06e" },
-  java: { Icon: SiOpenjdk, color: "#ed8b00" },
+  linux: { Icon: SiLinux, color: "#f2c94c" },
   fastapi: { Icon: SiFastapi, color: "#009688" },
-  slack: { Icon: MessageSquare, color: "#e01e5a" },
+  java: { Icon: SiOpenjdk, color: "#ed8b00" },
+  sql: { Icon: Database, color: "#94a3b8" },
   postgres: { Icon: SiPostgresql, color: "#4169e1" },
   mysql: { Icon: SiMysql, color: "#4479a1" },
-  sql: { Icon: SiPostgresql, color: "#4169e1" },
-
-  ai: { Icon: Sparkles, color: "#8b7cf6" },
-  llm: { Icon: BrainCircuit, color: "#8b7cf6" },
-  prompt: { Icon: Terminal, color: "#4ade9b" },
-  aidebug: { Icon: Bug, color: "#4ade9b" },
+  slack: { Icon: MessageSquare, color: "#e01e5a" },
 };
 
 export function TechIcon({
@@ -135,7 +141,7 @@ export function TechIcon({
   return (
     <span
       className={cn(
-        "grid shrink-0 place-items-center border border-border bg-surface-2 transition-all duration-200",
+        "grid shrink-0 place-items-center border border-border bg-surface-2 transition-colors duration-200",
         dims,
         className,
       )}

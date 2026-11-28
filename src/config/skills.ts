@@ -2,61 +2,71 @@
  * Technical expertise, grouped by engineering domain.
  *
  * `icon` keys map to brand marks in `src/components/ui/TechIcon.tsx`.
- * Where no official mark exists (Karpenter, Pyroscope, Loki, Tempo, SRE
- * concepts), a lucide glyph is used instead.
+ * Where no official mark exists, a neutral lucide glyph is used instead.
  */
 
 export type SkillIconKey =
   | "aws"
   | "gcp"
-  | "eks"
-  | "gke"
-  | "lambda"
-  | "apigateway"
+  | "vpc"
+  | "iam"
+  | "ec2"
+  | "s3"
+  | "alb"
+  | "route53"
   | "cloudflare"
   | "kubernetes"
+  | "eks"
+  | "gke"
   | "docker"
   | "helm"
-  | "terraform"
   | "karpenter"
+  | "keda"
+  | "hpa"
+  | "gatewayapi"
+  | "rbac"
+  | "terraform"
+  | "argocd"
+  | "argorollouts"
+  | "gitops"
+  | "ghactions"
+  | "jenkins"
+  | "sre"
   | "prometheus"
   | "grafana"
-  | "opentelemetry"
-  | "pyroscope"
+  | "alertmanager"
   | "loki"
   | "tempo"
-  | "coralogix"
+  | "opentelemetry"
+  | "victoriametrics"
+  | "pyroscope"
   | "elk"
-  | "sre"
+  | "coralogix"
   | "slos"
   | "incident"
   | "rca"
-  | "mttr"
-  | "fault"
   | "monitoring"
-  | "argocd"
-  | "ghactions"
-  | "jenkins"
-  | "gitops"
   | "python"
   | "bash"
-  | "java"
+  | "linux"
   | "fastapi"
-  | "slack"
+  | "java"
+  | "sql"
   | "postgres"
   | "mysql"
-  | "sql"
-  | "ai"
-  | "llm"
-  | "prompt"
-  | "aidebug";
+  | "slack";
 
 export interface SkillItem {
   name: string;
   icon: SkillIconKey;
 }
 
-export type SkillDomain = "platform" | "automation" | "observability" | "data";
+export type SkillDomain =
+  | "cloud"
+  | "kubernetes"
+  | "iac"
+  | "observability"
+  | "programming";
 
 export interface SkillGroup {
   id: SkillDomain;
@@ -69,71 +79,86 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: "platform",
-    title: "Cloud & Platform Engineering",
-    marker: "platform",
-    blurb: "Kubernetes platforms across AWS and GCP.",
+    id: "cloud",
+    title: "Cloud & Infrastructure",
+    marker: "cloud",
+    blurb: "AWS and GCP primitives.",
+    items: [
+      { name: "AWS", icon: "aws" },
+      { name: "GCP", icon: "gcp" },
+      { name: "VPC", icon: "vpc" },
+      { name: "IAM", icon: "iam" },
+      { name: "EC2", icon: "ec2" },
+      { name: "S3", icon: "s3" },
+      { name: "ALB/NLB", icon: "alb" },
+      { name: "Route 53", icon: "route53" },
+      { name: "Cloudflare", icon: "cloudflare" },
+    ],
+  },
+  {
+    id: "kubernetes",
+    title: "Kubernetes & Platform Engineering",
+    marker: "kubernetes",
+    blurb: "Cluster platforms and delivery.",
     items: [
       { name: "Kubernetes", icon: "kubernetes" },
       { name: "EKS", icon: "eks" },
       { name: "GKE", icon: "gke" },
-      { name: "AWS", icon: "aws" },
-      { name: "GCP", icon: "gcp" },
+      { name: "Docker", icon: "docker" },
       { name: "Helm", icon: "helm" },
       { name: "Karpenter", icon: "karpenter" },
-      { name: "Docker", icon: "docker" },
-      { name: "ArgoCD", icon: "argocd" },
-      { name: "Cloudflare", icon: "cloudflare" },
-      { name: "AWS API Gateway", icon: "apigateway" },
-      { name: "Lambda", icon: "lambda" },
-      { name: "Compute Engine", icon: "gcp" },
-      { name: "Cloud Storage", icon: "gcp" },
+      { name: "KEDA", icon: "keda" },
+      { name: "HPA", icon: "hpa" },
+      { name: "Gateway API", icon: "gatewayapi" },
+      { name: "RBAC", icon: "rbac" },
     ],
   },
   {
-    id: "automation",
-    title: "Infrastructure as Code & Automation",
-    marker: "automation",
-    blurb: "Environments, delivery and validation from code.",
+    id: "iac",
+    title: "Infrastructure as Code & CI/CD",
+    marker: "iac",
+    blurb: "Provisioning, delivery and policy.",
     items: [
       { name: "Terraform", icon: "terraform" },
-      { name: "Policy-as-Code", icon: "sre" },
-      { name: "Kubernetes API", icon: "kubernetes" },
-      { name: "Python", icon: "python" },
-      { name: "Bash", icon: "bash" },
+      { name: "ArgoCD", icon: "argocd" },
+      { name: "Argo Rollouts", icon: "argorollouts" },
+      { name: "GitOps", icon: "gitops" },
       { name: "GitHub Actions", icon: "ghactions" },
       { name: "Jenkins", icon: "jenkins" },
-      { name: "GitOps", icon: "gitops" },
-      { name: "FastAPI", icon: "fastapi" },
+      { name: "Policy-as-Code", icon: "sre" },
     ],
   },
   {
     id: "observability",
     title: "Observability & SRE",
     marker: "observability",
-    blurb: "Signals, incident response and reliability practice.",
+    blurb: "Signals, reliability and investigation.",
     items: [
       { name: "Prometheus", icon: "prometheus" },
       { name: "Grafana", icon: "grafana" },
+      { name: "Alertmanager", icon: "alertmanager" },
       { name: "Loki", icon: "loki" },
       { name: "Tempo", icon: "tempo" },
       { name: "OpenTelemetry", icon: "opentelemetry" },
+      { name: "VictoriaMetrics", icon: "victoriametrics" },
       { name: "Pyroscope", icon: "pyroscope" },
       { name: "ELK Stack", icon: "elk" },
       { name: "Coralogix", icon: "coralogix" },
-      { name: "Production Monitoring", icon: "monitoring" },
-      { name: "Incident Management", icon: "incident" },
+      { name: "SLO/SLI", icon: "slos" },
+      { name: "Incident Response", icon: "incident" },
       { name: "Root Cause Analysis", icon: "rca" },
-      { name: "SLO / SLI", icon: "slos" },
-      { name: "MTTR Reduction", icon: "mttr" },
     ],
   },
   {
-    id: "data",
-    title: "Languages & Data",
-    marker: "data",
-    blurb: "Supporting languages and stores.",
+    id: "programming",
+    title: "Programming & Systems",
+    marker: "programming",
+    blurb: "Automation, services and data stores.",
     items: [
+      { name: "Python", icon: "python" },
+      { name: "Bash", icon: "bash" },
+      { name: "Linux", icon: "linux" },
+      { name: "FastAPI", icon: "fastapi" },
       { name: "Java", icon: "java" },
       { name: "SQL", icon: "sql" },
       { name: "PostgreSQL", icon: "postgres" },
