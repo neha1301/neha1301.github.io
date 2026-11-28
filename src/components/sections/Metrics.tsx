@@ -1,41 +1,37 @@
+import { cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Scannable impact band.
+ * Engineering impact — four verified production outcomes.
  *
- * Every figure here is taken verbatim from the resume. No rounding, no
- * invented baselines — if a number is not verifiable it does not belong here.
+ * Presented as an editorial strip rather than a dashboard: large numbers,
+ * quiet labels, thin rules and generous space. No cards, icons or gradients.
  */
 const metrics = [
   {
     id: "environments",
     value: "30+",
-    label: "production environments upgraded",
-    detail: "zero downtime",
+    label: "Production environments",
+    detail: "Zero-downtime Kubernetes upgrades",
   },
   {
     id: "no-escalation",
     value: "95%",
-    label: "customer incidents resolved",
-    detail: "without escalation",
+    label: "Incidents resolved",
+    detail: "Without escalation",
   },
   {
     id: "onboarding",
     value: "60%",
-    label: "faster application onboarding",
-    detail: "Python pipeline",
+    label: "Faster onboarding",
+    detail: "Python automation pipeline",
   },
   {
     id: "debugging",
-    value: "70%",
-    label: "less node debugging time",
-    detail: "single-pass diagnostics",
-  },
-  {
-    id: "helm",
-    value: "10+",
-    label: "Helm charts maintained",
-    detail: "in production",
+    value: "~70%",
+    label: "Less debugging time",
+    detail: "Single-pass node diagnostics",
   },
 ];
 
@@ -46,32 +42,57 @@ export function Metrics() {
       aria-label="Engineering impact"
       className="border-y border-border bg-bg-elevated"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
+      <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 sm:py-14">
         <SectionHeading
           index="01"
           eyebrow="Engineering Impact"
           title="What changed in production."
-          description="Five verified outcomes from the work described below."
+          description="Four outcomes from platform work, automation and diagnostics."
           className="gap-3"
         />
-        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
-          {metrics.map((metric) => (
-            <div key={metric.id} className="min-w-0">
-              <dt className="sr-only">{metric.label}</dt>
-              <dd>
-                <span className="block text-[1.75rem] font-semibold leading-none tracking-tight text-fg sm:text-[2rem]">
-                  {metric.value}
+
+        <ul
+          aria-label="Verified engineering impact metrics"
+          className="mt-10 grid grid-cols-1 border-t border-border sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {metrics.map((metric, i) => (
+            <Reveal
+              as="li"
+              key={metric.id}
+              delay={0.05 * i}
+              className={cn(
+                "min-w-0 border-b border-border py-7 sm:px-6 lg:border-b-0 lg:px-8 lg:py-2",
+                i > 0 && "lg:border-l lg:border-border",
+                i === 0 && "lg:pl-0",
+                i === metrics.length - 1 && "lg:pr-0",
+              )}
+            >
+              <div
+                aria-hidden="true"
+                className="flex items-baseline justify-between gap-3"
+              >
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-fg-subtle">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="mt-2 block text-[0.8125rem] leading-snug text-fg-muted">
-                  {metric.label}
-                </span>
-                <span className="mt-1 block font-mono text-[10.5px] uppercase tracking-[0.12em] text-fg-subtle">
-                  {metric.detail}
-                </span>
-              </dd>
-            </div>
+                <span className="h-px w-6 bg-border-strong" />
+              </div>
+
+              <span className="tabular-nums mt-5 block text-[2.75rem] font-semibold leading-none tracking-[-0.04em] text-fg sm:text-[3.25rem]">
+                {metric.value}
+              </span>
+              <span
+                aria-hidden="true"
+                className="mt-5 block h-px w-8 bg-accent/70"
+              />
+              <span className="mt-4 block text-[0.9375rem] font-medium leading-snug text-fg">
+                {metric.label}
+              </span>
+              <span className="mt-1.5 block text-[0.8125rem] leading-relaxed text-fg-muted">
+                {metric.detail}
+              </span>
+            </Reveal>
           ))}
-        </dl>
+        </ul>
       </div>
     </section>
   );
