@@ -52,19 +52,24 @@ const focusAreas: {
 
 export function About() {
   return (
-    <Section id="about" divided>
+    <Section
+      id="about"
+      divided
+      className="highlight-band border-t-accent/35"
+    >
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <SectionHeading
             eyebrow="About"
             title="Less firefighting. More automation. Stronger systems."
+            emphasis
             className="lg:sticky lg:top-28"
           />
         </div>
 
         <div className="lg:col-span-7">
           <Reveal>
-            <p className="text-lg leading-relaxed text-fg sm:text-xl">
+            <p className="text-xl font-medium leading-relaxed text-fg sm:text-2xl">
               I&apos;m an SRE and DevOps engineer who owns systems after they
               ship. At BharatPe that means the alerting that wakes us up, the
               monitoring we trust, and the deployments that don&apos;t page
@@ -73,7 +78,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.06}>
-            <p className="mt-6 leading-relaxed text-fg-muted">
+            <p className="mt-6 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
               The last three years were spent deep in production Kubernetes:{" "}
               <span className="text-fg">30+ environments upgraded with zero
               downtime</span>,{" "}
@@ -84,7 +89,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-5 leading-relaxed text-fg-muted">
+            <p className="mt-5 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
               I&apos;d rather remove a manual step than get faster at doing it.
               A Python onboarding pipeline cut onboarding time by 60%,
               Terraform modules made new environments reproducible, and Karpenter
@@ -93,7 +98,7 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.14}>
-            <p className="mt-5 leading-relaxed text-fg-muted">
+            <p className="mt-5 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
               The current focus is quieter on-call shifts: consolidating alerting
               across 5–10 services and moving the monitoring stack from paid
               tooling to open source. The same instinct produced a node-level
@@ -117,20 +122,20 @@ export function About() {
                   aria-hidden="true"
                   className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
-                <span className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-surface-2 text-accent transition-colors duration-300 group-hover:border-accent/40">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
+                <span className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-surface-2 text-accent transition-colors duration-300 group-hover:border-accent/40">
+                  <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                 </span>
-                <h3 className="mt-4 text-[0.9375rem] font-semibold leading-snug text-fg">
+                <h3 className="mt-4 text-base font-semibold leading-snug text-fg sm:text-lg">
                   {area.title}
                 </h3>
-                <p className="mt-2.5 flex-1 text-[0.8125rem] leading-relaxed text-fg-muted">
+                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-fg-muted sm:text-[0.9375rem]">
                   {area.description}
                 </p>
                 <ul className="mt-4 space-y-1.5">
                   {area.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-2 font-mono text-[11px] text-fg-subtle"
+                      className="flex items-center gap-2 font-mono text-xs text-fg-subtle"
                     >
                       <span
                         className="h-1 w-1 rounded-full bg-accent/70"

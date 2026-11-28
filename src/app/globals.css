@@ -311,6 +311,15 @@
   border: 1px solid var(--border);
 }
 
+/* Soft accent wash for the two primary content sections */
+@utility highlight-band {
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--accent) 7%, transparent) 0%,
+    transparent 62%
+  );
+}
+
 @utility surface-glass {
   background-color: color-mix(in oklab, var(--bg) 82%, transparent);
   backdrop-filter: blur(18px) saturate(170%);
