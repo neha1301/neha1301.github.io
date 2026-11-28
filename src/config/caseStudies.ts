@@ -1,10 +1,6 @@
 /**
- * Selected engineering work — concise card summaries with detailed technical
- * articles on dedicated pages.
- *
- * Content is limited to figures and decisions supplied by the user or already
- * verified in the resume. Unconfirmed implementation details are intentionally
- * not added.
+ * Selected engineering work — concise card summaries with short, relevant
+ * technical articles on dedicated pages.
  */
 
 export interface CaseStudyFlowNode {
@@ -41,7 +37,7 @@ export interface CaseStudyArticle {
   summary?: string;
   scope?: string[];
   scopeLine?: string;
-  flow: {
+  flow?: {
     caption: string;
     nodes: CaseStudyFlowNode[];
   };
@@ -71,38 +67,13 @@ export const caseStudies: CaseStudy[] = [
     article: {
       eyebrow: "Observability",
       scopeLine: "30+ Production Clusters · 10–15 Services · Open-Source Observability",
-      flow: {
-        caption: "Observability workflow",
-        nodes: [
-          {
-            label: "Alert review",
-            detail: "10–15 services; noisy and non-actionable conditions identified",
-          },
-          {
-            label: "Prometheus",
-            detail: "Metrics collection and alert rule evaluation",
-          },
-          {
-            label: "Grafana",
-            detail: "Centralized dashboards covering 30+ production clusters",
-          },
-          {
-            label: "Loki + Tempo",
-            detail: "Log aggregation and distributed tracing where available",
-          },
-          {
-            label: "On-call engineers and service owners",
-            detail: "Unified investigation workflow",
-          },
-        ],
-      },
       sections: [
         {
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "As the Kubernetes infrastructure scaled across 30+ production clusters, monitoring became increasingly fragmented. Engineers relied on cluster-specific dashboards, service-level alerts, and proprietary monitoring tools, making incident investigation and infrastructure visibility more complex.",
-            "The objective was to establish a centralized observability platform that improved operational visibility, reduced alert noise, and provided a consistent troubleshooting experience for on-call engineers and service owners.",
+            "Monitoring had become fragmented across 30+ production clusters, with cluster-specific dashboards, service-level alerts, and proprietary tools slowing incident investigation.",
+            "The goal was one platform that improved visibility, reduced alert noise, and gave on-call engineers and service owners a consistent troubleshooting path.",
           ],
         },
         {
@@ -110,54 +81,43 @@ export const caseStudies: CaseStudy[] = [
           heading: "Key Challenges",
           paragraphs: [],
           bullets: [
-            "Fragmented monitoring across multiple production clusters.",
-            "Excessive alert volume, with a single service generating 300–400 alerts.",
-            "Inconsistent alert definitions and severity classification across services.",
-            "Limited correlation between metrics, logs, and traces.",
-            "Dependency on proprietary monitoring tools and licensing.",
+            "Fragmented dashboards and limited correlation between metrics, logs, and traces.",
+            "One service generated 300–400 alerts; alert definitions and severity varied across services.",
+            "Licensing dependency on proprietary monitoring tools.",
           ],
         },
         {
-          id: "engineering-approach",
+          id: "approach",
           heading: "Engineering Approach",
           paragraphs: [],
           subsections: [
             {
-              id: "centralized-alerting",
-              heading: "1. Centralized Alerting",
+              id: "alerting",
+              heading: "Centralized Alerting",
               paragraphs: [
-                "Redesigned alerting across 10–15 services by reviewing existing alert rules, identifying noisy and non-actionable conditions, and restructuring rules around meaningful operational signals.",
-                "Rather than simply suppressing notifications, the focus was on improving alert quality at the source. Alert conditions and severity levels were reviewed to distinguish actionable incidents from informational signals.",
+                "Reviewed rules across 10–15 services, removed noisy and non-actionable conditions, and restructured alerts around meaningful operational signals. Conditions and severity were reviewed to separate actionable incidents from informational alerts instead of simply suppressing notifications.",
               ],
             },
             {
-              id: "unified-visibility",
-              heading: "2. Unified Infrastructure Visibility",
+              id: "visibility",
+              heading: "Unified Visibility",
               paragraphs: [
-                "Designed centralized Grafana dashboards covering 30+ production Kubernetes clusters, eliminating the need to navigate individual cluster dashboards during incident investigation.",
-                "The dashboards provided a shared operational view, allowing engineers to identify affected services, narrow down infrastructure issues, and investigate cluster-level problems from a common interface.",
+                "Built Grafana dashboards covering 30+ production clusters, removing the need to navigate individual dashboards during incidents. The shared view helped engineers identify affected services, narrow infrastructure issues, and inspect clusters from one interface.",
               ],
             },
             {
-              id: "open-source-migration",
-              heading: "3. Open-Source Observability Migration",
+              id: "stack",
+              heading: "Open-Source Migration",
               paragraphs: [
-                "Migrated monitoring capabilities from proprietary tools to an open-source observability stack, establishing greater control over monitoring configurations, alert definitions, and operational workflows.",
+                "Moved monitoring to Prometheus, Grafana, Loki, and Tempo for greater control over configurations, alert definitions, and workflows while reducing vendor dependency.",
               ],
               tables: [
                 {
-                  caption:
-                    "The separation of metrics, logs, and traces provided a structured foundation for troubleshooting while reducing vendor dependency.",
+                  caption: "Component responsibilities in the observability stack.",
                   columns: ["Component", "Responsibility"],
                   rows: [
-                    [
-                      "Prometheus",
-                      "Metrics collection and alert rule evaluation",
-                    ],
-                    [
-                      "Grafana",
-                      "Centralized visualization and operational dashboards",
-                    ],
+                    ["Prometheus", "Metrics collection and alert rule evaluation"],
+                    ["Grafana", "Centralized visualization and dashboards"],
                     ["Loki", "Log aggregation and investigation"],
                     ["Tempo", "Distributed tracing where available"],
                   ],
@@ -167,16 +127,7 @@ export const caseStudies: CaseStudy[] = [
           ],
         },
         {
-          id: "engineering-decisions",
-          heading: "Engineering Decisions",
-          paragraphs: [
-            "The primary design decision was to improve signal quality before centralizing monitoring. Aggregating existing alerts without reviewing their underlying conditions would have amplified operational noise.",
-            "Another important consideration was balancing centralized visibility with cluster-level granularity. Engineers needed a unified view of the infrastructure without losing the ability to investigate individual clusters and services.",
-            "Moving to an open-source stack also introduced greater responsibility for monitoring infrastructure and configuration management, but provided more flexibility and ownership over the observability platform.",
-          ],
-        },
-        {
-          id: "operational-impact",
+          id: "impact",
           heading: "Operational Impact",
           paragraphs: [],
           tables: [
@@ -192,7 +143,7 @@ export const caseStudies: CaseStudy[] = [
                 [
                   "Alerting",
                   "High-volume, fragmented alerts",
-                  "Restructured alert rules across 10–15 services",
+                  "Restructured rules across 10–15 services",
                 ],
                 [
                   "Tooling",
@@ -204,21 +155,15 @@ export const caseStudies: CaseStudy[] = [
                   "Multiple tools and dashboards",
                   "Unified investigation workflow",
                 ],
-                [
-                  "Vendor dependency",
-                  "License-dependent monitoring",
-                  "Greater platform ownership",
-                ],
               ],
             },
           ],
         },
         {
-          id: "engineering-learnings",
+          id: "learnings",
           heading: "Engineering Learnings",
           paragraphs: [
-            "Effective observability is not about collecting more data or generating more alerts. It is about providing the right signals, with sufficient context, when engineers need them.",
-            "Centralizing observability requires improving alert quality, standardizing monitoring practices, and designing dashboards around operational needs rather than infrastructure boundaries.",
+            "Effective observability is about the right signals with enough context, not more data or alerts. Centralizing it requires improving alert quality, standardizing monitoring, and designing dashboards around operational needs rather than infrastructure boundaries.",
           ],
         },
       ],
@@ -235,178 +180,55 @@ export const caseStudies: CaseStudy[] = [
     article: {
       eyebrow: "Cloud Migration · Kubernetes · Platform Engineering",
       scopeLine: "10+ Kubernetes Clusters | Zero Downtime | ~20% Infrastructure Cost Reduction",
-      flow: {
-        caption: "Migration flow",
-        nodes: [
-          {
-            label: "Infrastructure assessment",
-            detail:
-              "Dependencies, resource requirements, networking configurations, and cloud-specific integrations",
-          },
-          {
-            label: "Infrastructure provisioning",
-            detail:
-              "Terraform-based networking, clusters, node pools, access controls, and supporting infrastructure",
-          },
-          {
-            label: "Workload migration",
-            detail:
-              "Application configuration, secrets, storage, resource requests, ingress rules, and external dependencies validated",
-          },
-          {
-            label: "Production validation",
-            detail:
-              "Application health, service connectivity, DNS resolution, resource utilization, and monitoring coverage",
-          },
-          {
-            label: "Traffic transition",
-            detail: "Phased migration with rollback and recovery readiness",
-          },
-        ],
-      },
       sections: [
         {
           id: "overview",
           heading: "Overview",
           paragraphs: [
-            "Migrating production infrastructure between cloud providers involves much more than redeploying Kubernetes workloads. Although Kubernetes provides a consistent orchestration layer, cloud-specific dependencies introduce challenges across networking, security, storage, and application delivery.",
-            "The objective of this migration was to transition more than 10 Kubernetes clusters from AWS EKS to Google Cloud GKE while maintaining production availability, optimizing infrastructure costs, and ensuring operational consistency.",
+            "Migrating more than 10 production Kubernetes clusters from AWS EKS to GCP GKE required maintaining availability while changing networking, identity, storage, delivery, and cost assumptions. Kubernetes provided a consistent orchestration layer, but cloud-specific dependencies still had to be evaluated.",
+            "The goal was zero production downtime, approximately 20% infrastructure cost reduction, consistent provisioning, and minimal disruption to application deployment workflows.",
           ],
         },
         {
-          id: "objectives",
-          heading: "Migration Objectives",
+          id: "complexity",
+          heading: "Cloud Differences",
           paragraphs: [],
-          bullets: [
-            "Maintain application availability throughout the migration.",
-            "Reduce infrastructure and operational costs.",
-            "Establish consistent infrastructure provisioning across environments.",
-            "Minimize disruption to existing application deployment workflows.",
-            "Maintain infrastructure security and observability.",
-          ],
-        },
-        {
-          id: "technical-complexity",
-          heading: "Understanding the Technical Complexity",
-          paragraphs: [
-            "While application containers remain largely portable, the infrastructure supporting them differs significantly between AWS and GCP. A successful migration requires understanding these differences rather than simply replicating the existing environment.",
-          ],
           tables: [
             {
-              caption:
-                "These differences represent the areas that need to be evaluated when designing a cross-cloud migration.",
-              columns: ["Infrastructure Component", "AWS", "Google Cloud"],
+              caption: "Components evaluated before designing the cross-cloud migration.",
+              columns: ["Component", "AWS", "Google Cloud"],
               rows: [
                 ["Kubernetes", "EKS", "GKE"],
                 ["Networking", "AWS VPC", "Google Cloud VPC"],
                 ["Pod Networking", "Amazon VPC CNI", "VPC-native networking"],
                 ["Workload Identity", "IRSA", "Workload Identity Federation"],
                 ["Block Storage", "Amazon EBS", "Persistent Disk"],
-                [
-                  "Load Balancing",
-                  "ALB / NLB",
-                  "Google Cloud Load Balancing",
-                ],
+                ["Load Balancing", "ALB / NLB", "Google Cloud Load Balancing"],
                 ["Container Registry", "ECR", "Artifact Registry"],
-                ["Infrastructure Provisioning", "Terraform", "Terraform"],
+                ["Provisioning", "Terraform", "Terraform"],
               ],
             },
           ],
         },
         {
-          id: "migration-strategy",
+          id: "strategy",
           heading: "Migration Strategy",
           paragraphs: [],
-          subsections: [
-            {
-              id: "assessment",
-              heading: "1. Infrastructure Assessment",
-              paragraphs: [
-                "The first step in a migration of this scale is understanding the existing infrastructure, workload dependencies, resource requirements, networking configurations, and cloud-specific integrations.",
-                "Identifying these dependencies early helps prevent application failures caused by missing permissions, incompatible storage configurations, or networking differences.",
-              ],
-            },
-            {
-              id: "provisioning",
-              heading: "2. Infrastructure Provisioning",
-              paragraphs: [
-                "The target GKE environment needs to provide equivalent infrastructure capabilities without unnecessarily replicating AWS-specific configurations.",
-                "Infrastructure as Code enables consistent provisioning of networking, Kubernetes clusters, node pools, access controls, and supporting infrastructure across multiple environments.",
-                "The goal is to establish a reproducible platform rather than manually configure each cluster.",
-              ],
-            },
-            {
-              id: "workload-migration",
-              heading: "3. Workload Migration",
-              paragraphs: [
-                "Kubernetes workloads require validation beyond successful deployment. Application configurations, secrets, persistent storage, resource requests, ingress rules, and external dependencies must remain compatible with the target environment.",
-                "A phased migration approach reduces the blast radius of failures and allows infrastructure and application issues to be identified before migrating additional workloads.",
-              ],
-            },
-            {
-              id: "validation",
-              heading: "4. Production Validation and Traffic Transition",
-              paragraphs: [
-                "Before transitioning production traffic, the target environment must be validated for application health, service connectivity, DNS resolution, resource utilization, and monitoring coverage.",
-                "Maintaining a viable rollback strategy is equally important. A successful deployment does not necessarily guarantee that an application behaves correctly under production traffic.",
-              ],
-            },
-          ],
-        },
-        {
-          id: "engineering-challenges",
-          heading: "Key Engineering Challenges",
-          paragraphs: [],
-          subsections: [
-            {
-              id: "networking",
-              heading: "Cross-Cloud Networking",
-              paragraphs: [
-                "AWS and GCP differ in their networking models, routing behavior, firewall configurations, and load-balancing integrations.",
-                "Migration planning must account for service connectivity, private networking, DNS resolution, and communication between application dependencies.",
-              ],
-            },
-            {
-              id: "identity",
-              heading: "Identity and Access Management",
-              paragraphs: [
-                "AWS IAM permissions cannot be directly translated into Google Cloud IAM policies. Workload identities and service permissions need to be evaluated against the target cloud's security model while maintaining least-privilege access.",
-              ],
-            },
-            {
-              id: "storage",
-              heading: "Storage and Stateful Workloads",
-              paragraphs: [
-                "Persistent volumes and storage integrations are cloud-specific. Stateful applications require additional consideration around data consistency, storage compatibility, backup validation, and recovery.",
-              ],
-            },
-            {
-              id: "resource-optimization",
-              heading: "Resource Optimization",
-              paragraphs: [
-                "Replicating existing node configurations without evaluating workload requirements can carry infrastructure inefficiencies into the new environment.",
-                "Resource requests, node utilization, autoscaling behavior, and workload distribution should be evaluated to achieve meaningful cost optimization.",
-              ],
-            },
-            {
-              id: "operational-consistency",
-              heading: "Operational Consistency",
-              paragraphs: [
-                "A cloud migration should not introduce unnecessary complexity for application teams. Consistent deployment practices, monitoring, alerting, and troubleshooting workflows are essential for maintaining operational efficiency.",
-              ],
-            },
-          ],
-        },
-        {
-          id: "reliability",
-          heading: "Reliability and Risk Management",
-          paragraphs: ["The key reliability considerations throughout the migration were:"],
           bullets: [
-            "Maintaining application availability.",
-            "Validating infrastructure and application dependencies.",
-            "Minimizing the blast radius of migration-related failures.",
-            "Ensuring monitoring and alerting coverage.",
-            "Maintaining rollback and recovery readiness.",
+            "Assessed existing dependencies, resource requirements, networking, and cloud-specific integrations before moving workloads.",
+            "Provisioned GKE with Terraform for networking, clusters, node pools, access controls, and supporting infrastructure instead of manually configuring each cluster.",
+            "Validated application configuration, secrets, storage, resource requests, ingress rules, and external dependencies before phased migration.",
+            "Checked health, connectivity, DNS, resource use, and monitoring coverage before traffic transition, with rollback readiness maintained.",
+          ],
+        },
+        {
+          id: "challenges",
+          heading: "Key Challenges",
+          paragraphs: [],
+          bullets: [
+            "Networking and IAM differed across clouds, so connectivity, routing, firewalls, load balancers, and least-privilege access had to be re-evaluated.",
+            "Stateful workloads required checks for storage compatibility, data consistency, backup validation, and recovery.",
+            "Node configuration and autoscaling were reviewed to avoid carrying inefficiencies into GKE while keeping deployment, monitoring, and troubleshooting workflows consistent.",
           ],
         },
         {
@@ -415,7 +237,7 @@ export const caseStudies: CaseStudy[] = [
           paragraphs: [],
           tables: [
             {
-              caption: "Outcomes of migrating 10+ Kubernetes clusters to GKE.",
+              caption: "Verified outcomes of the migration.",
               columns: ["Metric", "Outcome"],
               rows: [
                 ["Migration scale", "10+ Kubernetes clusters"],
@@ -433,8 +255,7 @@ export const caseStudies: CaseStudy[] = [
           id: "takeaways",
           heading: "Engineering Takeaways",
           paragraphs: [
-            "Cloud migration is not simply an infrastructure replacement exercise. It requires balancing application reliability, infrastructure compatibility, operational efficiency, and cost.",
-            "The most important considerations are understanding dependencies before migration, designing reproducible infrastructure, validating workloads incrementally, and ensuring that reliability remains a priority throughout the transition.",
+            "Cloud migration is not just infrastructure replacement. It requires balancing availability, compatibility, operational efficiency, and cost. Understanding dependencies first, defining infrastructure as code, validating incrementally, and preserving observability kept the transition controlled.",
           ],
         },
       ],

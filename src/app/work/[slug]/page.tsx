@@ -252,7 +252,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </p>
         ) : null}
 
-        <Flow nodes={article.flow.nodes} caption={article.flow.caption} />
+        {article.flow ? (
+          <Flow nodes={article.flow.nodes} caption={article.flow.caption} />
+        ) : null}
 
         {article.sections.map((section) => (
           <ArticleSection key={section.id} section={section} />
