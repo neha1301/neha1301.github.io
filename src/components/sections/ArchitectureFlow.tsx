@@ -32,16 +32,11 @@ export function ArchitectureFlow({
   nodes: FlowNode[];
   title?: string;
 }) {
-  const summary = nodes.map((node) => node.label).join(" → ");
-
   return (
     <div className="rounded-xl border border-border bg-bg-elevated p-4 sm:p-5">
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-2">
-        <h4 className="font-mono text-[10px] uppercase tracking-[0.16em] text-fg-subtle">
-          {title}
-        </h4>
-        <span className="font-mono text-[10px] text-fg-subtle">{summary}</span>
-      </div>
+      <h4 className="mb-5 font-mono text-[10px] uppercase tracking-[0.16em] text-fg-subtle">
+        {title}
+      </h4>
 
       <div className="flex flex-col lg:flex-row lg:items-stretch">
         {nodes.map((node, i) => (

@@ -33,7 +33,7 @@ export interface WorkItem {
   hrefLabel?: string;
 }
 
-export const selectedWork: WorkItem[] = [
+export const engineeringWork: WorkItem[] = [
   {
     id: "alert-enrichment",
     meta: "Open source · SRE tooling",

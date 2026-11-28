@@ -42,7 +42,7 @@ npm run lint     # eslint
 | `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn), resume path, nav links |
 | `src/config/experience.ts` | Roles, periods, ownership summaries, highlights, stack chips |
 | `src/config/skills.ts` | Three engineering domains and a deliberately short skill list |
-| `src/config/selectedWork.ts` | The only detailed section: three selected projects with architecture, trade-offs, outcomes and expandable detail |
+| `src/config/engineeringWork.ts` | The only detailed section: three engineering work items with architecture, decisions, trade-offs, outcomes and expandable detail |
 | `src/config/projects.ts` | Source notes for the two public repositories linked from selected work |
 | `src/config/articles.ts` | Reserved for real article URLs; the section is intentionally omitted until those exist |
 | `src/config/certifications.ts` | Certifications (Credly verification links) |

@@ -42,16 +42,6 @@ export function Experience() {
                   {role.summary}
                 </p>
 
-                <ul className="mt-3 flex flex-wrap gap-1.5">
-                  {role.stack.slice(0, 5).map((tech) => (
-                    <li
-                      key={tech}
-                      className="rounded-md border border-border bg-bg-elevated px-2 py-1 font-mono text-[10.5px] text-fg-subtle"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
               </div>
 
               <div className="flex shrink-0 flex-col gap-1.5 md:items-end">

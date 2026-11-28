@@ -1,7 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { selectedWork } from "@/config/selectedWork";
-import type { WorkItem } from "@/config/selectedWork";
+import { engineeringWork } from "@/config/engineeringWork";
+import type { WorkItem } from "@/config/engineeringWork";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -70,7 +70,7 @@ function WorkDetail({ item }: { item: WorkItem }) {
           </ul>
         </div>
 
-        <div className="rounded-lg border border-accent/25 bg-accent-soft px-3.5 py-3">
+        <div className="border-l-2 border-accent/60 pl-3.5">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-text">
             Outcome
           </span>
@@ -96,19 +96,19 @@ function WorkDetail({ item }: { item: WorkItem }) {
   );
 }
 
-export function SelectedWork() {
+export function EngineeringWork() {
   return (
     <Section id="work" divided>
       <SectionHeading
         index="02"
-        eyebrow="Projects"
+        eyebrow="Engineering Work"
         title="Systems built for production."
-        description="Selected projects and architecture decisions. Tap a project to open the problem, approach, trade-offs and outcome."
+        description="Three selected problems, with architecture, decisions and outcomes. Expand a row for details."
         emphasis
       />
 
       <div className="mt-8 space-y-3">
-        {selectedWork.map((item, i) => (
+        {engineeringWork.map((item, i) => (
           <Reveal key={item.id} delay={0.05 * i}>
             <Expandable
               index={i}

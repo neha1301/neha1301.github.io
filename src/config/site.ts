@@ -12,7 +12,7 @@ export const site = {
   role: "Site Reliability & Platform Engineer · BharatPe",
   tagline: "Fewer alerts. Faster root causes.",
   subtagline:
-    "I'm Neha Sharma, a Site Reliability and Platform Engineer building reliable Kubernetes platforms, automation and observability across AWS and GCP.",
+    "SRE and platform engineer building reliable Kubernetes platforms, automation and observability across AWS and GCP.",
   description:
     "Site Reliability and Platform Engineer at BharatPe. Three years operating production Kubernetes across AWS and GCP — platform automation, observability and incident response.",
 
@@ -62,7 +62,7 @@ export const socials = [
 /** Primary navigation — anchors must match section ids in `page.tsx`. */
 export const navLinks = [
   { id: "about", label: "About" },
-  { id: "work", label: "Projects" },
+  { id: "work", label: "Engineering Work" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "credentials", label: "Credentials" },

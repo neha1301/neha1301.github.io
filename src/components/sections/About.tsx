@@ -11,7 +11,6 @@ export function About() {
             index="01"
             eyebrow="About"
             title="Own the platform, not just the pager."
-            description="Who I am, what I own, and the problems I care about."
             emphasis
             className="lg:sticky lg:top-28"
           />
@@ -22,16 +21,10 @@ export function About() {
             <p className="text-xl font-medium leading-relaxed text-fg sm:text-2xl">
               I&apos;m an SRE and platform engineer who owns systems after they
               ship — Kubernetes platforms, infrastructure as code, alerting and
-              the release paths teams depend on in production at BharatPe.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.06}>
-            <p className="mt-6 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
-              My focus is the unglamorous work that makes incidents rare:
-              reproducible environments, zero-downtime upgrades, policy-as-code
-              validation, quieter alerting and diagnostics that turn scattered
-              signals into a root cause.
+              release paths at BharatPe. I focus on the unglamorous work that
+              makes incidents rare: reproducible environments, zero-downtime
+              upgrades, policy-as-code validation and diagnostics that turn
+              scattered signals into a root cause.
             </p>
           </Reveal>
         </div>
