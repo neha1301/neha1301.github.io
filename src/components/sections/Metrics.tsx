@@ -34,7 +34,7 @@ const metrics = [
 export function Metrics() {
   return (
     <section id="impact" aria-label="Engineering impact" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-6xl px-5 pt-6 pb-10 sm:px-8 sm:pt-8 sm:pb-12">
+      <div className="mx-auto w-full max-w-6xl px-5 pt-2 pb-10 sm:px-8 sm:pt-4 sm:pb-12">
         <SectionHeading
           index="01"
           eyebrow="Engineering Impact"
