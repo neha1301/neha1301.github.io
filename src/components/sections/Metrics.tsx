@@ -1,51 +1,63 @@
-import { cn } from "@/lib/utils";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Bug, Server, ShieldCheck, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Engineering impact — four verified production outcomes.
  *
- * A quiet editorial band: prominent heading, accent figures, hairline rules
- * and generous spacing. No cards, icons or gradients.
+ * Compact cards with quiet surfaces, hairline borders and restrained accents.
+ * No numbering, subtitle, gradients or oversized display type.
  */
-const metrics = [
+const metrics: {
+  id: string;
+  value: string;
+  label: string;
+  icon: LucideIcon;
+}[] = [
   {
     id: "environments",
     value: "30+",
     label: "Zero-downtime upgrades",
+    icon: Server,
   },
   {
     id: "no-escalation",
     value: "95%",
     label: "Incidents without escalation",
+    icon: ShieldCheck,
   },
   {
     id: "onboarding",
     value: "60%",
     label: "Faster application onboarding",
+    icon: Zap,
   },
   {
     id: "debugging",
     value: "~70%",
     label: "Less node debugging time",
+    icon: Bug,
   },
 ];
 
 export function Metrics() {
   return (
-    <section id="impact" aria-label="Engineering impact" className="scroll-mt-24">
-      <div className="mx-auto w-full max-w-6xl px-5 pt-2 pb-10 sm:px-8 sm:pt-4 sm:pb-12">
-        <SectionHeading
-          index="01"
-          eyebrow="Engineering Impact"
-          title="What changed in production."
-          description="Four verified outcomes from platform work, automation and diagnostics."
-          className="gap-3"
-        />
+    <section
+      id="impact"
+      aria-label="Engineering impact"
+      className="scroll-mt-24 px-5 py-8 sm:px-8 sm:py-10"
+    >
+      <div className="mx-auto w-full max-w-6xl">
+        <Reveal>
+          <h2 className="text-lg font-semibold tracking-tight text-fg sm:text-xl">
+            Engineering Impact
+          </h2>
+        </Reveal>
 
         <ul
           aria-label="Verified engineering impact metrics"
-          className="mt-9 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-border/60 pt-8 lg:grid-cols-4 lg:gap-x-0"
+          className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
         >
           {metrics.map((metric, i) => (
             <Reveal
@@ -53,19 +65,22 @@ export function Metrics() {
               key={metric.id}
               delay={0.05 * i}
               y={10}
-              className={cn(
-                "min-w-0 lg:px-8",
-                i > 0 && "lg:border-l lg:border-border/70",
-                i === 0 && "lg:pl-0",
-                i === metrics.length - 1 && "lg:pr-0",
-              )}
+              className="h-full"
             >
-              <span className="tabular-nums block text-[2.75rem] font-semibold leading-none tracking-[-0.045em] text-accent-text sm:text-[3.25rem]">
-                {metric.value}
-              </span>
-              <span className="mt-3 block text-[0.875rem] font-medium leading-snug text-fg">
-                {metric.label}
-              </span>
+              <article className="flex h-full min-h-[136px] flex-col rounded-xl border border-border bg-surface p-4 transition-colors duration-200 hover:border-border-strong sm:p-5">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md border border-accent/20 bg-accent-soft text-accent">
+                  <metric.icon className="h-3.5 w-3.5" aria-hidden="true" />
+                </span>
+
+                <div className="mt-auto pt-5">
+                  <p className="text-[1.85rem] font-semibold leading-none tracking-[-0.04em] text-fg sm:text-[2rem]">
+                    {metric.value}
+                  </p>
+                  <p className="mt-2 text-[0.8125rem] leading-snug text-fg-muted">
+                    {metric.label}
+                  </p>
+                </div>
+              </article>
             </Reveal>
           ))}
         </ul>
