@@ -64,7 +64,7 @@ export const navLinks = [
   { id: "impact", label: "Impact" },
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
-  { id: "case-studies", label: "Case Studies" },
+  { id: "case-studies", label: "Selected Work" },
   { id: "skills", label: "Skills" },
   { id: "project", label: "Projects" },
   { id: "certifications", label: "Credentials" },

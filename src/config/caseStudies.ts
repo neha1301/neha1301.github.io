@@ -1,5 +1,6 @@
 /**
- * Engineering case studies drawn from production work.
+ * Selected engineering work — concise card summaries with full depth on
+ * dedicated case study pages.
  *
  * These describe verified scope and decisions from the resume — no new
  * numbers, links or capabilities are introduced.
@@ -16,10 +17,12 @@ export interface CaseStudyNode {
 
 export interface CaseStudy {
   id: string;
+  slug: string;
   category: string;
   title: string;
-  summary: string;
-  metrics: { value: string; label: string }[];
+  problem: string;
+  technologies: string[];
+  metrics?: { value: string; label: string }[];
   challenge: string;
   decision: string;
   tradeoff: string;
@@ -29,29 +32,31 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "centralized-observability",
-    category: "Centralized observability",
-    title: "From alert storms to one operational view.",
-    summary:
-      "Rewriting alert rules across 5–10 services and aggregating 15+ clusters into dashboards people actually open.",
+    id: "unified-observability",
+    slug: "unified-observability",
+    category: "Observability",
+    title: "One operational view, on an owned stack.",
+    problem:
+      "Alert storms and vendor-led dashboards made cross-cluster failures hard to see and expensive to investigate.",
+    technologies: ["Grafana", "Prometheus", "Loki", "Kubernetes"],
     metrics: [
       { value: "5–10", label: "services in scope" },
       { value: "300–400", label: "alerts from one service" },
       { value: "~10", label: "dashboards · 15+ clusters" },
     ],
     challenge:
-      "One service alone emitted 300–400 alerts. Forwarding that volume would have moved noise rather than removed it, and cluster-scoped views made system-wide failures hard to see.",
+      "One service emitted 300–400 alerts, and forwarding that volume would have moved noise rather than removed it. Logging and dashboards also sat behind paid enterprise tooling, while cluster-scoped views made system-wide failures hard to see.",
     decision:
-      "Reviewed each alert use case and rewrote the rules instead of passing raw alerts through. Standardized on Grafana dashboards that aggregate Prometheus data across 15+ clusters into a single view.",
+      "Reviewed each alert use case and rewrote the rules instead of passing raw alerts through. Standardized on Grafana dashboards aggregating Prometheus data across 15+ clusters, and moved logs to Loki so metrics, alerts and dashboards live in one owned stack.",
     tradeoff:
-      "Rewriting rules takes longer than a routing rule, but it removes the cause of the noise instead of hiding it downstream.",
+      "Rewriting rules takes longer than adding a routing rule, and an in-house stack means collection, retention and dashboard maintenance become platform responsibilities instead of vendor defaults. The result removes the cause of noise rather than hiding it downstream.",
     outcome:
-      "On-call engineers and service owners work from the same cross-cluster view instead of hunting cluster by cluster.",
+      "On-call engineers and service owners work from the same cross-cluster view, with licence dependency removed and one open-source stack for metrics, logs and dashboards.",
     architecture: [
       {
         id: "services",
         label: "Services",
-        detail: "5–10 services with alert rules and metrics",
+        detail: "5–10 services with rules and metrics",
         icon: "kubernetes",
       },
       {
@@ -59,6 +64,12 @@ export const caseStudies: CaseStudy[] = [
         label: "Rule review",
         detail: "Each use case reviewed, then rewritten",
         icon: "prometheus",
+      },
+      {
+        id: "collect",
+        label: "Prometheus + Loki",
+        detail: "Metrics, alert rules and logs",
+        icon: "loki",
       },
       {
         id: "dashboards",
@@ -75,94 +86,51 @@ export const caseStudies: CaseStudy[] = [
     ],
   },
   {
-    id: "observability-migration",
-    category: "Observability migration",
-    title: "Off paid tooling, onto an owned stack.",
-    summary:
-      "Moving logging and dashboards from paid enterprise tooling to Grafana, Prometheus and Loki.",
-    metrics: [
-      { value: "Grafana", label: "visualization" },
-      { value: "Prometheus", label: "metrics & alerts" },
-      { value: "Loki", label: "logs" },
-    ],
+    id: "cloud-migration",
+    slug: "cloud-migration",
+    category: "Cloud migration",
+    title: "AWS-to-GCP cloud migration.",
+    problem:
+      "Moving production Kubernetes workloads across clouds without losing repeatable delivery, validation or shared observability.",
+    technologies: ["Kubernetes", "EKS → GKE", "Terraform", "Helm", "GitOps"],
     challenge:
-      "Paid tooling put logging and dashboards behind vendor licences while teams needed a consistent view across clusters.",
+      "Workloads, networking and delivery definitions had to move between AWS and GCP while services stayed usable and deployments stayed reviewable.",
     decision:
-      "Adopted Grafana for visualization, Prometheus for metrics and alerting, and Loki for logs — keeping collection and dashboard definitions inside the platform.",
+      "Defined target infrastructure with Terraform, kept workloads packaged in Helm charts, and used GitOps-driven delivery so the same review and validation steps applied on both clouds.",
     tradeoff:
-      "Operational ownership moves in-house: collection, retention and dashboard maintenance become platform responsibilities instead of vendor defaults.",
+      "A code-defined migration needs more upfront work on modules and chart parameters, but it avoids one-off console changes that are hard to reproduce or audit.",
     outcome:
-      "Licence dependency is cut, with one open-source stack for metrics, logs and dashboards.",
+      "Repeatable delivery and validation carried across the migration, with the platform team keeping the same operational model on GCP.",
     architecture: [
       {
-        id: "workloads",
-        label: "Workloads",
-        detail: "Applications across clusters and verticals",
-        icon: "kubernetes",
+        id: "source",
+        label: "AWS / EKS",
+        detail: "Existing workloads and platform definitions",
+        icon: "aws",
       },
       {
-        id: "collect",
-        label: "Prometheus + Loki",
-        detail: "Metrics, alert rules and logs",
-        icon: "loki",
+        id: "modules",
+        label: "Terraform",
+        detail: "Target infrastructure defined as code",
+        icon: "terraform",
       },
       {
-        id: "visualize",
-        label: "Grafana",
-        detail: "Dashboards and alert investigation",
-        icon: "grafana",
+        id: "delivery",
+        label: "Helm + GitOps",
+        detail: "Repeatable packaging and reviewed rollout",
+        icon: "gitops",
       },
       {
-        id: "team",
-        label: "Platform team",
-        detail: "Owns rules, retention and dashboards",
+        id: "target",
+        label: "GCP / GKE",
+        detail: "Migrated workloads on the new cloud",
+        icon: "gke",
+      },
+      {
+        id: "verify",
+        label: "Validation",
+        detail: "Deployment checks and shared observability",
         icon: "sre",
-      },
-    ],
-  },
-  {
-    id: "incident-management",
-    category: "Incident management",
-    title: "Close the incident. Remove the cause.",
-    summary:
-      "Customer-facing Kubernetes investigations where the fix is a root cause, not a restart.",
-    metrics: [
-      { value: "95%", label: "resolved without escalation" },
-      { value: "RCA", label: "before workaround" },
-      { value: "Preventive", label: "rules after the fix" },
-    ],
-    challenge:
-      "Customer-facing Kubernetes failures had to be diagnosed from live cluster state while services were still in use.",
-    decision:
-      "Combined production debugging and root cause analysis with the single-pass node diagnostic, then fed repeat failures into monitoring rules and deployment validation.",
-    tradeoff:
-      "A permanent fix can take longer than a restart; the extra work goes into the rule, chart or dashboard that prevents the next page.",
-    outcome:
-      "95% of incidents resolved without escalation, with findings fed back into monitoring and validation.",
-    architecture: [
-      {
-        id: "signal",
-        label: "Signal / page",
-        detail: "Alert or customer-facing symptom",
-        icon: "incident",
-      },
-      {
-        id: "triage",
-        label: "Triage + RCA",
-        detail: "Live cluster state and node signals",
-        icon: "rca",
-      },
-      {
-        id: "fix",
-        label: "Fix + validation",
-        detail: "Root cause corrected, deploy validated",
-        icon: "sre",
-      },
-      {
-        id: "prevent",
-        label: "Preventive rule",
-        detail: "Monitoring rule or policy updated",
-        icon: "monitoring",
       },
     ],
   },
