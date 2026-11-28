@@ -41,9 +41,10 @@ npm run lint     # eslint
 | --- | --- |
 | `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn), resume path, nav links |
 | `src/config/experience.ts` | Roles, periods, ownership summaries, highlights, stack chips |
-| `src/config/skills.ts` | Skill groups (daily / working / familiar) and their icons |
-| `src/config/projects.ts` | Case studies: problem, solution, architecture, capabilities, design trade-offs, impact, repository |
-| `src/config/articles.ts` | Article showcase entries (see below) |
+| `src/config/skills.ts` | Skill groups by engineering domain (platform, automation, observability, data) and their icons |
+| `src/config/caseStudies.ts` | Production case studies: scope, architecture, challenge, decision, trade-off, outcome |
+| `src/config/projects.ts` | Public code projects: problem, solution, architecture, capabilities, trade-offs, impact, repository |
+| `src/config/articles.ts` | Reserved for real article URLs; the section is intentionally omitted until those exist |
 | `src/config/certifications.ts` | Certifications (Credly verification links) |
 | `src/config/education.ts` | Degree, field, institution, period |
 
@@ -52,25 +53,11 @@ site or the resume. They are real, but they read as junior signals next to
 production reliability work. Add them back only if applying to roles that
 explicitly ask for them.
 
-### Adding an article
+### Articles
 
-Append an entry to the `articles` array in `src/config/articles.ts`:
-
-```ts
-{
-  id: "unique-slug",
-  title: "Article title",
-  description: "One or two sentences summarising the post.",
-  category: "Kubernetes",
-  publishedAt: "2026-02-14",   // ISO date
-  url: "https://www.linkedin.com/posts/neha1301_<slug>",
-  readTime: "6 min read",        // optional
-}
-```
-
-The showcase renders automatically. While the list is empty, the section shows the
-**“Explore My Technical Posts”** button linking to the LinkedIn profile — no
-placeholder article titles are ever displayed.
+The articles section is deliberately omitted. `src/config/articles.ts` is kept as
+a placeholder only: add real, published post URLs there before rendering a section.
+Never list a title without a working link.
 
 ### Swapping the resume
 

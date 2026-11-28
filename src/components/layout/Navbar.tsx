@@ -49,6 +49,15 @@ export function Navbar() {
     };
   }, [open]);
 
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header
       className={cn(
@@ -79,8 +88,9 @@ export function Navbar() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
+                aria-current={active === link.id ? "true" : undefined}
                 className={cn(
-                  "relative rounded-md px-3 py-2 text-[13.5px] font-medium transition-colors duration-200",
+                  "relative rounded-md px-2.5 py-2 text-[13px] font-medium transition-colors duration-200",
                   active === link.id
                     ? "text-fg"
                     : "text-fg-muted hover:text-fg",
@@ -163,6 +173,7 @@ export function Navbar() {
                   <a
                     href={`#${link.id}`}
                     onClick={() => setOpen(false)}
+                    aria-current={active === link.id ? "true" : undefined}
                     className={cn(
                       "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                       active === link.id

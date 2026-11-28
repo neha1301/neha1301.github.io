@@ -323,8 +323,8 @@ export function FeaturedProject() {
 
       <SectionHeading
         eyebrow="Projects"
-        title="Two tools, both built for 3 a.m."
-        description="One explains why a Kubernetes workload failed; the other turns Alertmanager noise into a single actionable Slack message. Same build discipline, same production constraints."
+        title="Open-source engineering."
+        description="Two public tools built for 3 a.m. problems: one explains why a Kubernetes workload failed, the other turns Alertmanager noise into one actionable Slack message."
       />
 
       <div className="mt-10">

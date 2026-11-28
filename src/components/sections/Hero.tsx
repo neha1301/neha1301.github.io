@@ -104,13 +104,13 @@ export function Hero() {
           <Reveal delay={0.04}>
             <p className="mt-7 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11.5px] uppercase tracking-[0.14em] text-fg-subtle">
               <span className="text-accent-text">
-                DevOps Engineer II at BharatPe
+                Site Reliability &amp; Platform Engineer
               </span>
               <span
                 aria-hidden="true"
                 className="h-1 w-1 rounded-full bg-border-strong"
               />
-              <span>Site Reliability Engineer</span>
+              <span>BharatPe · DevOps Engineer II (SDE-2)</span>
             </p>
           </Reveal>
 
@@ -129,9 +129,9 @@ export function Hero() {
 
           <Reveal delay={0.18}>
             <p className="mt-4 max-w-xl text-[0.9375rem] leading-relaxed text-fg-subtle">
-              From Kubernetes and multi-cloud infrastructure to observability and
-              incident response, I turn production problems into systems that stay
-              up.
+              From Kubernetes platforms and infrastructure-as-code to
+              observability and incident response, I turn production problems into
+              systems that stay up.
             </p>
           </Reveal>
 

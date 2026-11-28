@@ -8,13 +8,13 @@ export const site = {
   shortName: "Neha",
   /** Canonical origin — used for SEO metadata, OG tags and sitemap. */
   url: "https://neha1301.github.io",
-  title: "Neha Sharma — Site Reliability & DevOps Engineer",
-  role: "DevOps Engineer II (SDE-2) at BharatPe · Site Reliability Engineer",
+  title: "Neha Sharma — Site Reliability & Platform Engineer",
+  role: "Site Reliability & Platform Engineer · BharatPe",
   tagline: "Fewer alerts. Faster root causes.",
   subtagline:
-    "I'm Neha Sharma, a Site Reliability & DevOps Engineer with 3 years of experience building, automating, and operating production-grade cloud infrastructure.",
+    "I'm Neha Sharma, a Site Reliability and Platform Engineer building reliable Kubernetes platforms, automation and observability across AWS and GCP.",
   description:
-    "Site Reliability & DevOps Engineer at BharatPe. Three years running production Kubernetes, AWS and GCP — alerting, observability and incident response.",
+    "Site Reliability and Platform Engineer at BharatPe. Three years operating production Kubernetes across AWS and GCP — platform automation, observability and incident response.",
 
   location: "Gurugram, Haryana, India",
   locationShort: "Gurugram, India",
@@ -62,8 +62,9 @@ export const socials = [
 /** Primary navigation — anchors must match section ids in `page.tsx`. */
 export const navLinks = [
   { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
+  { id: "case-studies", label: "Case Studies" },
+  { id: "skills", label: "Skills" },
   { id: "project", label: "Projects" },
   { id: "certifications", label: "Credentials" },
   { id: "contact", label: "Contact" },

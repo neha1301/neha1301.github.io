@@ -1,6 +1,6 @@
 # Neha Sharma
 
-**Site Reliability & DevOps Engineer** — DevOps Engineer II (SDE-2) at BharatPe
+**Site Reliability & Platform Engineer** — DevOps Engineer II (SDE-2) at BharatPe
 
 - 📍 Gurugram, Haryana, India
 - 🔗 Portfolio: [neha1301.github.io](https://neha1301.github.io)
@@ -11,7 +11,7 @@
 
 ## What I do
 
-I own reliability for two business verticals: alerting, observability and production operations. Right now that means centralizing alerting across 5–10 services (one service alone emits 300–400 alerts), building ~10 Grafana dashboards over 15+ clusters, and moving logging off paid tooling onto Grafana, Prometheus and Loki.
+I own infrastructure and reliability for two business verticals: Kubernetes platforms, infrastructure as code, alerting and production operations. Right now that means centralizing alerting across 5–10 services (one service alone emits 300–400 alerts), building ~10 Grafana dashboards over 15+ clusters, and moving logging off paid tooling onto Grafana, Prometheus and Loki.
 
 Previously at Devtron I operated 30+ production Kubernetes environments with zero-downtime upgrades, built a Python onboarding pipeline that cut onboarding time by 60%, and shipped SLO-driven observability plus Kubernetes v1.32 admission policies.
 
@@ -24,7 +24,7 @@ Previously at Devtron I operated 30+ production Kubernetes environments with zer
 
 ## Stack
 
-Kubernetes · AWS · GCP · Terraform · Helm · ArgoCD · Karpenter · Python · Prometheus · Grafana · Loki · Tempo · OpenTelemetry · FastAPI
+Kubernetes · EKS · AWS · GCP · Terraform · Policy-as-Code · Helm · ArgoCD · Karpenter · Python · Prometheus · Grafana · Loki · OpenTelemetry
 
 ## Certifications
 

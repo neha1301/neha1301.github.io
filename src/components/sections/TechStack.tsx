@@ -1,4 +1,4 @@
-import { BookOpen, Workflow, Zap } from "lucide-react";
+import { Activity, Cloud, Database, Workflow } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { skillGroups } from "@/config/skills";
@@ -9,9 +9,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { TechIcon } from "@/components/ui/TechIcon";
 
 const markers: Record<string, LucideIcon> = {
-  daily: Zap,
-  working: Workflow,
-  familiar: BookOpen,
+  platform: Cloud,
+  automation: Workflow,
+  observability: Activity,
+  data: Database,
 };
 
 export function TechStack() {
@@ -20,13 +21,13 @@ export function TechStack() {
       <SectionHeading
         eyebrow="Technical expertise"
         title="The tools behind the work."
-        description="Grouped by how deeply I use them, from daily production work to fundamentals."
+        description="Grouped by engineering domain — platform, automation, observability and the data layer."
       />
 
       <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface">
         {skillGroups.map((group, gi) => {
-          const Marker = markers[group.marker] ?? Zap;
-          const daily = group.marker === "daily";
+          const Marker = markers[group.marker] ?? Cloud;
+          const primary = group.marker === "platform";
 
           return (
             <Reveal
@@ -39,7 +40,7 @@ export function TechStack() {
                   <span
                     className={cn(
                       "grid h-9 w-9 shrink-0 place-items-center rounded-lg border",
-                      daily
+                      primary
                         ? "border-accent/30 bg-accent-soft text-accent"
                         : "border-border bg-bg-elevated text-fg-muted",
                     )}
@@ -62,7 +63,7 @@ export function TechStack() {
                       <span
                         className={cn(
                           "inline-flex items-center gap-1.5 rounded-md border px-2 py-1.5 text-[12px] font-medium text-fg-muted transition-colors duration-200 hover:text-fg",
-                          daily
+                          primary
                             ? "border-accent/20 bg-accent-soft hover:border-accent/40"
                             : "border-border bg-bg-elevated hover:border-border-strong",
                         )}

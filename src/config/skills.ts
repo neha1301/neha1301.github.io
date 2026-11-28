@@ -1,5 +1,5 @@
 /**
- * Technical expertise, grouped by depth rather than by category.
+ * Technical expertise, grouped by engineering domain.
  *
  * `icon` keys map to brand marks in `src/components/ui/TechIcon.tsx`.
  * Where no official mark exists (Karpenter, Pyroscope, Loki, Tempo, SRE
@@ -56,75 +56,88 @@ export interface SkillItem {
   icon: SkillIconKey;
 }
 
+export type SkillDomain = "platform" | "automation" | "observability" | "data";
+
 export interface SkillGroup {
-  id: string;
+  id: SkillDomain;
   title: string;
   /** lucide icon name rendered as the group marker */
-  marker: "daily" | "working" | "familiar";
+  marker: SkillDomain;
   blurb: string;
   items: SkillItem[];
 }
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: "daily",
-    title: "Daily use",
-    marker: "daily",
-    blurb: "Every week, in production.",
+    id: "platform",
+    title: "Cloud & Platform Engineering",
+    marker: "platform",
+    blurb: "Kubernetes platforms across AWS and GCP.",
     items: [
       { name: "Kubernetes", icon: "kubernetes" },
-      { name: "Helm", icon: "helm" },
-      { name: "Terraform", icon: "terraform" },
+      { name: "EKS", icon: "eks" },
+      { name: "GKE", icon: "gke" },
       { name: "AWS", icon: "aws" },
-      { name: "AWS API Gateway", icon: "apigateway" },
-      { name: "Cloudflare", icon: "cloudflare" },
-      { name: "Python", icon: "python" },
-      { name: "Bash", icon: "bash" },
-      { name: "Prometheus", icon: "prometheus" },
-      { name: "Grafana", icon: "grafana" },
-      { name: "Loki", icon: "loki" },
-      { name: "GitHub Actions", icon: "ghactions" },
+      { name: "GCP", icon: "gcp" },
+      { name: "Helm", icon: "helm" },
+      { name: "Karpenter", icon: "karpenter" },
+      { name: "Docker", icon: "docker" },
       { name: "ArgoCD", icon: "argocd" },
-      { name: "Incident Management", icon: "incident" },
-      { name: "Production Monitoring", icon: "monitoring" },
+      { name: "Cloudflare", icon: "cloudflare" },
+      { name: "AWS API Gateway", icon: "apigateway" },
+      { name: "Lambda", icon: "lambda" },
+      { name: "Compute Engine", icon: "gcp" },
+      { name: "Cloud Storage", icon: "gcp" },
     ],
   },
   {
-    id: "working",
-    title: "Working knowledge",
-    marker: "working",
-    blurb: "Used on real projects.",
+    id: "automation",
+    title: "Infrastructure as Code & Automation",
+    marker: "automation",
+    blurb: "Environments, delivery and validation from code.",
     items: [
-      { name: "GCP", icon: "gcp" },
-      { name: "EKS", icon: "eks" },
-      { name: "GKE", icon: "gke" },
-      { name: "Docker", icon: "docker" },
-      { name: "Karpenter", icon: "karpenter" },
-      { name: "OpenTelemetry", icon: "opentelemetry" },
+      { name: "Terraform", icon: "terraform" },
+      { name: "Policy-as-Code", icon: "sre" },
+      { name: "Kubernetes API", icon: "kubernetes" },
+      { name: "Python", icon: "python" },
+      { name: "Bash", icon: "bash" },
+      { name: "GitHub Actions", icon: "ghactions" },
+      { name: "Jenkins", icon: "jenkins" },
+      { name: "GitOps", icon: "gitops" },
+      { name: "FastAPI", icon: "fastapi" },
+    ],
+  },
+  {
+    id: "observability",
+    title: "Observability & SRE",
+    marker: "observability",
+    blurb: "Signals, incident response and reliability practice.",
+    items: [
+      { name: "Prometheus", icon: "prometheus" },
+      { name: "Grafana", icon: "grafana" },
+      { name: "Loki", icon: "loki" },
       { name: "Tempo", icon: "tempo" },
+      { name: "OpenTelemetry", icon: "opentelemetry" },
+      { name: "Pyroscope", icon: "pyroscope" },
       { name: "ELK Stack", icon: "elk" },
       { name: "Coralogix", icon: "coralogix" },
-      { name: "Pyroscope", icon: "pyroscope" },
-      { name: "FastAPI", icon: "fastapi" },
-      { name: "Kubernetes API", icon: "kubernetes" },
-      { name: "PostgreSQL", icon: "postgres" },
-      { name: "SLO / SLI", icon: "slos" },
+      { name: "Production Monitoring", icon: "monitoring" },
+      { name: "Incident Management", icon: "incident" },
       { name: "Root Cause Analysis", icon: "rca" },
+      { name: "SLO / SLI", icon: "slos" },
       { name: "MTTR Reduction", icon: "mttr" },
     ],
   },
   {
-    id: "familiar",
-    title: "Familiar",
-    marker: "familiar",
-    blurb: "Fundamentals, not daily drivers.",
+    id: "data",
+    title: "Languages & Data",
+    marker: "data",
+    blurb: "Supporting languages and stores.",
     items: [
       { name: "Java", icon: "java" },
+      { name: "SQL", icon: "sql" },
+      { name: "PostgreSQL", icon: "postgres" },
       { name: "MySQL", icon: "mysql" },
-      { name: "Jenkins", icon: "jenkins" },
-      { name: "Lambda", icon: "lambda" },
-      { name: "Compute Engine", icon: "gcp" },
-      { name: "Cloud Storage", icon: "gcp" },
     ],
   },
 ];
