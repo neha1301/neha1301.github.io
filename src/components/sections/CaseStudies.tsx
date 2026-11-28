@@ -24,7 +24,7 @@ function CaseStudyCard({
           {study.title}
         </h3>
         <p className="mt-2 text-[0.875rem] leading-relaxed text-fg-muted">
-          {study.problem}
+          {study.description}
         </p>
 
         <p className="mt-4 font-mono text-[11px] leading-relaxed text-fg-subtle">
