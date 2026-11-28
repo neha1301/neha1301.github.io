@@ -4,6 +4,8 @@ import { Reveal } from "./Reveal";
 
 type SectionHeadingProps = {
   eyebrow?: string;
+  /** Short section number shown before the label, e.g. "04". */
+  index?: string;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -14,6 +16,7 @@ type SectionHeadingProps = {
 
 export function SectionHeading({
   eyebrow,
+  index,
   title,
   description,
   align = "left",
@@ -29,15 +32,38 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <span
+        <div
           className={cn(
-            "inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fg-muted",
-            emphasis &&
-              "border-accent/40 bg-accent-soft px-3.5 py-1.5 text-[12px] font-medium text-accent-text",
+            "flex w-fit items-center gap-3",
+            align === "center" && "mx-auto",
           )}
         >
-          {eyebrow}
-        </span>
+          {index ? (
+            <span
+              className={cn(
+                "font-mono text-[12px] font-semibold tracking-[0.08em]",
+                emphasis ? "text-accent-text" : "text-accent",
+              )}
+            >
+              {index}
+            </span>
+          ) : null}
+          <span
+            aria-hidden="true"
+            className={cn(
+              "h-px w-6",
+              emphasis ? "bg-accent/60" : "bg-border-strong",
+            )}
+          />
+          <span
+            className={cn(
+              "font-mono text-[11px] uppercase tracking-[0.2em] text-fg-muted",
+              emphasis && "text-[12px] font-medium text-fg",
+            )}
+          >
+            {eyebrow}
+          </span>
+        </div>
       ) : null}
       <h2
         className={cn(

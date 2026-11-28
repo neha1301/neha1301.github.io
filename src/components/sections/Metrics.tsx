@@ -1,3 +1,5 @@
+import { SectionHeading } from "@/components/ui/SectionHeading";
+
 /**
  * Scannable impact band.
  *
@@ -35,14 +37,17 @@ export function Metrics() {
   return (
     <section
       id="impact"
-      aria-labelledby="impact-heading"
-      className="border-y border-border bg-bg-elevated"
+      aria-label="Engineering impact"
+      className="border-y border-border-strong bg-bg-elevated"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 py-9 sm:px-8 sm:py-11">
-        <h2 id="impact-heading" className="sr-only">
-          Engineering impact
-        </h2>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
+      <div className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-8 sm:py-12">
+        <SectionHeading
+          eyebrow="Impact"
+          title="What changed in production."
+          description="Verified outcomes from the work described below."
+          className="gap-3"
+        />
+        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
           {metrics.map((metric) => (
             <div key={metric.id} className="min-w-0">
               <dt className="sr-only">{metric.label}</dt>

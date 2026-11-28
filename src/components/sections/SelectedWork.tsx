@@ -100,9 +100,10 @@ export function SelectedWork() {
   return (
     <Section id="work" divided>
       <SectionHeading
-        eyebrow="Selected work"
+        index="02"
+        eyebrow="Projects"
         title="Systems built for production."
-        description="Three examples of architecture, trade-offs and measurable outcomes. Expand only what you want to go deeper on."
+        description="Selected projects and architecture decisions. Tap a project to open the problem, approach, trade-offs and outcome."
         emphasis
       />
 

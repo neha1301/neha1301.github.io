@@ -15,7 +15,7 @@ export function Section({ id, children, className, divided }: SectionProps) {
       id={id}
       className={cn(
         "relative scroll-mt-20 px-5 py-12 sm:px-8 md:py-16 lg:py-20",
-        divided && "border-t border-border",
+        divided && "border-t border-border-strong",
         className,
       )}
     >

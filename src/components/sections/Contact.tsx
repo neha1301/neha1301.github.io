@@ -3,6 +3,7 @@ import { ArrowUpRight, Download, Mail, MapPin } from "lucide-react";
 import { site } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 import { CopyEmail } from "./CopyEmail";
@@ -36,24 +37,12 @@ export function Contact() {
 
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-7">
-          <Reveal>
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-fg-muted">
-              Contact
-            </span>
-          </Reveal>
-
-          <Reveal delay={0.04}>
-            <h2 className="mt-5 max-w-2xl text-3xl font-semibold leading-[1.12] tracking-tight text-fg sm:text-4xl md:text-[2.75rem]">
-              Let&apos;s talk about keeping systems up.
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.08}>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted sm:text-[1.0625rem]">
-              Open to SRE, Platform and DevOps roles. If you&apos;re hiring for
-              someone who owns production after it ships, email is fastest.
-            </p>
-          </Reveal>
+          <SectionHeading
+            index="06"
+            eyebrow="Contact"
+            title="Let’s talk about keeping systems up."
+            description="Open to SRE, Platform and DevOps roles. If you're hiring for someone who owns production after it ships, email is fastest."
+          />
 
           <Reveal delay={0.12}>
             <div className="mt-8 flex flex-wrap items-center gap-3">

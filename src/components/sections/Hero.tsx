@@ -143,7 +143,7 @@ export function Hero() {
                 size="lg"
                 icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
               >
-                Selected work
+                Projects
               </Button>
               <Button
                 href={site.resume.path}

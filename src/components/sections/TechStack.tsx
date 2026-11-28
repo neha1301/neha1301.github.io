@@ -18,9 +18,10 @@ export function TechStack() {
   return (
     <Section id="skills" divided>
       <SectionHeading
-        eyebrow="Technical expertise"
+        index="04"
+        eyebrow="Skills"
         title="The tools behind the work."
-        description="Grouped by engineering domain — platform, automation, observability and the data layer."
+        description="Grouped by engineering domain — platform, infrastructure as code and observability."
       />
 
       <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface">

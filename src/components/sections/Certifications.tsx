@@ -3,21 +3,18 @@ import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { certifications } from "@/config/certifications";
 import { education } from "@/config/education";
 import { Section } from "@/components/ui/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Certifications() {
   return (
     <Section id="credentials" divided>
-      <Reveal>
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-fg-subtle">
-            Credentials
-          </p>
-          <p className="text-[0.8125rem] text-fg-muted">
-            {education.degree} · {education.institution} · {education.period}
-          </p>
-        </div>
-      </Reveal>
+      <SectionHeading
+        index="05"
+        eyebrow="Credentials"
+        title="Certifications & education."
+        description={`${education.degree} · ${education.institution} · ${education.period}`}
+      />
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {certifications.map((cert, i) => (

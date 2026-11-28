@@ -8,8 +8,10 @@ export function About() {
       <div className="grid gap-8 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5">
           <SectionHeading
+            index="01"
             eyebrow="About"
             title="Own the platform, not just the pager."
+            description="Who I am, what I own, and the problems I care about."
             emphasis
             className="lg:sticky lg:top-28"
           />

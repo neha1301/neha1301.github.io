@@ -9,9 +9,10 @@ export function Experience() {
   return (
     <Section id="experience" divided>
       <SectionHeading
+        index="03"
         eyebrow="Experience"
-        title="Production ownership, not just tickets."
-        description="Brief roles. The depth lives in the selected work above and in the resume."
+        title="Where I worked — and what I owned."
+        description="Two production roles. The full chronology is in the resume."
       />
 
       <div className="mt-8 divide-y divide-border border-y border-border">
