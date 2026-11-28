@@ -4,6 +4,11 @@
  * Metrics are limited to figures already verified in the resume.
  */
 
+export interface ExperienceContribution {
+  label: string;
+  description: string;
+}
+
 export interface ExperienceRole {
   id: string;
   title: string;
@@ -12,7 +17,7 @@ export interface ExperienceRole {
   endDate: string | null;
   current: boolean;
   summary?: string;
-  highlights: string[];
+  contributions: ExperienceContribution[];
   stack: string[];
 }
 
@@ -40,10 +45,22 @@ export const experience: ExperienceCompany[] = [
         current: true,
         summary:
           "Own observability and reliability for two business verticals, with a focus on alert quality and shared monitoring.",
-        highlights: [
-          "Centralized alerting across 5–10 services — one emits 300–400 alerts — by reviewing each use case and rewriting rules instead of forwarding raw noise.",
-          "Built ~10 Grafana dashboards aggregating data from 15+ clusters into one view for on-call engineers and service owners.",
-          "Leading the migration of logging and dashboards from paid enterprise tooling to Grafana, Prometheus and Loki, removing licence dependency while owning end-to-end observability.",
+        contributions: [
+          {
+            label: "Alert quality",
+            description:
+              "Rewrote alert rules for 5–10 services — one emits 300–400 alerts — instead of forwarding raw noise.",
+          },
+          {
+            label: "Shared observability",
+            description:
+              "Built ~10 Grafana dashboards aggregating 15+ clusters into one view for on-call engineers and service owners.",
+          },
+          {
+            label: "Open-source migration",
+            description:
+              "Moved logging and dashboards from paid tooling to Grafana, Prometheus and Loki, removing licence dependency while owning end-to-end observability.",
+          },
         ],
         stack: ["Kubernetes", "AWS", "Prometheus", "Grafana", "Loki"],
       },
@@ -64,10 +81,22 @@ export const experience: ExperienceCompany[] = [
         current: false,
         summary:
           "Owned production Kubernetes platforms end to end — infrastructure as code, upgrades, observability and incident response across AWS and GCP.",
-        highlights: [
-          "Zero-downtime Kubernetes upgrades across 30+ production environments; 95% of incidents resolved without escalation through debugging and root cause analysis.",
-          "Python onboarding automation cut application onboarding time by 60%; reusable Terraform modules and 10+ Helm charts made EKS delivery repeatable.",
-          "Policy-as-code validation on the native Kubernetes v1.32 API rejected bad deploys before rollout; Prometheus, Grafana and Pyroscope added SLO-driven detection, and Karpenter improved scheduling efficiency.",
+        contributions: [
+          {
+            label: "Zero-downtime upgrades",
+            description:
+              "Upgraded Kubernetes across 30+ production environments on AWS and GCP; 95% of incidents resolved without escalation through debugging and RCA.",
+          },
+          {
+            label: "Faster onboarding",
+            description:
+              "Python automation cut application onboarding time by 60%; Terraform modules and 10+ Helm charts made EKS delivery repeatable.",
+          },
+          {
+            label: "Deployment guardrails",
+            description:
+              "Kubernetes v1.32 Validating Admission Policy rejected bad deploys before rollout; Prometheus, Grafana and Pyroscope added SLO-driven detection, and Karpenter improved scheduling efficiency.",
+          },
         ],
         stack: ["Kubernetes", "Terraform", "Helm", "Python", "Grafana"],
       },
@@ -78,9 +107,17 @@ export const experience: ExperienceCompany[] = [
         startDate: "Jan 2024",
         endDate: "May 2024",
         current: false,
-        highlights: [
-          "Built a Bash-based post-release validation framework with automated sanity checks and real-time deployment notifications across microservices.",
-          "Investigated production Kubernetes incidents and introduced preventive monitoring rules that reduced recurring failures.",
+        contributions: [
+          {
+            label: "Release validation",
+            description:
+              "Bash framework added automated sanity checks and real-time deployment notifications across microservices.",
+          },
+          {
+            label: "Preventive monitoring",
+            description:
+              "Investigated Kubernetes incidents and introduced rules that reduced recurring failures.",
+          },
         ],
         stack: ["Bash", "Kubernetes", "Release Automation"],
       },
