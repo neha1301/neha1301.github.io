@@ -16,7 +16,7 @@ const focusAreas: {
     title: "Reliability Engineering",
     icon: ShieldCheck,
     description:
-      "Signals designed with the service, so alerts stay quiet until they matter.",
+      "Alerting and SLOs designed with the service, with incidents closed through root-cause analysis.",
     keywords: ["Alerting", "SLOs", "RCA", "Observability"],
   },
   {
@@ -24,14 +24,15 @@ const focusAreas: {
     title: "Cloud & Platform Infrastructure",
     icon: Cloud,
     description:
-      "Reproducible Kubernetes environments with upgrades that don't wake anyone up.",
+      "Infrastructure as code and Helm delivery for reproducible environments and zero-downtime upgrades.",
     keywords: ["Terraform", "EKS", "Helm", "GitOps"],
   },
   {
     id: "diagnostics",
     title: "Diagnostics & Tooling",
     icon: Wrench,
-    description: "One readable answer instead of a multi-command investigation.",
+    description:
+      "Python and Kubernetes API tooling that consolidates diagnostics into one deterministic workflow.",
     keywords: ["Python", "Kubernetes API", "Automation"],
   },
 ];
@@ -52,17 +53,16 @@ export function About() {
       <div className="mt-5 max-w-3xl">
         <Reveal delay={0.08}>
           <p className="text-[0.9375rem] leading-relaxed text-fg sm:text-base">
-            I like systems that make the next step obvious — fewer manual
-            steps, clearer signals, and defaults that hold up when the pager
-            goes off.
+            I focus on predictable platforms: infrastructure defined as code,
+            deployments validated before release, and observability designed
+            with the service.
           </p>
         </Reveal>
 
         <Reveal delay={0.12}>
           <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted sm:text-base">
-            When something breaks, I look for the smallest durable fix: remove
-            a step, add validation, or collapse a noisy investigation into one
-            readable answer.
+            When an alert fires, I trace it to the underlying condition, then
+            remove the manual step or design gap that allowed it to escalate.
           </p>
         </Reveal>
       </div>
