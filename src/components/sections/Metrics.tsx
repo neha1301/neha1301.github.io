@@ -46,11 +46,11 @@ export function Metrics() {
     <section
       id="impact"
       aria-label="Engineering impact"
-      className="scroll-mt-24 px-5 py-8 sm:px-8 sm:py-10"
+      className="scroll-mt-24 -mt-6 px-5 pb-8 pt-6 sm:-mt-8 sm:px-8 sm:pb-10 sm:pt-8"
     >
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
-          <h2 className="text-lg font-semibold tracking-tight text-fg sm:text-xl">
+          <h2 className="text-xl font-semibold tracking-tight text-fg sm:text-2xl">
             Engineering Impact
           </h2>
         </Reveal>
@@ -76,7 +76,7 @@ export function Metrics() {
                   <p className="text-[1.85rem] font-semibold leading-none tracking-[-0.04em] text-fg sm:text-[2rem]">
                     {metric.value}
                   </p>
-                  <p className="mt-2 text-[0.8125rem] leading-snug text-fg-muted">
+                  <p className="mt-2.5 text-[0.875rem] leading-relaxed text-fg-muted">
                     {metric.label}
                   </p>
                 </div>

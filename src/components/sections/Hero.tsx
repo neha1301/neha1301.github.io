@@ -96,7 +96,7 @@ export function Hero() {
           <Reveal delay={0.1}>
             <h1 className="mt-7 max-w-2xl text-[2.75rem] font-semibold leading-[1.05] tracking-[-0.035em] text-fg sm:text-[3.5rem] lg:text-[4rem]">
               Engineering reliability{" "}
-              <span className="text-gradient">beyond deployment..</span>
+              <span className="text-gradient">beyond deployment.</span>
             </h1>
           </Reveal>
 
