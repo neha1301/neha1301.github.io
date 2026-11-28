@@ -139,11 +139,11 @@ export function Hero() {
           <Reveal delay={0.24}>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button
-                href="#project"
+                href="#work"
                 size="lg"
                 icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
               >
-                View Projects
+                Selected work
               </Button>
               <Button
                 href={site.resume.path}

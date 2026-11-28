@@ -1,4 +1,4 @@
-import { Activity, Cloud, Database, Workflow } from "lucide-react";
+import { Activity, Cloud, Workflow } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { skillGroups } from "@/config/skills";
@@ -12,7 +12,6 @@ const markers: Record<string, LucideIcon> = {
   platform: Cloud,
   automation: Workflow,
   observability: Activity,
-  data: Database,
 };
 
 export function TechStack() {

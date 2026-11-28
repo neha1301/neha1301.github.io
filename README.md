@@ -41,12 +41,18 @@ npm run lint     # eslint
 | --- | --- |
 | `src/config/site.ts` | Name, role, tagline, location, email, social links (GitHub, LinkedIn), resume path, nav links |
 | `src/config/experience.ts` | Roles, periods, ownership summaries, highlights, stack chips |
-| `src/config/skills.ts` | Skill groups by engineering domain (platform, automation, observability, data) and their icons |
-| `src/config/caseStudies.ts` | Production case studies: scope, architecture, challenge, decision, trade-off, outcome |
-| `src/config/projects.ts` | Public code projects: problem, solution, architecture, capabilities, trade-offs, impact, repository |
+| `src/config/skills.ts` | Three engineering domains and a deliberately short skill list |
+| `src/config/selectedWork.ts` | The only detailed section: three selected projects with architecture, trade-offs, outcomes and expandable detail |
+| `src/config/projects.ts` | Source notes for the two public repositories linked from selected work |
 | `src/config/articles.ts` | Reserved for real article URLs; the section is intentionally omitted until those exist |
 | `src/config/certifications.ts` | Certifications (Credly verification links) |
 | `src/config/education.ts` | Degree, field, institution, period |
+
+The page is intentionally short: impact strip, About, Selected Work, brief
+Experience, Skills, Credentials and Contact. Detailed engineering explanations
+live inside native `<details>` panels so the main page stays scannable. The
+resume carries the full chronology; this site complements it rather than
+repeating it.
 
 Contest rankings and DSA problem counts are deliberately **not** listed on the
 site or the resume. They are real, but they read as junior signals next to
@@ -112,7 +118,7 @@ src/
 ├── components/
 │   ├── layout/             # Navbar, Footer, ThemeProvider, ThemeToggle
 │   ├── sections/           # one component per page section
-│   └── ui/                 # Button, Reveal, Terminal, TechIcon, AnimatedCounter, …
+│   └── ui/                 # Button, Reveal, Expandable, Terminal, TechIcon, …
 ├── config/                 # ← all editable content
 └── lib/                    # helpers (cn, formatDate, cached year)
 

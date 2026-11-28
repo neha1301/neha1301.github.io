@@ -62,10 +62,9 @@ export const socials = [
 /** Primary navigation — anchors must match section ids in `page.tsx`. */
 export const navLinks = [
   { id: "about", label: "About" },
+  { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
-  { id: "case-studies", label: "Case Studies" },
   { id: "skills", label: "Skills" },
-  { id: "project", label: "Projects" },
-  { id: "certifications", label: "Credentials" },
+  { id: "credentials", label: "Credentials" },
   { id: "contact", label: "Contact" },
 ] as const;

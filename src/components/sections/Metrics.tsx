@@ -29,12 +29,6 @@ const metrics = [
     label: "less node debugging time",
     detail: "single-pass diagnostics",
   },
-  {
-    id: "helm",
-    value: "10+",
-    label: "Helm charts maintained",
-    detail: "in production",
-  },
 ];
 
 export function Metrics() {
@@ -48,7 +42,7 @@ export function Metrics() {
         <h2 id="impact-heading" className="sr-only">
           Engineering impact
         </h2>
-        <dl className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 lg:grid-cols-5">
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-4">
           {metrics.map((metric) => (
             <div key={metric.id} className="min-w-0">
               <dt className="sr-only">{metric.label}</dt>

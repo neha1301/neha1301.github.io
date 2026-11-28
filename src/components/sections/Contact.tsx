@@ -50,9 +50,8 @@ export function Contact() {
 
           <Reveal delay={0.08}>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-fg-muted sm:text-[1.0625rem]">
-              I&apos;m open to Site Reliability, Platform and DevOps roles. If
-              you&apos;re hiring for someone who owns production after it ships,
-              the fastest way to reach me is email.
+              Open to SRE, Platform and DevOps roles. If you&apos;re hiring for
+              someone who owns production after it ships, email is fastest.
             </p>
           </Reveal>
 
