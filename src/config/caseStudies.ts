@@ -3,9 +3,8 @@
  * articles on dedicated pages.
  *
  * Content is limited to figures and decisions supplied by the user or already
- * verified in the resume. Unconfirmed implementation details (for example,
- * Alertmanager topology, tracing instrumentation, retention settings, or an
- * exact cutover sequence) are intentionally not added.
+ * verified in the resume. Unconfirmed implementation details are intentionally
+ * not added.
  */
 
 export interface CaseStudyFlowNode {
@@ -13,7 +12,7 @@ export interface CaseStudyFlowNode {
   detail: string;
 }
 
-export interface CaseStudySection {
+export interface CaseStudySubsection {
   id: string;
   heading: string;
   paragraphs: string[];
@@ -21,21 +20,32 @@ export interface CaseStudySection {
 }
 
 export interface CaseStudyComparison {
-  heading: string;
+  heading?: string;
   caption: string;
-  columns: [string, string, string];
-  rows: [string, string, string][];
+  columns: string[];
+  rows: string[][];
+}
+
+export interface CaseStudySection {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+  subsections?: CaseStudySubsection[];
+  tables?: CaseStudyComparison[];
 }
 
 export interface CaseStudyArticle {
-  summary: string;
-  scope: string[];
+  eyebrow?: string;
+  summary?: string;
+  scope?: string[];
+  scopeLine?: string;
   flow: {
     caption: string;
     nodes: CaseStudyFlowNode[];
   };
   sections: CaseStudySection[];
-  comparison: CaseStudyComparison;
+  comparison?: CaseStudyComparison;
 }
 
 export interface CaseStudy {
@@ -192,133 +202,211 @@ export const caseStudies: CaseStudy[] = [
       "Migrating Kubernetes infrastructure across cloud providers, achieving approximately 20% infrastructure cost reduction with zero production downtime.",
     technologies: ["EKS", "GKE", "Terraform", "Helm", "GitOps"],
     article: {
-      summary:
-        "Moving 10+ Kubernetes clusters from AWS EKS to GCP GKE was treated as a change to the delivery system, not a one-time host switch. Terraform, Helm, and GitOps kept infrastructure and workloads reviewable while services stayed available during the move.",
-      scope: [
-        "10+ Kubernetes clusters",
-        "EKS → GKE",
-        "~20% infrastructure cost reduction",
-        "Zero production downtime",
-      ],
+      eyebrow: "Cloud Migration · Kubernetes · Platform Engineering",
+      scopeLine: "10+ Kubernetes Clusters | Zero Downtime | ~20% Infrastructure Cost Reduction",
       flow: {
         caption: "Migration flow",
         nodes: [
           {
-            label: "AWS / EKS",
-            detail: "Existing workloads and platform definitions",
+            label: "Infrastructure assessment",
+            detail:
+              "Dependencies, resource requirements, networking configurations, and cloud-specific integrations",
           },
           {
-            label: "Terraform",
-            detail: "Target infrastructure defined as code",
+            label: "Infrastructure provisioning",
+            detail:
+              "Terraform-based networking, clusters, node pools, access controls, and supporting infrastructure",
           },
           {
-            label: "Helm + GitOps",
-            detail: "Repeatable packaging and reviewed rollout",
+            label: "Workload migration",
+            detail:
+              "Application configuration, secrets, storage, resource requests, ingress rules, and external dependencies validated",
           },
           {
-            label: "GCP / GKE",
-            detail: "Migrated workloads on the new cloud",
+            label: "Production validation",
+            detail:
+              "Application health, service connectivity, DNS resolution, resource utilization, and monitoring coverage",
           },
           {
-            label: "Validation",
-            detail: "Deployment checks and shared observability",
+            label: "Traffic transition",
+            detail: "Phased migration with rollback and recovery readiness",
           },
         ],
       },
       sections: [
         {
-          id: "platform-problem",
-          heading: "Why this was a platform migration",
+          id: "overview",
+          heading: "Overview",
           paragraphs: [
-            "Workloads, networking and delivery definitions had to move between AWS and GCP while services stayed usable and deployments stayed reviewable.",
-            "That is why the migration was framed around repeatable definitions rather than manual console work. Changing the provider is visible in the outcome, but the engineering risk sits in the definitions that decide how workloads are packaged, deployed, and validated after the move.",
+            "Migrating production infrastructure between cloud providers involves much more than redeploying Kubernetes workloads. Although Kubernetes provides a consistent orchestration layer, cloud-specific dependencies introduce challenges across networking, security, storage, and application delivery.",
+            "The objective of this migration was to transition more than 10 Kubernetes clusters from AWS EKS to Google Cloud GKE while maintaining production availability, optimizing infrastructure costs, and ensuring operational consistency.",
           ],
         },
         {
-          id: "migration-architecture",
-          heading: "Architecture of the move",
-          paragraphs: [
-            "The flow kept the same logical responsibilities on both clouds: define infrastructure, package workloads, roll out through review, and validate the result. EKS represented the source state. Terraform described the target environment. Helm and GitOps carried the workload definitions and rollout path. GKE became the target cluster platform, with validation remaining part of delivery rather than a separate step.",
-            "This structure made the migration auditable. Each change had a place in the flow, so the team could reason about what had moved and what still needed verification instead of relying on memory or console state.",
-            "Separating platform definitions from workload packaging was important. Infrastructure changes could be reviewed as infrastructure changes, and application changes could stay in charts. That separation reduced the coupling between a cloud provider switch and the services running on top of it.",
+          id: "objectives",
+          heading: "Migration Objectives",
+          paragraphs: [],
+          bullets: [
+            "Maintain application availability throughout the migration.",
+            "Reduce infrastructure and operational costs.",
+            "Establish consistent infrastructure provisioning across environments.",
+            "Minimize disruption to existing application deployment workflows.",
+            "Maintain infrastructure security and observability.",
           ],
         },
         {
-          id: "infrastructure-as-code",
-          heading: "Infrastructure as code as the control boundary",
+          id: "technical-complexity",
+          heading: "Understanding the Technical Complexity",
           paragraphs: [
-            "Defined target infrastructure with Terraform, kept workloads packaged in Helm charts, and used GitOps-driven delivery so the same review and validation steps applied on both clouds.",
-            "Terraform gave the target environment a reviewable boundary. Chart parameters and infrastructure modules could be examined before rollout, which matters when the same platform model is being applied in a different cloud. Helm kept workloads as packaged units instead of loose manifests, reducing the chance that source and target states drift apart after the first successful deployment.",
+            "While application containers remain largely portable, the infrastructure supporting them differs significantly between AWS and GCP. A successful migration requires understanding these differences rather than simply replicating the existing environment.",
+          ],
+          tables: [
+            {
+              caption:
+                "These differences represent the areas that need to be evaluated when designing a cross-cloud migration.",
+              columns: ["Infrastructure Component", "AWS", "Google Cloud"],
+              rows: [
+                ["Kubernetes", "EKS", "GKE"],
+                ["Networking", "AWS VPC", "Google Cloud VPC"],
+                ["Pod Networking", "Amazon VPC CNI", "VPC-native networking"],
+                ["Workload Identity", "IRSA", "Workload Identity Federation"],
+                ["Block Storage", "Amazon EBS", "Persistent Disk"],
+                [
+                  "Load Balancing",
+                  "ALB / NLB",
+                  "Google Cloud Load Balancing",
+                ],
+                ["Container Registry", "ECR", "Artifact Registry"],
+                ["Infrastructure Provisioning", "Terraform", "Terraform"],
+              ],
+            },
           ],
         },
         {
-          id: "delivery",
-          heading: "Delivery and validation during cutover",
-          paragraphs: [
-            "GitOps mattered because cross-cloud risk often appears after the first successful deployment. The review path needed to remain the same on both sides so that changes were visible, repeatable, and comparable. Validation stayed attached to that path through deployment checks and shared observability.",
-            "Keeping delivery reviewable also made operational support simpler. The platform team could carry the same model to GCP rather than learning a separate set of ad hoc procedures for the new environment.",
-            "The migration did not remove validation to make the move faster. Checks stayed attached to rollout, so the target environment had to satisfy the same delivery expectations as the source. That made zero production downtime an outcome of the approach rather than a claim made after the fact.",
+          id: "migration-strategy",
+          heading: "Migration Strategy",
+          paragraphs: [],
+          subsections: [
+            {
+              id: "assessment",
+              heading: "1. Infrastructure Assessment",
+              paragraphs: [
+                "The first step in a migration of this scale is understanding the existing infrastructure, workload dependencies, resource requirements, networking configurations, and cloud-specific integrations.",
+                "Identifying these dependencies early helps prevent application failures caused by missing permissions, incompatible storage configurations, or networking differences.",
+              ],
+            },
+            {
+              id: "provisioning",
+              heading: "2. Infrastructure Provisioning",
+              paragraphs: [
+                "The target GKE environment needs to provide equivalent infrastructure capabilities without unnecessarily replicating AWS-specific configurations.",
+                "Infrastructure as Code enables consistent provisioning of networking, Kubernetes clusters, node pools, access controls, and supporting infrastructure across multiple environments.",
+                "The goal is to establish a reproducible platform rather than manually configure each cluster.",
+              ],
+            },
+            {
+              id: "workload-migration",
+              heading: "3. Workload Migration",
+              paragraphs: [
+                "Kubernetes workloads require validation beyond successful deployment. Application configurations, secrets, persistent storage, resource requests, ingress rules, and external dependencies must remain compatible with the target environment.",
+                "A phased migration approach reduces the blast radius of failures and allows infrastructure and application issues to be identified before migrating additional workloads.",
+              ],
+            },
+            {
+              id: "validation",
+              heading: "4. Production Validation and Traffic Transition",
+              paragraphs: [
+                "Before transitioning production traffic, the target environment must be validated for application health, service connectivity, DNS resolution, resource utilization, and monitoring coverage.",
+                "Maintaining a viable rollback strategy is equally important. A successful deployment does not necessarily guarantee that an application behaves correctly under production traffic.",
+              ],
+            },
           ],
         },
         {
-          id: "operating-model",
-          heading: "What stayed constant",
-          paragraphs: [
-            "The comparison below describes the operating model, not a claim that every internal detail was identical on both clouds. The important continuity was in how changes were defined, reviewed, and checked.",
+          id: "engineering-challenges",
+          heading: "Key Engineering Challenges",
+          paragraphs: [],
+          subsections: [
+            {
+              id: "networking",
+              heading: "Cross-Cloud Networking",
+              paragraphs: [
+                "AWS and GCP differ in their networking models, routing behavior, firewall configurations, and load-balancing integrations.",
+                "Migration planning must account for service connectivity, private networking, DNS resolution, and communication between application dependencies.",
+              ],
+            },
+            {
+              id: "identity",
+              heading: "Identity and Access Management",
+              paragraphs: [
+                "AWS IAM permissions cannot be directly translated into Google Cloud IAM policies. Workload identities and service permissions need to be evaluated against the target cloud's security model while maintaining least-privilege access.",
+              ],
+            },
+            {
+              id: "storage",
+              heading: "Storage and Stateful Workloads",
+              paragraphs: [
+                "Persistent volumes and storage integrations are cloud-specific. Stateful applications require additional consideration around data consistency, storage compatibility, backup validation, and recovery.",
+              ],
+            },
+            {
+              id: "resource-optimization",
+              heading: "Resource Optimization",
+              paragraphs: [
+                "Replicating existing node configurations without evaluating workload requirements can carry infrastructure inefficiencies into the new environment.",
+                "Resource requests, node utilization, autoscaling behavior, and workload distribution should be evaluated to achieve meaningful cost optimization.",
+              ],
+            },
+            {
+              id: "operational-consistency",
+              heading: "Operational Consistency",
+              paragraphs: [
+                "A cloud migration should not introduce unnecessary complexity for application teams. Consistent deployment practices, monitoring, alerting, and troubleshooting workflows are essential for maintaining operational efficiency.",
+              ],
+            },
           ],
         },
         {
-          id: "tradeoffs",
-          heading: "Trade-offs",
-          paragraphs: [
-            "A code-defined migration needs more upfront work on modules and chart parameters, but it avoids one-off console changes that are hard to reproduce or audit.",
-            "The extra work is front-loaded: platform definitions have to be made explicit before the move can be repeated safely. That cost was accepted because the alternative leaves scattered changes that cannot be reviewed, reproduced, or explained after the fact.",
+          id: "reliability",
+          heading: "Reliability and Risk Management",
+          paragraphs: ["The key reliability considerations throughout the migration were:"],
+          bullets: [
+            "Maintaining application availability.",
+            "Validating infrastructure and application dependencies.",
+            "Minimizing the blast radius of migration-related failures.",
+            "Ensuring monitoring and alerting coverage.",
+            "Maintaining rollback and recovery readiness.",
           ],
         },
         {
-          id: "outcome",
-          heading: "Outcome",
-          paragraphs: [
-            "The migration moved 10+ Kubernetes clusters with zero production downtime and achieved approximately 20% infrastructure cost reduction. These figures are specific to this migration; they are not presented as a general property of either cloud provider.",
-            "Repeatable delivery and validation carried across the migration, with the platform team keeping the same operational model on GCP.",
-            "Shared observability remained part of validation, so the move did not trade delivery control for reduced visibility. The target environment was reached without losing the checks that make production changes understandable.",
+          id: "outcomes",
+          heading: "Migration Outcomes",
+          paragraphs: [],
+          tables: [
+            {
+              caption: "Outcomes of migrating 10+ Kubernetes clusters to GKE.",
+              columns: ["Metric", "Outcome"],
+              rows: [
+                ["Migration scale", "10+ Kubernetes clusters"],
+                ["Production downtime", "Zero"],
+                ["Infrastructure cost", "Approximately 20% reduction"],
+                [
+                  "Platform efficiency",
+                  "Improved infrastructure utilization and operational consistency",
+                ],
+              ],
+            },
           ],
         },
         {
-          id: "learnings",
-          heading: "Engineering learnings",
+          id: "takeaways",
+          heading: "Engineering Takeaways",
           paragraphs: [
-            "The most useful lesson was to treat a cloud migration as a change to the delivery system rather than a one-time infrastructure event. Provider details matter, but the durable work is making infrastructure and workloads reproducible, reviewable, and observable in both environments.",
-            "A second lesson was to keep continuity explicit. When review, packaging, and validation remain stable, the team can focus on the differences that actually matter in the target cloud instead of rebuilding its operating process at the same time.",
-            "A third lesson was to state outcomes precisely. Approximately 20% lower infrastructure cost and zero production downtime are results of this migration under its specific scope of 10+ clusters. Keeping that boundary clear makes the case study useful without turning it into a universal claim about cloud moves.",
+            "Cloud migration is not simply an infrastructure replacement exercise. It requires balancing application reliability, infrastructure compatibility, operational efficiency, and cost.",
+            "The most important considerations are understanding dependencies before migration, designing reproducible infrastructure, validating workloads incrementally, and ensuring that reliability remains a priority throughout the transition.",
           ],
         },
       ],
-      comparison: {
-        heading: "Operating model across the migration",
-        caption: "Continuity in how changes were defined, reviewed, and checked.",
-        columns: ["Area", "AWS EKS", "GCP GKE"],
-        rows: [
-          ["Cluster platform", "EKS", "GKE"],
-          [
-            "Infrastructure definition",
-            "Existing platform definitions",
-            "Terraform-defined target infrastructure",
-          ],
-          ["Workload packaging", "Helm charts", "Helm charts"],
-          [
-            "Delivery",
-            "GitOps-driven review and rollout",
-            "Same GitOps-driven review and validation",
-          ],
-          [
-            "Availability",
-            "Production services stayed available",
-            "Zero production downtime",
-          ],
-          ["Infrastructure cost", "Baseline", "Approximately 20% lower"],
-        ],
-      },
     },
   },
 ];

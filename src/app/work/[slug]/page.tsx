@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 
 import { caseStudies } from "@/config/caseStudies";
 import type {
+  CaseStudyComparison,
   CaseStudyFlowNode,
   CaseStudySection,
+  CaseStudySubsection,
 } from "@/config/caseStudies";
 import { Section } from "@/components/ui/Section";
 
@@ -63,6 +65,104 @@ function Flow({ nodes, caption }: { nodes: CaseStudyFlowNode[]; caption: string 
   );
 }
 
+function ComparisonTable({
+  comparison,
+  level = "h2",
+}: {
+  comparison: CaseStudyComparison;
+  level?: "h2" | "h3";
+}) {
+  const Heading = level;
+
+  return (
+    <div>
+      {comparison.heading ? (
+        <Heading
+          className={
+            level === "h2"
+              ? "text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl"
+              : "text-lg font-semibold leading-snug tracking-tight text-fg"
+          }
+        >
+          {comparison.heading}
+        </Heading>
+      ) : null}
+      <p className="mt-3 text-[0.9375rem] leading-[1.8] text-fg-muted sm:text-base">
+        {comparison.caption}
+      </p>
+      <div className="mt-4 overflow-x-auto">
+        <table className="w-full min-w-[640px] border-collapse text-left text-sm">
+          <thead>
+            <tr className="border-b border-border-strong">
+              {comparison.columns.map((column) => (
+                <th
+                  key={column}
+                  scope="col"
+                  className="py-3 pr-4 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-fg-subtle"
+                >
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.rows.map((row, rowIndex) => (
+              <tr
+                key={`${rowIndex}-${row[0] ?? ""}`}
+                className="border-b border-border last:border-b-0"
+              >
+                {row.map((cell, i) => (
+                  <td
+                    key={`${rowIndex}-${i}`}
+                    className={`py-3 pr-4 align-top leading-relaxed ${
+                      i === 0 ? "font-medium text-fg" : "text-fg-muted"
+                    }`}
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+function Subsection({ subsection }: { subsection: CaseStudySubsection }) {
+  return (
+    <div className="mt-6">
+      <h3
+        id={subsection.id}
+        className="text-lg font-semibold leading-snug tracking-tight text-fg"
+      >
+        {subsection.heading}
+      </h3>
+      {subsection.paragraphs.map((paragraph) => (
+        <p
+          key={paragraph}
+          className="mt-3 text-[0.9375rem] leading-[1.8] text-fg-muted sm:text-base"
+        >
+          {paragraph}
+        </p>
+      ))}
+      {subsection.bullets ? (
+        <ul className="mt-4 space-y-2 border-l border-border pl-4">
+          {subsection.bullets.map((bullet) => (
+            <li
+              key={bullet}
+              className="text-[0.9375rem] leading-[1.75] text-fg-muted sm:text-base"
+            >
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 function ArticleSection({ section }: { section: CaseStudySection }) {
   return (
     <section className="mt-9" aria-labelledby={section.id}>
@@ -92,6 +192,14 @@ function ArticleSection({ section }: { section: CaseStudySection }) {
           ))}
         </ul>
       ) : null}
+      {section.subsections?.map((subsection) => (
+        <Subsection key={subsection.id} subsection={subsection} />
+      ))}
+      {section.tables?.map((comparison, i) => (
+        <div key={`${section.id}-table-${i}`} className="mt-6">
+          <ComparisonTable comparison={comparison} level="h3" />
+        </div>
+      ))}
     </section>
   );
 }
@@ -103,6 +211,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   if (!study) notFound();
 
   const { article } = study;
+  const scopeLine = article.scopeLine ?? article.scope?.join(" · ");
 
   return (
     <Section id="case-study" divided className="py-10! md:py-12! lg:py-16!">
@@ -117,7 +226,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
         <header className="mt-8 border-b border-border pb-7">
           <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-text">
-            {study.category}
+            {article.eyebrow ?? study.category}
           </span>
           <h1 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-fg sm:text-4xl">
             {study.title}
@@ -125,14 +234,18 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <p className="mt-4 text-base leading-relaxed text-fg-muted sm:text-lg">
             {study.description}
           </p>
-          <p className="mt-5 font-mono text-[11px] leading-relaxed text-fg-subtle">
-            {article.scope.join(" · ")}
-          </p>
+          {scopeLine ? (
+            <p className="mt-5 font-mono text-[11px] leading-relaxed text-fg-subtle">
+              {scopeLine}
+            </p>
+          ) : null}
         </header>
 
-        <p className="mt-7 text-[1.0625rem] leading-[1.75] text-fg">
-          {article.summary}
-        </p>
+        {article.summary ? (
+          <p className="mt-7 text-[1.0625rem] leading-[1.75] text-fg">
+            {article.summary}
+          </p>
+        ) : null}
 
         <Flow nodes={article.flow.nodes} caption={article.flow.caption} />
 
@@ -140,50 +253,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <ArticleSection key={section.id} section={section} />
         ))}
 
-        <section className="mt-9" aria-labelledby="comparison">
-          <h2
-            id="comparison"
-            className="text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl"
-          >
-            {article.comparison.heading}
-          </h2>
-          <p className="mt-3 text-[0.9375rem] leading-[1.8] text-fg-muted sm:text-base">
-            {article.comparison.caption}
-          </p>
-          <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[600px] border-collapse text-left text-sm">
-              <thead>
-                <tr className="border-b border-border-strong">
-                  {article.comparison.columns.map((column) => (
-                    <th
-                      key={column}
-                      scope="col"
-                      className="py-3 pr-4 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-fg-subtle"
-                    >
-                      {column}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {article.comparison.rows.map((row) => (
-                  <tr key={row[0]} className="border-b border-border last:border-b-0">
-                    {row.map((cell, i) => (
-                      <td
-                        key={`${row[0]}-${i}`}
-                        className={`py-3 pr-4 align-top leading-relaxed ${
-                          i === 0 ? "font-medium text-fg" : "text-fg-muted"
-                        }`}
-                      >
-                        {cell}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {article.comparison ? (
+          <section className="mt-9" aria-labelledby="comparison">
+            <ComparisonTable comparison={article.comparison} level="h2" />
+          </section>
+        ) : null}
 
         <footer className="mt-10 border-t border-border pt-6">
           <Link
