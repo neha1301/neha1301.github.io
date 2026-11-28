@@ -38,19 +38,13 @@ const focusAreas: {
 
 export function About() {
   return (
-    <Section id="about" divided className="border-t-accent/35">
-      <Reveal className="flex items-center gap-3">
-        <span className="font-mono text-[12px] font-semibold tracking-[0.08em] text-accent">
-          02
-        </span>
-        <span aria-hidden="true" className="h-px w-6 bg-border-strong" />
-        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-muted">
-          About
-        </span>
-      </Reveal>
-
-      <Reveal delay={0.04}>
-        <h2 className="mt-3 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-fg sm:text-3xl">
+    <Section
+      id="about"
+      divided
+      className="border-t-accent/35 py-8! md:py-12! lg:py-14!"
+    >
+      <Reveal>
+        <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-fg sm:text-3xl">
           Own the platform, not just the pager.
         </h2>
       </Reveal>
@@ -58,20 +52,17 @@ export function About() {
       <div className="mt-5 max-w-3xl">
         <Reveal delay={0.08}>
           <p className="text-[0.9375rem] leading-relaxed text-fg sm:text-base">
-            I&apos;m an SRE and platform engineer who owns what happens after
-            deploy — the Kubernetes platforms, infrastructure-as-code and
-            alerting teams rely on in production. I treat reliability as a
-            design problem: make environments reproducible, upgrades boring,
-            and alerts worth waking up for.
+            I like systems that make the next step obvious — fewer manual
+            steps, clearer signals, and defaults that hold up when the pager
+            goes off.
           </p>
         </Reveal>
 
         <Reveal delay={0.12}>
           <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted sm:text-base">
-            When something breaks, I look for the smallest durable fix: remove a
-            manual step, add validation before deploy, or turn a multi-command
-            investigation into one clear answer. Observability belongs with the
-            service that emits it, not bolted on as another dashboard.
+            When something breaks, I look for the smallest durable fix: remove
+            a step, add validation, or collapse a noisy investigation into one
+            readable answer.
           </p>
         </Reveal>
       </div>
@@ -92,7 +83,7 @@ export function About() {
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">
                   {area.description}
                 </p>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] leading-relaxed text-fg-subtle">
+                <p className="mt-4 font-mono text-[11.5px] tracking-[0.08em] leading-relaxed text-fg-muted">
                   {area.keywords.join(" · ")}
                 </p>
               </article>
