@@ -17,6 +17,7 @@ export interface CaseStudySubsection {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  tables?: CaseStudyComparison[];
 }
 
 export interface CaseStudyComparison {
@@ -68,129 +69,159 @@ export const caseStudies: CaseStudy[] = [
       "Unifying monitoring, alerting, and operational visibility across 30+ Kubernetes clusters while transitioning to an open-source observability stack.",
     technologies: ["Prometheus", "Grafana", "Loki", "Tempo", "Kubernetes"],
     article: {
-      summary:
-        "Centralizing observability meant changing both the signal definitions and the way engineers consumed them. The work covered 10–15 services and 30+ production Kubernetes clusters, replacing a cluster-scoped, vendor-led view with a shared stack built on Prometheus, Grafana, Loki, and Tempo.",
-      scope: [
-        "30+ production clusters",
-        "10–15 services",
-        "Prometheus · Grafana · Loki · Tempo",
-      ],
+      eyebrow: "Observability",
+      scopeLine: "30+ Production Clusters · 10–15 Services · Open-Source Observability",
       flow: {
-        caption: "Operational data flow",
+        caption: "Observability workflow",
         nodes: [
           {
-            label: "Services",
-            detail: "10–15 services producing metrics, alerts, logs, and traces where available",
+            label: "Alert review",
+            detail: "10–15 services; noisy and non-actionable conditions identified",
           },
           {
             label: "Prometheus",
-            detail: "Metrics and rewritten alert rules evaluated centrally",
-          },
-          {
-            label: "Loki + Tempo",
-            detail: "Logs and trace context for investigation",
+            detail: "Metrics collection and alert rule evaluation",
           },
           {
             label: "Grafana",
-            detail: "Dashboards spanning 30+ production clusters",
+            detail: "Centralized dashboards covering 30+ production clusters",
           },
           {
-            label: "On-call & service owners",
-            detail: "One view for detection and diagnosis",
+            label: "Loki + Tempo",
+            detail: "Log aggregation and distributed tracing where available",
+          },
+          {
+            label: "On-call engineers and service owners",
+            detail: "Unified investigation workflow",
           },
         ],
       },
       sections: [
         {
-          id: "starting-point",
-          heading: "Existing monitoring architecture and its limitations",
+          id: "overview",
+          heading: "Overview",
           paragraphs: [
-            "Monitoring had grown with the Kubernetes estate instead of being designed as a single system. Alerts were defined close to individual services, dashboards were organized around individual clusters, and logging and visualization depended on proprietary monitoring tools. With 30+ production clusters, that shape makes diagnosis a manual correlation exercise: identify the affected cluster, locate the relevant dashboard, then switch tools to add log or trace context.",
-            "The limitation was not a lack of signals. One service could emit 300–400 alerts, and the default path was to forward that volume. Moving the same stream into another tool would have relocated noise rather than reduced it. The useful work was upstream: decide what each alert meant and what condition deserved attention.",
+            "As the Kubernetes infrastructure scaled across 30+ production clusters, monitoring became increasingly fragmented. Engineers relied on cluster-specific dashboards, service-level alerts, and proprietary monitoring tools, making incident investigation and infrastructure visibility more complex.",
+            "The objective was to establish a centralized observability platform that improved operational visibility, reduced alert noise, and provided a consistent troubleshooting experience for on-call engineers and service owners.",
           ],
         },
         {
-          id: "centralized-alerting",
-          heading: "Centralized alerting across 10–15 services",
-          paragraphs: [
-            "Centralized alerting was implemented as a rule-quality problem across 10–15 services. Each alert use case was reviewed and the rule was rewritten around an actionable condition, instead of treating every emitted event as something to route onward. In practice, that changed alerts from service-local output into a shared operational contract.",
-            "Noise reduction came from restructuring the rules themselves, not from muting notifications further down the path. That distinction matters. Suppression can hide a recurring failure; rewriting a rule removes the reason the signal was misleading in the first place.",
-            "The review also made severity meaning more consistent. A condition that belongs on a dashboard does not need to interrupt an engineer, while a condition tied to operational impact should be explicit. This is slower than simply aggregating alerts, but it makes the alert set something an on-call engineer can trust.",
-          ],
-        },
-        {
-          id: "implementation",
-          heading: "Technical implementation",
-          paragraphs: [
-            "The work can be understood as four connected changes rather than a tool swap. Each layer has a narrow responsibility: Prometheus answers whether a condition is happening, Loki and Tempo help explain why, and Grafana is where those views meet.",
-          ],
+          id: "challenges",
+          heading: "Key Challenges",
+          paragraphs: [],
           bullets: [
-            "Alert rules were reviewed per use case and rewritten before they were treated as centralized signals.",
-            "Prometheus became the common layer for metrics and evaluated alert rules across the cluster estate.",
-            "Loki and Tempo supplied log and trace context for investigation, with traces used where they were available.",
-            "Grafana became the shared read layer, with dashboards covering 30+ production clusters for on-call engineers and service owners.",
+            "Fragmented monitoring across multiple production clusters.",
+            "Excessive alert volume, with a single service generating 300–400 alerts.",
+            "Inconsistent alert definitions and severity classification across services.",
+            "Limited correlation between metrics, logs, and traces.",
+            "Dependency on proprietary monitoring tools and licensing.",
           ],
         },
         {
-          id: "dashboards",
-          heading: "Dashboards across 30+ production clusters",
-          paragraphs: [
-            "The dashboards were organized around operational questions, not cluster names. Cluster remained a dimension in the data, but it was no longer a separate destination. A responder could start from a service-level symptom and narrow to the affected cluster without hunting for a dashboard.",
-            "Using the same Grafana view for incident response and routine health checks kept the signal definitions visible. Service owners could see the same information that on-call engineers used during an incident, which reduced the gap between owning a service and understanding how it appears operationally.",
-            "Coverage across 30+ production clusters was the point of the design. A centralized view is useful only if it reflects the whole estate; otherwise the responder still has to know where to look before the dashboard can help.",
+          id: "engineering-approach",
+          heading: "Engineering Approach",
+          paragraphs: [],
+          subsections: [
+            {
+              id: "centralized-alerting",
+              heading: "1. Centralized Alerting",
+              paragraphs: [
+                "Redesigned alerting across 10–15 services by reviewing existing alert rules, identifying noisy and non-actionable conditions, and restructuring rules around meaningful operational signals.",
+                "Rather than simply suppressing notifications, the focus was on improving alert quality at the source. Alert conditions and severity levels were reviewed to distinguish actionable incidents from informational signals.",
+              ],
+            },
+            {
+              id: "unified-visibility",
+              heading: "2. Unified Infrastructure Visibility",
+              paragraphs: [
+                "Designed centralized Grafana dashboards covering 30+ production Kubernetes clusters, eliminating the need to navigate individual cluster dashboards during incident investigation.",
+                "The dashboards provided a shared operational view, allowing engineers to identify affected services, narrow down infrastructure issues, and investigate cluster-level problems from a common interface.",
+              ],
+            },
+            {
+              id: "open-source-migration",
+              heading: "3. Open-Source Observability Migration",
+              paragraphs: [
+                "Migrated monitoring capabilities from proprietary tools to an open-source observability stack, establishing greater control over monitoring configurations, alert definitions, and operational workflows.",
+              ],
+              tables: [
+                {
+                  caption:
+                    "The separation of metrics, logs, and traces provided a structured foundation for troubleshooting while reducing vendor dependency.",
+                  columns: ["Component", "Responsibility"],
+                  rows: [
+                    [
+                      "Prometheus",
+                      "Metrics collection and alert rule evaluation",
+                    ],
+                    [
+                      "Grafana",
+                      "Centralized visualization and operational dashboards",
+                    ],
+                    ["Loki", "Log aggregation and investigation"],
+                    ["Tempo", "Distributed tracing where available"],
+                  ],
+                },
+              ],
+            },
           ],
         },
         {
-          id: "open-source-migration",
-          heading: "Migration to an open-source stack",
+          id: "engineering-decisions",
+          heading: "Engineering Decisions",
           paragraphs: [
-            "Moving off proprietary monitoring tools was not only a licensing decision. It changed who controls alert semantics, dashboard structure, and investigation paths. Prometheus and Grafana took over metric evaluation and visualization; Loki took over logs; Tempo covered traces where available. Removing licence dependency was a clear result, but the more important outcome was owning the definitions that drive operational decisions.",
+            "The primary design decision was to improve signal quality before centralizing monitoring. Aggregating existing alerts without reviewing their underlying conditions would have amplified operational noise.",
+            "Another important consideration was balancing centralized visibility with cluster-level granularity. Engineers needed a unified view of the infrastructure without losing the ability to investigate individual clusters and services.",
+            "Moving to an open-source stack also introduced greater responsibility for monitoring infrastructure and configuration management, but provided more flexibility and ownership over the observability platform.",
           ],
         },
         {
-          id: "decisions",
-          heading: "Engineering decisions and trade-offs",
-          paragraphs: [
-            "The hardest decision was classification: which signals should page, which should live on a dashboard, and which are only useful during deeper investigation. High-volume sources such as the service emitting 300–400 alerts made that decision unavoidable. Without it, centralization would have produced a larger, noisier stream rather than a better one.",
-            "Operating an owned stack also changes responsibility. Collection, retention, and dashboard maintenance become platform concerns instead of vendor defaults. That trade-off was worthwhile here because it allowed alert rules and views to be standardized across 30+ clusters without being constrained by a proprietary tool's model.",
+          id: "operational-impact",
+          heading: "Operational Impact",
+          paragraphs: [],
+          tables: [
+            {
+              caption: "Before and after the centralized observability work.",
+              columns: ["Area", "Before", "After"],
+              rows: [
+                [
+                  "Monitoring",
+                  "Individual cluster dashboards",
+                  "Centralized visibility across 30+ clusters",
+                ],
+                [
+                  "Alerting",
+                  "High-volume, fragmented alerts",
+                  "Restructured alert rules across 10–15 services",
+                ],
+                [
+                  "Tooling",
+                  "Proprietary monitoring tools",
+                  "Open-source observability stack",
+                ],
+                [
+                  "Troubleshooting",
+                  "Multiple tools and dashboards",
+                  "Unified investigation workflow",
+                ],
+                [
+                  "Vendor dependency",
+                  "License-dependent monitoring",
+                  "Greater platform ownership",
+                ],
+              ],
+            },
           ],
         },
         {
-          id: "impact",
-          heading: "Operational impact and engineering learnings",
+          id: "engineering-learnings",
+          heading: "Engineering Learnings",
           paragraphs: [
-            "The operational result is a shared view for on-call engineers and service owners spanning 30+ production clusters. Alert noise is addressed in the rules that generate it, and logs and trace context are part of the same investigation path rather than a separate hunt.",
-            "The main learning is that centralization is a design problem, not a relocation exercise. Moving raw alerts into a new tool preserves the noise. Durable improvement comes from defining what an alert means, connecting metrics with logs and traces, and judging the work by whether a responder can understand impact and location quickly.",
+            "Effective observability is not about collecting more data or generating more alerts. It is about providing the right signals, with sufficient context, when engineers need them.",
+            "Centralizing observability requires improving alert quality, standardizing monitoring practices, and designing dashboards around operational needs rather than infrastructure boundaries.",
           ],
         },
       ],
-      comparison: {
-        heading: "Monitoring model, before and after",
-        caption: "Key changes in how signals were defined and consumed.",
-        columns: ["Area", "Before", "After"],
-        rows: [
-          [
-            "Alert source",
-            "High-volume, service-local signals; one service could emit 300–400 alerts",
-            "Reviewed and rewritten rules across 10–15 services",
-          ],
-          [
-            "Scope",
-            "Cluster-scoped views",
-            "Grafana dashboards covering 30+ production clusters",
-          ],
-          [
-            "Tooling",
-            "Proprietary monitoring tools",
-            "Prometheus, Grafana, Loki, and Tempo",
-          ],
-          [
-            "Investigation",
-            "Context spread across separate views",
-            "Metrics, logs, and traces used from one operational workflow",
-          ],
-        ],
-      },
     },
   },
   {

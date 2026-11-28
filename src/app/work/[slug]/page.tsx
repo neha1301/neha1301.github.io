@@ -159,6 +159,11 @@ function Subsection({ subsection }: { subsection: CaseStudySubsection }) {
           ))}
         </ul>
       ) : null}
+      {subsection.tables?.map((comparison, i) => (
+        <div key={`${subsection.id}-table-${i}`} className="mt-6">
+          <ComparisonTable comparison={comparison} level="h3" />
+        </div>
+      ))}
     </div>
   );
 }
