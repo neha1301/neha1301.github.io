@@ -2,7 +2,6 @@ import { Cloud, ShieldCheck, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
 const focusAreas: {
@@ -10,130 +9,92 @@ const focusAreas: {
   title: string;
   icon: LucideIcon;
   description: string;
-  points: string[];
+  keywords: string[];
 }[] = [
   {
     id: "reliability",
     title: "Reliability Engineering",
     icon: ShieldCheck,
     description:
-      "Alerting that stays quiet until it matters, SLO-driven monitoring, and incidents closed with a root cause instead of a workaround.",
-    points: [
-      "Centralized alerting",
-      "Incident response & RCA",
-      "Open-source observability stack",
-    ],
+      "Signals designed with the service, so alerts stay quiet until they matter.",
+    keywords: ["Alerting", "SLOs", "RCA", "Observability"],
   },
   {
     id: "cloud",
     title: "Cloud & Platform Infrastructure",
     icon: Cloud,
     description:
-      "Kubernetes platforms built from code: reproducible environments, zero-downtime upgrades and validation that runs before a deploy lands.",
-    points: [
-      "Terraform + EKS platform work",
-      "Kubernetes policy-as-code",
-      "Helm & GitOps delivery",
-    ],
+      "Reproducible Kubernetes environments with upgrades that don't wake anyone up.",
+    keywords: ["Terraform", "EKS", "Helm", "GitOps"],
   },
   {
     id: "diagnostics",
     title: "Diagnostics & Tooling",
     icon: Wrench,
-    description:
-      "Tools that collapse a multi-command investigation into one readable answer — deterministic where it can be, automated where it saves a page.",
-    points: [
-      "Single-pass node diagnostics",
-      "Alert enrichment with cluster context",
-      "Python + Kubernetes API",
-    ],
+    description: "One readable answer instead of a multi-command investigation.",
+    keywords: ["Python", "Kubernetes API", "Automation"],
   },
 ];
 
 export function About() {
   return (
-    <Section
-      id="about"
-      divided
-      className="highlight-band border-t-accent/35"
-    >
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
-          <SectionHeading
-            index="02"
-            eyebrow="About"
-            title="Own the platform, not just the pager."
-            emphasis
-            className="lg:sticky lg:top-28"
-          />
-        </div>
+    <Section id="about" divided className="border-t-accent/35">
+      <Reveal className="flex items-center gap-3">
+        <span className="font-mono text-[12px] font-semibold tracking-[0.08em] text-accent">
+          02
+        </span>
+        <span aria-hidden="true" className="h-px w-6 bg-border-strong" />
+        <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-muted">
+          About
+        </span>
+      </Reveal>
 
-        <div className="lg:col-span-7">
-          <Reveal>
-            <p className="text-xl font-medium leading-relaxed text-fg sm:text-2xl">
-              I&apos;m an SRE and platform engineer who owns systems after they
-              ship — the Kubernetes platforms, infrastructure-as-code, alerting
-              and release paths that teams depend on in production.
-            </p>
-          </Reveal>
+      <Reveal delay={0.04}>
+        <h2 className="mt-3 max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-fg sm:text-3xl">
+          Own the platform, not just the pager.
+        </h2>
+      </Reveal>
 
-          <Reveal delay={0.06}>
-            <p className="mt-6 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
-              My work sits where platform engineering and reliability meet:
-              Terraform and Helm make environments reproducible, Kubernetes
-              upgrades run without downtime, and Python automation removes manual
-              onboarding. Observability is designed with the service that emits
-              it, not bolted on as a separate dashboard.
-            </p>
-          </Reveal>
+      <div className="mt-5 max-w-3xl">
+        <Reveal delay={0.08}>
+          <p className="text-[0.9375rem] leading-relaxed text-fg sm:text-base">
+            I&apos;m an SRE and platform engineer who owns what happens after
+            deploy — the Kubernetes platforms, infrastructure-as-code and
+            alerting teams rely on in production. I treat reliability as a
+            design problem: make environments reproducible, upgrades boring,
+            and alerts worth waking up for.
+          </p>
+        </Reveal>
 
-          <Reveal delay={0.1}>
-            <p className="mt-5 text-[1.0625rem] leading-relaxed text-fg-muted sm:text-lg">
-              I&apos;d rather delete a manual step than get faster at doing it.
-              Whether it&apos;s a Kubernetes v1.32 admission policy that rejects
-              bad deploys, a single-pass node diagnostic, or consolidating alerts
-              across services, the goal is the same: fewer surprises and a
-              clearer path to root cause.
-            </p>
-          </Reveal>
-
-          {/* Focus areas */}
-        </div>
+        <Reveal delay={0.12}>
+          <p className="mt-4 text-[0.9375rem] leading-relaxed text-fg-muted sm:text-base">
+            When something breaks, I look for the smallest durable fix: remove a
+            manual step, add validation before deploy, or turn a multi-command
+            investigation into one clear answer. Observability belongs with the
+            service that emits it, not bolted on as another dashboard.
+          </p>
+        </Reveal>
       </div>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {focusAreas.map((area, i) => {
           const Icon = area.icon;
           return (
-            <Reveal key={area.id} delay={0.08 * i} className="h-full">
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface p-5 transition-all duration-300 hover:-translate-y-1 hover:border-border-strong hover:bg-surface-2">
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                />
-                <span className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-surface-2 text-accent transition-colors duration-300 group-hover:border-accent/40">
-                  <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+            <Reveal key={area.id} delay={0.06 * i} className="h-full">
+              <article className="flex h-full flex-col rounded-xl border border-border bg-surface p-4 transition-colors duration-200 hover:border-border-strong sm:p-5">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md border border-accent/20 bg-accent-soft text-accent">
+                  <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
-                <h3 className="mt-4 text-base font-semibold leading-snug text-fg sm:text-lg">
+
+                <h3 className="mt-4 text-base font-semibold leading-snug text-fg">
                   {area.title}
                 </h3>
-                <p className="mt-2.5 flex-1 text-sm leading-relaxed text-fg-muted sm:text-[0.9375rem]">
+                <p className="mt-2 text-sm leading-relaxed text-fg-muted">
                   {area.description}
                 </p>
-                <ul className="mt-4 space-y-1.5">
-                  {area.points.map((point) => (
-                    <li
-                      key={point}
-                      className="flex items-center gap-2 font-mono text-xs text-fg-subtle"
-                    >
-                      <span
-                        className="h-1 w-1 rounded-full bg-accent/70"
-                        aria-hidden="true"
-                      />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] leading-relaxed text-fg-subtle">
+                  {area.keywords.join(" · ")}
+                </p>
               </article>
             </Reveal>
           );
